@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// eslint-disable-next-line import/extensions
-import BurgerMenu from "../../utils/tempates/Burger-menu/Burger-menu.jsx";
-// eslint-disable-next-line import/extensions
-import Slider from "../../utils/Slider/Slider.jsx";
+import BurgerMenu from "../../utils/tempates/Burger-menu/Burger-menu";
+import Slider from "../../utils/Slider/Slider";
 import "./home.css";
 
 const Home = () => (
@@ -28,7 +26,7 @@ const Home = () => (
           Поминутная аренда авто твоего города
         </h4>
 
-        <Link to="/order">
+        <Link to="/car-sharing/order">
           <button type="button" className="btn heading-btn">
             Забронировать
           </button>

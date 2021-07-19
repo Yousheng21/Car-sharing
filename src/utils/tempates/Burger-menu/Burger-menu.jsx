@@ -44,33 +44,33 @@ const BurgerMenu = () => {
           />
         </span>
         <div className="burger-info">
-          <Link to="/order" onClick={() => toggle()}>
+          <Link to="/car-sharing/order" onClick={() => toggle()}>
             <span>ПАРКОВКА</span>
           </Link>
-          <Link to="/order" onClick={() => toggle()}>
+          <Link to="/car-sharing/order" onClick={() => toggle()}>
             <span>СТРАХОВКА</span>
           </Link>
-          <Link to="/order" onClick={() => toggle()}>
+          <Link to="/car-sharing/order" onClick={() => toggle()}>
             <span>БЕНЗИН</span>
           </Link>
-          <Link to="/order" onClick={() => toggle()}>
+          <Link to="/car-sharing/order" onClick={() => toggle()}>
             <span>ОБСЛУЖИВАНИЕ</span>
           </Link>
         </div>
         <div className="social-links">
-          <Link to="order">
+          <Link to="/car-sharing/order">
             <img
               src="https://img.icons8.com/ios-glyphs/30/000000/telegram-app.png"
               alt="telegram"
             />
           </Link>
-          <Link to="order">
+          <Link to="/car-sharing/order">
             <img
               src="https://img.icons8.com/material-outlined/30/000000/facebook-f.png"
               alt="facebook"
             />
           </Link>
-          <Link to="order">
+          <Link to="/car-sharing/order">
             <img
               src="https://img.icons8.com/windows/30/000000/instagram-new.png"
               alt="inst"

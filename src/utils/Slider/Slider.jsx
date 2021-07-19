@@ -70,7 +70,7 @@ const Slider = () => {
               <div className="text">
                 <h1>{element.title}</h1>
                 <p>{element.par}</p>
-                <Link to="/order">
+                <Link to="/car-sharing/order">
                   <button
                     type="button"
                     style={{ background: element.button__bg }}
