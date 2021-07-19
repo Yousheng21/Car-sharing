@@ -101,7 +101,6 @@ const Slider = () => {
                             // eslint-disable-next-line react/no-array-index-key
                         key={index}
                         className="dot"
-                        value={index}
                         onClick={(event) => currentSlide(event.target.attributes.value.value)}
                       />
                     ))
