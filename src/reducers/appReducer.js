@@ -1,17 +1,18 @@
-const SET_BURGER_STATUS = 'SET_BURGER_STATUS';
+const SET_BURGER_STATUS = "SET_BURGER_STATUS";
 
 const defaultState = {
-  burger_status: 'default',
+  burger_status: "default",
   currentOrder: {
-    place: { text: 'Пункт выдачи', value: 'Ульяновск, Нариманова, 42' },
-    model: { text: 'Модель', value: '' },
-    color: { text: 'Цвет', value: '' },
-    delay: { text: 'Длительность аренды', value: '' },
-    tariff: { text: 'Тариф', value: '' },
-    cistern: { text: 'Полный бак', value: '' },
+    place: { text: "Пункт выдачи", value: "Ульяновск, Нариманова, 42" },
+    model: { text: "Модель", value: "" },
+    color: { text: "Цвет", value: "" },
+    delay: { text: "Длительность аренды", value: "" },
+    tariff: { text: "Тариф", value: "" },
+    cistern: { text: "Полный бак", value: "" },
   },
   price: {
-    min: '8 000', max: '12 000',
+    min: "8 000",
+    max: "12 000",
   },
 };
 
@@ -28,4 +29,7 @@ export default function appReducer(state = defaultState, action) {
   }
 }
 
-export const setBurgerStatus = (status) => ({ type: SET_BURGER_STATUS, payload: status });
+export const setBurgerStatus = (status) => ({
+  type: SET_BURGER_STATUS,
+  payload: status,
+});

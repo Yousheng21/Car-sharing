@@ -1,8 +1,8 @@
-import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from "redux";
 
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-import appReducer from './appReducer';
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
+import appReducer from "./appReducer";
 
 export default function saveToLocalStorage(name, state) {
   try {
@@ -29,5 +29,5 @@ const rootReducer = combineReducers({
 
 export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk)),
+  composeWithDevTools(applyMiddleware(thunk))
 );

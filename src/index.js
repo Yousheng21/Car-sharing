@@ -1,15 +1,15 @@
-import './index.css';
+import "./index.css";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import App from './components/App';
-import { store } from './reducers';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import App from "./components/App";
+import { store } from "./reducers";
 
 ReactDOM.render(
   // eslint-disable-next-line react/jsx-filename-extension
   <Provider store={store}>
     <App />
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );

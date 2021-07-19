@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import './slider.css';
+import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import "./slider.css";
 
-import components from './data';
+import components from "./data";
 
 const Slider = () => {
   const burgerStatus = useSelector((state) => state.app.burger_status);
@@ -23,12 +23,12 @@ const Slider = () => {
 
   function showSlides() {
     for (let i = 0; i < slides.length; i += 1) {
-      slides[i].style.display = 'none';
-      dots[i].className = dots[i].className.replace(' active', '');
+      slides[i].style.display = "none";
+      dots[i].className = dots[i].className.replace(" active", "");
     }
 
-    slides[slideIndex].style.display = 'block';
-    dots[slideIndex].className += ' active';
+    slides[slideIndex].style.display = "block";
+    dots[slideIndex].className += " active";
   }
 
   useEffect(() => {
@@ -56,56 +56,67 @@ const Slider = () => {
   }
 
   return (
-    <div className={`${
-      burgerStatus === 'open' ? 'slider slider__open' : 'slider'
-    }`}
+    <div
+      className={`${
+        burgerStatus === "open" ? "slider slider__open" : "slider"
+      }`}
     >
       <div className="slideshow-container">
         <div ref={slidesRef}>
-          {
-                        components.map((element, index) => (
-                          // eslint-disable-next-line react/no-array-index-key
-                          <div key={index} className="mySlides fade">
-                            <img src={element.img} alt="" />
-                            <div className="text">
-                              <h1>{element.title}</h1>
-                              <p>{element.par}</p>
-                              <Link to="/order">
-                                <button type="button" style={{ background: element.button__bg }}>
-                                  Подробнее
-                                </button>
-                              </Link>
-                            </div>
-                          </div>
-                        ))
-                    }
-
+          {components.map((element, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <div key={index} className="mySlides fade">
+              <img src={element.img} alt="" />
+              <div className="text">
+                <h1>{element.title}</h1>
+                <p>{element.par}</p>
+                <Link to="/order">
+                  <button
+                    type="button"
+                    style={{ background: element.button__bg }}
+                  >
+                    Подробнее
+                  </button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div role="button" tabIndex={0} onKeyDown={() => ''} className="prev-bg" onClick={() => minusSlides()}>
+        <div
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => ""}
+          className="prev-bg"
+          onClick={() => minusSlides()}
+        >
           <span className="prev">❮</span>
         </div>
-        <div role="link" tabIndex={0} onKeyDown={() => ''} className="next-bg" onClick={() => plusSlides()}>
+        <div
+          role="link"
+          tabIndex={0}
+          onKeyDown={() => ""}
+          className="next-bg"
+          onClick={() => plusSlides()}
+        >
           <span className="next">❯</span>
         </div>
-
       </div>
       <div ref={dotsRef} className="dots">
-        {
-                    components.map((el, index) => (
-                      <span
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={() => ''}
-                        aria-label="dots"
-                            // eslint-disable-next-line react/no-array-index-key
-                        key={index}
-                        className="dot"
-                        onClick={(event) => currentSlide(event.target.attributes.value.value)}
-                      />
-                    ))
-                }
-
+        {components.map((el, index) => (
+          <span
+            role="button"
+            tabIndex={0}
+            onKeyDown={() => ""}
+            aria-label="dots"
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            className="dot"
+            onClick={(event) =>
+              currentSlide(event.target.attributes.value.value)
+            }
+          />
+        ))}
       </div>
     </div>
   );
