@@ -19,7 +19,7 @@ const Home = () => (
       </div>
       <div className="heading">
         <h1>Каршеринг</h1>
-        <h1>Need for drive</h1>
+        <h1 className="sub-title">Need for drive</h1>
         <h4>Поминутная аренда авто твоего города</h4>
 
         <Link to="/car-sharing/order">
