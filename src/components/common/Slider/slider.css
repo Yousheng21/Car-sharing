@@ -1,0 +1,136 @@
+
+.slider__open{
+    background: #151B1F;
+    z-index: -999;
+}
+.slider__open .slideshow-container{
+    opacity: 0.3;
+}
+
+.slider{
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+
+.slider .next-bg,.slider .prev-bg{
+    cursor: pointer;
+    position: absolute;
+    width: 3vw;
+    height: 100vh;
+    top: 0;
+    z-index: 2;
+    opacity: 0;
+}
+
+.slider .prev,.slider .next{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    z-index: 0;
+    color: white;
+    padding: 16px;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.slider .next,.slider .next-bg{
+    right: 0;
+}
+
+.slider .next-bg:hover,.slider .prev-bg:hover{
+    background-color: #0EC261;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.slider .next-bg:hover .next,.slider .prev-bg:hover .prev{
+    color: white;
+    z-index: 2;
+    opacity: 1;
+}
+
+.slider .text {
+    color: #f2f2f2;
+    width: 30vmax;
+    position: absolute;
+    top: 30%;
+    right: 15vmax;
+}
+
+.slider .text h1{
+    font-size: 40px;
+}
+
+.slider .text p{
+    font-size: 24px;
+}
+
+.slider .text button{
+    margin-top: 5%;
+    padding: 15px 30px;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.slider .dot {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    border: none;
+    background-color: white;
+    border-radius: 50%;
+    transition: background-color 0.6s ease;
+}
+
+.slider .active, .dot:hover {
+    background-color: #0EC261;
+}
+
+.slider .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+.slider .fade img{
+    object-fit: cover;
+    width: 50vmax;
+    height: 100vh;
+    background: rgba(0,0,0,.9);
+    filter: brightness(60%);
+
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+
+.slider .dots{
+    position: absolute;
+    z-index: 999;
+    text-align: center;
+    width: 50%;
+    bottom: 5%;
+}
+
+.slider__open .dots{
+    width: 50%;
+    opacity: 0.3;
+}
+
+
+@media screen and (max-width: 1023px) {
+    .slider{
+        display: none;
+    }
+}
