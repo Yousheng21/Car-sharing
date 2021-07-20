@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import BurgerMenu from "../../utils/tempates/Burger-menu/Burger-menu";
-import Slider from "../../utils/Slider/Slider";
+import location from "../../images/location.png";
+import BurgerMenu from "../common/Burger-menu/Burger-menu";
+import Slider from "../common/Slider/Slider";
 import "./home.css";
 
 const Home = () => (
@@ -12,19 +13,14 @@ const Home = () => (
       <div className="header">
         <span className="header-title">Need for drive</span>
         <span className="header-map">
-          <img
-            src="https://img.icons8.com/plumpy/24/000000/google-maps-new.png"
-            alt=""
-          />
+          <img src={location} alt="location" />
           Ульяновск
         </span>
       </div>
       <div className="heading">
         <h1>Каршеринг</h1>
-        <h1 style={{ color: "#0EC261" }}>Need for drive</h1>
-        <h4 style={{ color: "#999999" }}>
-          Поминутная аренда авто твоего города
-        </h4>
+        <h1>Need for drive</h1>
+        <h4>Поминутная аренда авто твоего города</h4>
 
         <Link to="/car-sharing/order">
           <button type="button" className="btn heading-btn">
