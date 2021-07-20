@@ -1,7 +1,7 @@
 import React from "react";
-import BurgerMenu from "../../../utils/tempates/Burger-menu/Burger-menu";
-import NavBar from "../../../utils/tempates/NavBar/NavBar";
-import SideBar from "../../../utils/tempates/SideBar/SideBar";
+import BurgerMenu from "../../common/Burger-menu/Burger-menu";
+import NavBar from "../../common/NavBar/NavBar";
+import SideBar from "../../common/SideBar/SideBar";
 
 import map from "../../../images/map.png";
 import "./location.css";
