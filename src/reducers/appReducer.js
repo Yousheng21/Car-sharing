@@ -1,7 +1,7 @@
 const SET_BURGER_STATUS = "SET_BURGER_STATUS";
 
 const defaultState = {
-  burger_status: "default",
+  burger_status: false,
   currentOrder: {
     place: { text: "Пункт выдачи", value: "Ульяновск, Нариманова, 42" },
     model: { text: "Модель", value: "" },
