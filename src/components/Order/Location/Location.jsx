@@ -29,7 +29,7 @@ const Location = () => {
         </div>
         <div className="location-map">
           <span>Выбрать на карте:</span>
-          <img src={map} alt="" />
+          <img src={map} alt="location-map" />
         </div>
       </div>
       <SideBar>
