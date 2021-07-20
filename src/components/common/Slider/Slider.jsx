@@ -79,7 +79,10 @@ const Slider = () => {
             type="button"
             aria-label="dots"
             key={el.img}
-            className="dot"
+            className={classNames({
+              dot: true,
+              active: index === slideIndex,
+            })}
             value={index}
             onClick={(event) =>
               currentSlide(event.target.attributes.value.value)
