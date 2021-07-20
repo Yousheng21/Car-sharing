@@ -74,7 +74,7 @@
 }
 
 @media screen and (max-width: 768px){
-    .sideBar>div,.sideBar button{
-        grid-column: 1/5 !important;
+    .location-page .sideBar>div,.location-page .sideBar button{
+        grid-column: 1/5;
     }
 }
