@@ -18,11 +18,10 @@
 .location-content .location-city{
     display: flex;
     grid-row: 1/2;
-    /*align-self: center;*/
 }
 
 .location-content .location-city>div{
-    padding: 1%;
+    padding: 5px;
    display: flex;
     flex-direction: column;
 }
