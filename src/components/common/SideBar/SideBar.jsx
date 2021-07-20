@@ -13,18 +13,17 @@ const SideBar = ({ children }) => {
         <h1>Ваш заказ:</h1>
       </div>
       <div className="sideBar-parameters">
-        {Object.keys(parameters).map((item, index) => {
-          return parameters[item].value ? (
-            // eslint-disable-next-line react/no-array-index-key
-            <div key={index} className="sideBar-info-content">
-              <span className="place">{parameters[item].text}</span>
-              <span className="dots">......................</span>
-              <div className="address">
-                <span>{parameters[item].value}</span>
+        {Object.keys(parameters).map((item) => {
+          return (
+            parameters[item].value && (
+              <div key={parameters[item].text} className="sideBar-info-content">
+                <span className="place">{parameters[item].text}</span>
+                <span className="dots">......................</span>
+                <div className="address">
+                  <span>{parameters[item].value}</span>
+                </div>
               </div>
-            </div>
-          ) : (
-            ""
+            )
           );
         })}
       </div>
