@@ -9,6 +9,10 @@
         display: flex;
         justify-content: space-between;
         grid-area: 1/1/2/3;
+        .header-title{
+            font-size: 30px;
+            color: $main-color;
+        }
     }
     .navBar-nav {
         display: flex;
