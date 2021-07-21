@@ -42,6 +42,11 @@
             }
             .city-content-input{
                 width: 200px;
+
+                .btn-close{
+                    position: absolute;
+                    transform: translateX(190px);
+                }
             }
         }
         .location-map{
