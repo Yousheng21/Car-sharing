@@ -1,0 +1,63 @@
+.sideBar{
+    display: grid;
+    grid-template: 0.2fr 0.2fr 0.2fr 0.1fr 0.1fr 1fr/30% 1fr 20% 1fr;
+    grid-area: 3/3/8/4;
+
+    div{
+        grid-column: 2/3;
+    }
+    .sideBar-map{
+        justify-self: flex-end;
+        grid-area: 2/2/3/5;
+    }
+    .sideBar-info-content{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .sideBar-info-title{
+        justify-self: flex-end;
+        grid-area: 1/2/2/5;
+
+        h1{
+            font-size: 18px;
+            margin: 0;
+        }
+    }
+    .sideBar-parameters{
+        display: flex;
+        flex-direction: column;
+        grid-area: 2/2/3/5;
+        grid-row-gap: 10px;
+    }
+    .place{
+        grid-column: 1/2;
+    }
+    .address{
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        grid-column: 3/4;
+    }
+    .dots{
+        text-align: center;
+        grid-column: 2/3;
+    }
+    .sideBar-info-price{
+        grid-area: 3/2/4/5;
+    }
+    .sideBar-info-price h1{
+        font-size: 18px;
+    }
+    .sideBar-button{
+        grid-area: 4/2/5/5;
+        margin: 5% 0 0;
+        padding: 2% 10%;
+        background: linear-gradient(90deg,#0EC261,#039F67);
+        color: white;
+        font-size: 18px;
+        border-radius: 5px;
+        border: none;
+    }
+}
+
