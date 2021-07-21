@@ -86,3 +86,15 @@
     }
 
 }
+
+@media screen and (max-width: 360px){
+    .location-page .location-content .location-city{
+        .city-content-input{
+            .btn-close{
+                transform: translateX(160px);
+            }
+        }
+    }
+
+
+}
