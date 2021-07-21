@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import location from "../../images/location.png";
 import BurgerMenu from "../common/Burger-menu/Burger-menu";
 import Slider from "../common/Slider/Slider";
-import "./home.css";
+import "./home.scss";
 
 const Home = () => (
   <div className="home-page">
