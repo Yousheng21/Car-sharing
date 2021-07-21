@@ -11,7 +11,7 @@ const Home = () => (
 
     <div className="main-content">
       <div className="header">
-        <span className="header-title">Need for drive</span>
+        <h1 className="header-title">Need for drive</h1>
         <span className="header-map">
           <img src={location} alt="location" />
           Ульяновск
