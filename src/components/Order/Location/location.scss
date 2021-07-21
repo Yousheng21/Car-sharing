@@ -1,0 +1,83 @@
+@import "../../../index";
+
+.location-page{
+    width: 100vw;
+    display: grid;
+    grid-template: 5% 0.5fr 2fr/0.4fr 2fr 1.5fr 0.3fr;
+    height: 100vh;
+
+    .location-content{
+        display: grid;
+        grid-template-rows: 0.5fr 2fr;
+        grid-area: 3/2/4/3;
+
+        .location-city{
+            display: flex;
+            grid-row: 1/2;
+
+            div{
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+
+                input{
+                    border: none;
+                    border-bottom: 2px $second-color solid;
+                    margin-bottom: 5px;
+                    font-size: 14px;
+                }
+                input:focus{
+                    outline: none;
+                }
+            }
+            .city-content-label{
+                padding-right: 5px;
+                padding-left: 0;
+                text-align: right;
+
+                span{
+                    font-size: 14px;
+                    margin-top: 8px;
+                }
+            }
+            .city-content-input{
+                width: 200px;
+            }
+        }
+        .location-map{
+            grid-row: 2/3;
+
+            img{
+                margin-top: 25px;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    .location-page{
+        grid-column-gap: 15px;
+    }
+}
+
+@media screen and (max-width: 767px){
+    .location-page{
+        grid-template-rows: 5% 0.5fr 1fr 1fr;
+
+        .sideBar{
+            grid-area: 4/2/5/4;
+
+            div,button{
+                grid-column: 1/5;
+            }
+        }
+        .location-content{
+            grid-template-rows: 0.1fr 0.5fr;
+            grid-row-gap: 15px;
+            grid-area: 3/2/4/4;
+        }
+
+    }
+
+}
