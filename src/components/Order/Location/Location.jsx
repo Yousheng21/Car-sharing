@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import BurgerMenu from "../../common/Burger-menu/Burger-menu";
 import NavBar from "../../common/NavBar/NavBar";
 import SideBar from "../../common/SideBar/SideBar";
 
 import map from "../../../images/map.png";
+import Close from "../../../images/close.svg";
 import "./location.scss";
 
 const Location = () => {
+  const [inputCity, setInputCity] = useState("");
+  const inputRef = useRef(null);
   return (
     <div className="location-page">
       <BurgerMenu />
@@ -18,7 +21,21 @@ const Location = () => {
             <span>Пункт Выдачи</span>
           </div>
           <div className="city-content-input">
-            <input type="text" name="city" id="city" />
+            <input
+              ref={inputRef}
+              type="text"
+              value={inputCity}
+              onChange={(event) => setInputCity(event.target.value)}
+              name="city"
+              id="city"
+            />
+            <Close
+              onClick={() => {
+                setInputCity("");
+                inputRef.current.focus();
+              }}
+              className="btn-close"
+            />
             <input
               type="text"
               name="place"
