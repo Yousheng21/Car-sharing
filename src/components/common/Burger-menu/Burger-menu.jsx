@@ -10,7 +10,7 @@ import MenuToggle2 from "../../../images/MenuToggle2.svg";
 
 import components from "../../../reducers/data/dataMenu";
 
-import "./burger-menu.css";
+import "./burger-menu.scss";
 
 const BurgerMenu = () => {
   const dispatch = useDispatch();
@@ -63,9 +63,9 @@ const BurgerMenu = () => {
             );
           })}
         </div>
-        <div className="lang">
+        <Link to="/car-sharing/order" className="lang">
           <span>Eng</span>
-        </div>
+        </Link>
       </div>
       <div className="burger__template" />
     </div>
