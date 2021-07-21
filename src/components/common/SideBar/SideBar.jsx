@@ -1,5 +1,5 @@
 import React from "react";
-import "./sideBar.css";
+import "./sideBar.scss";
 import { useSelector } from "react-redux";
 
 // eslint-disable-next-line react/prop-types
