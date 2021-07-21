@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Vector from "../../../images/vector.svg";
-import "./navBar.css";
+import "./navBar.scss";
 
 const NavBar = () => {
   return (
