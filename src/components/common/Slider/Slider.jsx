@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import "./slider.css";
+import "./slider.scss";
 
 import classNames from "classnames";
 import components from "../../../reducers/data/dataSlider";
