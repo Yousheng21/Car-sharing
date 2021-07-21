@@ -7,7 +7,7 @@ const NavBar = () => {
   return (
     <div className="navBar">
       <div className="navBar-header">
-        <span className="header-title">Need for drive</span>
+        <h1 className="header-title">Need for drive</h1>
         <div className="sideBar-map">
           <span className="header-map">
             <img
@@ -25,7 +25,6 @@ const NavBar = () => {
           <Vector />
           <Link to="/">Модель</Link>
         </span>
-
         <span>
           <Vector />
           <Link to="/">Дополнительно</Link>
