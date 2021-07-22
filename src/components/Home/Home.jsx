@@ -29,7 +29,7 @@ const Home = () => (
         </Link>
       </div>
       <div className="footer">
-        <span style={{ color: "#999999" }}>© 2016-2019 «Need for drive»</span>
+        <span className="footer-title">© 2016-2019 «Need for drive»</span>
         <span className="footer-tel">
           <a href="tel:+74952342244">8 (495) 234-22-44</a>
         </span>
