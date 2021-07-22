@@ -1,4 +1,6 @@
 import React, { useRef, useState } from "react";
+import classNames from "classnames";
+
 import BurgerMenu from "../../common/Burger-menu/Burger-menu";
 import NavBar from "../../common/NavBar/NavBar";
 import SideBar from "../../common/SideBar/SideBar";
@@ -9,23 +11,32 @@ import "./location.scss";
 
 const Location = () => {
   const [inputCity, setInputCity] = useState("");
+  const [inputCityFocus, setInputCityFocus] = useState(false);
   const inputRef = useRef(null);
+
+  const classClose = classNames({
+    "btn-close": true,
+    open: inputCityFocus,
+  });
+
   return (
-    <div className="location-page">
+    <aside className="location-page">
       <BurgerMenu />
       <NavBar />
-      <div className="location-content">
-        <div className="location-city">
-          <div className="city-content-label">
+      <main className="location-content">
+        <aside className="location-city">
+          <section className="city-content-label">
             <span>Город</span>
             <span>Пункт Выдачи</span>
-          </div>
-          <div className="city-content-input">
+          </section>
+          <section className="city-content-input">
             <input
               ref={inputRef}
               type="text"
               value={inputCity}
               onChange={(event) => setInputCity(event.target.value)}
+              onFocus={() => setInputCityFocus(true)}
+              onBlur={() => setInputCityFocus(false)}
               name="city"
               id="city"
             />
@@ -34,7 +45,7 @@ const Location = () => {
                 setInputCity("");
                 inputRef.current.focus();
               }}
-              className="btn-close"
+              className={classClose}
             />
             <input
               type="text"
@@ -42,19 +53,19 @@ const Location = () => {
               placeholder="Начните вводить пункт.."
               id="place"
             />
-          </div>
-        </div>
-        <div className="location-map">
+          </section>
+        </aside>
+        <aside className="location-map">
           <span>Выбрать на карте:</span>
           <img src={map} alt="location-map" />
-        </div>
-      </div>
+        </aside>
+      </main>
       <SideBar>
-        <button type="button" className="sideBar-button">
+        <button type="button" className="sideBar-button sideBar-child">
           Выбрать модель
         </button>
       </SideBar>
-    </div>
+    </aside>
   );
 };
 
