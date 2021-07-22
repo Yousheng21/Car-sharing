@@ -16,45 +16,41 @@ const BurgerMenu = () => {
   const dispatch = useDispatch();
   const iconStatus = useSelector((state) => state.app.burger_status);
 
-  const toggle = () => {
+  const handleToggle = () => {
     dispatch(setBurgerStatus(!iconStatus));
   };
 
+  const burgerClass = classNames({
+    "burger-menu": true,
+    burger__open: iconStatus,
+  });
+  const svg1 = classNames({
+    "svg-1__open": iconStatus,
+    "svg-1__default": !iconStatus,
+  });
+  const svg2 = classNames({
+    "svg-2__open": iconStatus,
+    "svg-2__default": !iconStatus,
+  });
+
   return (
     <div className="burger-page">
-      <div
-        className={classNames({
-          "burger-menu": true,
-          burger__open: iconStatus,
-        })}
-      >
-        <div className="toggle-wrapper">
-          <MenuToggle1
-            onClick={toggle}
-            className={classNames({
-              "svg-1__open": iconStatus,
-              "svg-1__default": !iconStatus,
-            })}
-          />
-          <MenuToggle2
-            onClick={toggle}
-            className={classNames({
-              "svg-2__open": iconStatus,
-              "svg-2__default": !iconStatus,
-            })}
-          />
-        </div>
+      <aside className={burgerClass}>
+        <section className="toggle-wrapper">
+          <MenuToggle1 onClick={handleToggle} className={svg1} />
+          <MenuToggle2 onClick={handleToggle} className={svg2} />
+        </section>
         {/* заменил на массивы */}
-        <div className="burger-info">
+        <section className="burger-info">
           {components.li.map((item) => {
             return (
-              <Link key={item} to="/car-sharing/order" onClick={toggle}>
+              <Link key={item} to="/car-sharing/order" onClick={handleToggle}>
                 <span>{item}</span>
               </Link>
             );
           })}
-        </div>
-        <div className="social-links">
+        </section>
+        <section className="social-links">
           {components.socLink.map((item) => {
             return (
               <Link key={item.text} to="/car-sharing/order">
@@ -62,11 +58,11 @@ const BurgerMenu = () => {
               </Link>
             );
           })}
-        </div>
+        </section>
         <Link to="/car-sharing/order" className="lang">
           <span>Eng</span>
         </Link>
-      </div>
+      </aside>
       <div className="burger__template" />
     </div>
   );
