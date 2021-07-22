@@ -16,13 +16,13 @@
         justify-content: space-between;
         grid-area: 2/2/2/5;
 
-        .header-title{
+        &-title{
             font-size: 30px;
             color: $main-color;
             float: left;
             margin-top: 0;
         }
-        .header-map{
+        &-map{
             grid-column: 4/5;
             color: $third-color;
         }
@@ -32,10 +32,13 @@
         justify-content: space-between;
         grid-area: 4/2/4/5;
 
-        .footer-tel a{
+        &-tel a{
             color: $second-color;
 
             &:hover{color: $main-color}
+        }
+        &-title{
+            color: $third-color;
         }
     }
     .heading{
@@ -52,7 +55,7 @@
             font-size: 26px;
             color: $third-color;
         }
-        .heading-btn{
+        &-btn{
             margin-top: 20px;
             padding: 16px 60px;
             background: linear-gradient(90deg,$main-color,#039F67);
@@ -99,13 +102,13 @@
             font-size: 13px;
             grid-row: 4/6;
             grid-column: 1/6;
-            background-color: #151B1F;
+            background-color: $second-color;
             flex-direction: column-reverse;
             padding-right: 15px;
             padding-bottom: 14px;
             grid-row-gap: 10px;
 
-            .footer-tel a {
+            &-tel a {
                 color: #0EC261;
             }
         }
@@ -121,7 +124,7 @@
                 font-size: 32px;
             }
 
-            .heading-btn {
+            &-btn {
                 padding: 20px;
                 width: 100%;
             }
