@@ -5,10 +5,10 @@ import "./navBar.scss";
 
 const NavBar = () => {
   return (
-    <div className="navBar">
-      <div className="navBar-header">
+    <nav className="navBar">
+      <header className="navBar-header">
         <h1 className="header-title">Need for drive</h1>
-        <div className="sideBar-map">
+        <section className="sideBar-map">
           <span className="header-map">
             <img
               src="https://img.icons8.com/plumpy/24/000000/google-maps-new.png"
@@ -16,10 +16,10 @@ const NavBar = () => {
             />
             Ульяновск
           </span>
-        </div>
-      </div>
+        </section>
+      </header>
 
-      <div className="navBar-nav">
+      <section className="navBar-nav">
         <Link to="/">Местоположение</Link>
         <span>
           <Vector />
@@ -34,8 +34,8 @@ const NavBar = () => {
           <Vector />
           <Link to="/">Итого</Link>
         </span>
-      </div>
-    </div>
+      </section>
+    </nav>
   );
 };
 
