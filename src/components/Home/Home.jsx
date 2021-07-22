@@ -9,15 +9,15 @@ const Home = () => (
   <div className="home-page">
     <BurgerMenu />
 
-    <div className="main-content">
-      <div className="header">
+    <main className="main-content">
+      <header className="header">
         <h1 className="header-title">Need for drive</h1>
         <span className="header-map">
           <img src={location} alt="location" />
           Ульяновск
         </span>
-      </div>
-      <div className="heading">
+      </header>
+      <section className="heading">
         <h1>Каршеринг</h1>
         <h1 className="sub-title">Need for drive</h1>
         <h4>Поминутная аренда авто твоего города</h4>
@@ -27,14 +27,14 @@ const Home = () => (
             Забронировать
           </button>
         </Link>
-      </div>
-      <div className="footer">
+      </section>
+      <footer className="footer">
         <span className="footer-title">© 2016-2019 «Need for drive»</span>
         <span className="footer-tel">
           <a href="tel:+74952342244">8 (495) 234-22-44</a>
         </span>
-      </div>
-    </div>
+      </footer>
+    </main>
 
     <Slider />
   </div>
