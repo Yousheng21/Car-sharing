@@ -3,19 +3,16 @@
     grid-template: 0.2fr 0.2fr 0.2fr 0.1fr 0.1fr 1fr/30% 1fr 20% 1fr;
     grid-area: 3/3/8/4;
 
-    div{
-        grid-column: 2/3;
-    }
-    .sideBar-map{
+    &-map{
         justify-self: flex-end;
         grid-area: 2/2/3/5;
     }
-    .sideBar-info-content{
+    &-info-content{
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
-    .sideBar-info-title{
+    &-info-title{
         justify-self: flex-end;
         grid-area: 1/2/2/5;
 
@@ -24,7 +21,7 @@
             margin: 0;
         }
     }
-    .sideBar-parameters{
+    &-parameters{
         display: flex;
         flex-direction: column;
         grid-area: 2/2/3/5;
@@ -43,13 +40,14 @@
         text-align: center;
         grid-column: 2/3;
     }
-    .sideBar-info-price{
+    &-info-price{
         grid-area: 3/2/4/5;
+
+        text{
+            font-size: 18px;
+        }
     }
-    .sideBar-info-price h1{
-        font-size: 18px;
-    }
-    .sideBar-button{
+    &-button{
         grid-area: 4/2/5/5;
         margin: 10px 0 0;
         padding: 16px 40px;
