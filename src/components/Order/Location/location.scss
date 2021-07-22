@@ -1,5 +1,11 @@
 @import "../../../index";
 
+%style-section{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
 .location-page{
     width: 100vw;
     display: grid;
@@ -15,24 +21,8 @@
             display: flex;
             grid-row: 1/2;
 
-            div{
-                padding: 5px;
-                display: flex;
-                flex-direction: column;
-
-                input{
-                    border: none;
-                    border-bottom: 2px $second-color solid;
-                    margin-bottom: 5px;
-                    font-size: 14px;
-                }
-                input:focus{
-                    outline: none;
-                }
-            }
             .city-content-label{
-                padding-right: 5px;
-                padding-left: 0;
+                @extend %style-section;
                 text-align: right;
 
                 span{
@@ -41,11 +31,27 @@
                 }
             }
             .city-content-input{
+                @extend %style-section;
                 width: 200px;
 
                 .btn-close{
                     position: absolute;
                     transform: translateX(190px);
+                    cursor: pointer;
+                    opacity: 0;
+
+                    &.open{
+                        opacity: 1;
+                    }
+                }
+                input{
+                    border: none;
+                    border-bottom: 2px $second-color solid;
+                    margin-bottom: 5px;
+                    font-size: 14px;
+                }
+                input:focus{
+                    outline: none;
                 }
             }
         }
@@ -73,7 +79,7 @@
         .sideBar{
             grid-area: 4/2/5/4;
 
-            div,button{
+            &-child{
                 grid-column: 1/5;
             }
         }
