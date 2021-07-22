@@ -32,29 +32,27 @@ const Slider = () => {
   }
 
   return (
-    <div
+    <aside
       className={classNames({
         slider: true,
         slider__open: burgerStatus,
       })}
     >
-      <div className="slideshow-container">
-        <div>
-          <div className="mySlides fade">
-            <img src={components[slideIndex].img} alt="" />
-            <div className="text">
-              <h1>{components[slideIndex].title}</h1>
-              <p>{components[slideIndex].par}</p>
-              <Link to="/car-sharing/order">
-                <button
-                  type="button"
-                  style={{ background: components[slideIndex].button__bg }}
-                >
-                  Подробнее
-                </button>
-              </Link>
-            </div>
-          </div>
+      <main className="slider-container">
+        <div className="mySlides fade">
+          <img src={components[slideIndex].img} alt="" />
+          <section className="text">
+            <h1>{components[slideIndex].title}</h1>
+            <p>{components[slideIndex].par}</p>
+            <Link to="/car-sharing/order">
+              <button
+                type="button"
+                style={{ background: components[slideIndex].button__bg }}
+              >
+                Подробнее
+              </button>
+            </Link>
+          </section>
         </div>
 
         <button
@@ -72,8 +70,8 @@ const Slider = () => {
           onClick={plusSlides}
         />
         <span className="next">❯</span>
-      </div>
-      <div className="dots">
+      </main>
+      <section className="dots">
         {components.map((el, index) => (
           <button
             type="button"
@@ -89,8 +87,8 @@ const Slider = () => {
             }
           />
         ))}
-      </div>
-    </div>
+      </section>
+    </aside>
   );
 };
 export default Slider;
