@@ -2,8 +2,9 @@ import React from "react";
 import "./sideBar.scss";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { nextStep } from "../../../actions/app";
 
-const SideBar = ({ path, text }) => {
+const SideBar = ({ path, text, nextPage }) => {
   const parameters = useSelector((state) => state.app.currentOrder);
   const price = useSelector((state) => state.app.price);
 
@@ -37,7 +38,11 @@ const SideBar = ({ path, text }) => {
         </section>
       </footer>
       <Link to={`/car-sharing/order/${path}`}>
-        <button type="button" className="sideBar-button sideBar-child">
+        <button
+          type="button"
+          onClick={() => nextStep(nextPage)}
+          className="sideBar-button sideBar-child"
+        >
           {text}
         </button>
       </Link>
