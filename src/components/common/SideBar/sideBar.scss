@@ -62,3 +62,11 @@
     }
 }
 
+@media screen and (max-width: 768px){
+    .sideBar{
+        a{
+            grid-column: 1/5;
+        }
+    }
+}
+
