@@ -20,10 +20,10 @@ const Total = () => {
         <section className="total-content-info">
           <h1>{car.name}</h1>
           <span className="number">{car.number}</span>
-          <article>
+          <article className="text">
             <span>Топливо</span> {order.cistern.value}
           </article>
-          <article>
+          <article className="text">
             <span>Доступна c</span> {order.delay.from}
           </article>
         </section>
