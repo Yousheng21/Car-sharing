@@ -1,8 +1,9 @@
 import React from "react";
 import "./sideBar.scss";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const SideBar = ({ children }) => {
+const SideBar = ({ path, text }) => {
   const parameters = useSelector((state) => state.app.currentOrder);
   const price = useSelector((state) => state.app.price);
 
@@ -31,11 +32,15 @@ const SideBar = ({ children }) => {
       </main>
 
       <footer className="sideBar-info-price sideBar-child">
-        <text>
+        <section>
           Цена от <span>{price.min}</span> до <span>{price.max}</span>
-        </text>
+        </section>
       </footer>
-      {children}
+      <Link to={`/car-sharing/order/${path}`}>
+        <button type="button" className="sideBar-button sideBar-child">
+          {text}
+        </button>
+      </Link>
     </aside>
   );
 };
