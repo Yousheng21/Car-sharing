@@ -2,7 +2,12 @@ import axios from "axios";
 import { store } from "../reducers";
 
 import { API_URL, headers } from "../reducers/data/dataServer";
-import { setTableCars, setNewTableCars } from "../reducers/appReducer";
+import {
+  setTableCars,
+  setNewTableCars,
+  setCurrentStep,
+  setCurrentPage,
+} from "../reducers/appReducer";
 
 const getTableCars = () => {
   return async (dispatch) => {
@@ -33,6 +38,12 @@ export const selectSortCars = (sort) => {
       });
 
   store.dispatch(setNewTableCars(newCars));
+};
+
+export const nextStep = (step) => {
+  const currStep = store.getState().app.currentStep;
+  if (step > currStep) store.dispatch(setCurrentStep());
+  else store.dispatch(setCurrentPage(step));
 };
 
 export default getTableCars();
