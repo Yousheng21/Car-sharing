@@ -60,11 +60,7 @@ const Location = () => {
           <img src={map} alt="location-map" />
         </aside>
       </main>
-      <SideBar>
-        <button type="button" className="sideBar-button sideBar-child">
-          Выбрать модель
-        </button>
-      </SideBar>
+      <SideBar path="model" text="Выбрать модель" />
     </aside>
   );
 };
