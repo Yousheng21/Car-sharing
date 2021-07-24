@@ -1,0 +1,52 @@
+@import "../Location/location";
+
+.total-page{
+  @extend .location-page;
+
+  .total-content{
+    display: flex;
+    justify-content: space-between;
+    grid-area: 3/2/4/3;
+
+    &-info{
+      display: flex;
+      flex-direction: column;
+
+      .number{
+        width: 50%;
+        border: $second-color 1px solid;
+        padding: 2px 0;
+        border-radius: 5px;
+        text-align: center;
+      }
+      article{
+        padding-top: 5px;
+        span{font-weight: bold;}
+      }
+    }
+    img{
+      width: 50%;
+      height: 30%;
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .total-page{
+    .total-content{
+      grid-column: 2/4;
+
+      img{
+        height: 150px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px){
+  .total-page .total-content{
+    img{
+      height: 100px;
+    }
+  }
+}
