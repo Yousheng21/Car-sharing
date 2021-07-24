@@ -98,7 +98,7 @@ const Model = () => {
           })}
         </section>
       </main>
-      <SideBar path="extra" text="Дополнительно" />
+      <SideBar path="extra" text="Дополнительно" nextPage={2} />
     </aside>
   );
 };
