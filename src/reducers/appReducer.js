@@ -1,6 +1,8 @@
 const SET_BURGER_STATUS = "SET_BURGER_STATUS";
 const SET_TABLE_CARS = "SET_TABLE_CARS";
 const SET_CURRENT_CAR = "SET_CURRENT_CAR";
+const SET_CURRENT_STEP = "SET_CURRENT_STEP";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_NEW_TABLE_CARS = "SET_NEW_TABLE_CARS";
 
 const defaultState = {
@@ -9,7 +11,7 @@ const defaultState = {
     place: { text: "Пункт выдачи", value: "Ульяновск, Нариманова, 42" },
     model: { text: "Модель", value: "" },
     color: { text: "Цвет", value: "" },
-    delay: { text: "Длительность аренды", value: "" },
+    delay: { text: "Длительность аренды", value: "", from: "", to: "" },
     tariff: { text: "Тариф", value: "" },
     cistern: { text: "Полный бак", value: "" },
   },
@@ -19,7 +21,9 @@ const defaultState = {
   },
   tableCars: [],
   newTableCars: [],
-  currentCar: { colors: [] },
+  currentCar: { colors: ["Любой"], thumbnail: { path: "" }, name: "" },
+  currentStep: 0,
+  currentPage: 0,
 };
 
 export default function appReducer(state = defaultState, action) {
@@ -46,6 +50,17 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         newTableCars: action.payload,
       };
+    case SET_CURRENT_STEP:
+      return {
+        ...state,
+        currentStep: state.currentStep + 1,
+        currentPage: state.currentPage + 1,
+      };
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
 
     default:
       return state;
@@ -70,4 +85,13 @@ export const setNewTableCars = (arrCars) => ({
 export const setCurrentCar = (car) => ({
   type: SET_CURRENT_CAR,
   payload: car,
+});
+
+export const setCurrentStep = () => ({
+  type: SET_CURRENT_STEP,
+});
+
+export const setCurrentPage = (page) => ({
+  type: SET_CURRENT_PAGE,
+  payload: page,
 });
