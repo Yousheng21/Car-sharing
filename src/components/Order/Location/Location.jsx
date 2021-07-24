@@ -60,7 +60,7 @@ const Location = () => {
           <img src={map} alt="location-map" />
         </aside>
       </main>
-      <SideBar path="model" text="Выбрать модель" />
+      <SideBar path="model" text="Выбрать модель" nextPage={1} />
     </aside>
   );
 };
