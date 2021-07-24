@@ -6,6 +6,43 @@
     flex-direction: column;
 }
 
+%style-city{
+    display: flex;
+    .city-content-label{
+        @extend %style-section;
+        text-align: right;
+
+        span{
+            font-size: 14px;
+            margin-top: 8px;
+        }
+    }
+    .city-content-input{
+        @extend %style-section;
+        width: 200px;
+
+        .btn-close{
+            position: absolute;
+            transform: translateX(190px);
+            cursor: pointer;
+            opacity: 0;
+
+            &.open{
+                opacity: 1;
+            }
+        }
+        input{
+            border: none;
+            border-bottom: 2px $second-color solid;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        input:focus{
+            outline: none;
+        }
+    }
+}
+
 .location-page{
     width: 100vw;
     display: grid;
@@ -18,42 +55,8 @@
         grid-area: 3/2/4/3;
 
         .location-city{
-            display: flex;
+            @extend %style-city;
             grid-row: 1/2;
-
-            .city-content-label{
-                @extend %style-section;
-                text-align: right;
-
-                span{
-                    font-size: 14px;
-                    margin-top: 8px;
-                }
-            }
-            .city-content-input{
-                @extend %style-section;
-                width: 200px;
-
-                .btn-close{
-                    position: absolute;
-                    transform: translateX(190px);
-                    cursor: pointer;
-                    opacity: 0;
-
-                    &.open{
-                        opacity: 1;
-                    }
-                }
-                input{
-                    border: none;
-                    border-bottom: 2px $second-color solid;
-                    margin-bottom: 5px;
-                    font-size: 14px;
-                }
-                input:focus{
-                    outline: none;
-                }
-            }
         }
         .location-map{
             grid-row: 2/3;
@@ -72,7 +75,7 @@
     }
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 768px){
     .location-page{
         grid-template-rows: 5% 0.5fr 1fr 1fr;
 
