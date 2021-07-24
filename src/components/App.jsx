@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/car-sharing/" component={Home} />
-        <Route path="/car-sharing/order" component={Location} />
+        <Route exact path="/car-sharing/order" component={Location} />
         <Route path="/car-sharing/order/model" component={Model} />
         <Route path="/car-sharing/order/extra" component={Extra} />
         <Route path="/car-sharing/order/total" component={Total} />
