@@ -43,12 +43,15 @@
     &-info-price{
         grid-area: 3/2/4/5;
 
-        text{
+        section{
             font-size: 18px;
         }
     }
-    &-button{
+    a{
         grid-area: 4/2/5/5;
+    }
+    &-button{
+        width: 100%;
         margin: 10px 0 0;
         padding: 16px 40px;
         background: linear-gradient(90deg,#0EC261,#039F67);
