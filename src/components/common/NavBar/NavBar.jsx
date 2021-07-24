@@ -20,19 +20,20 @@ const NavBar = () => {
       </header>
 
       <section className="navBar-nav">
-        <Link to="/">Местоположение</Link>
         <span>
-          <Vector />
-          <Link to="/">Модель</Link>
+          <Link to="/car-sharing/order">Местоположение</Link>
         </span>
         <span>
           <Vector />
-          <Link to="/">Дополнительно</Link>
+          <Link to="/car-sharing/order/model">Модель</Link>
         </span>
-
         <span>
           <Vector />
-          <Link to="/">Итого</Link>
+          <Link to="/car-sharing/order/extra">Дополнительно</Link>
+        </span>
+        <span>
+          <Vector />
+          <Link to="/car-sharing/order/total">Итого</Link>
         </span>
       </section>
     </nav>
