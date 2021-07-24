@@ -51,7 +51,6 @@ const Extra = () => {
                 >
                   <input
                     type="radio"
-                    defaultChecked={index === 0}
                     name="color"
                     value={item}
                     id={item}
@@ -142,7 +141,7 @@ const Extra = () => {
           </section>
         </aside>
       </main>
-      <SideBar path="total" text="Итого" />
+      <SideBar path="total" text="Итого" nextPage={3} />
     </aside>
   );
 };
