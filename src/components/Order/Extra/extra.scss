@@ -1,0 +1,95 @@
+@import "../Location/location";
+@import "../Model/model";
+
+.extra-page{
+  @extend .location-page;
+
+  .extra-content{
+    display: grid;
+    grid-area: 3/2/4/3;
+    grid-template: repeat(5,1fr)/1fr;
+
+    .extra-color{
+      @extend %style-radio;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .extra-date{
+      @extend %style-city;
+    }
+    .extra-tariff{
+      display: flex;
+      flex-direction: column;
+      @extend %style-radio;
+
+      label{
+        padding-bottom: 10px;
+      }
+    }
+    .extra-additional{
+
+      label{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+      }
+
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .check-mark{
+         border: $main-color 2px solid;
+        }
+        &:checked ~ .check-mark:after{
+          display: block;
+        }
+      }
+      .check-mark{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border: $third-color 1px solid;
+
+        &:after {
+          content: "";
+          position: absolute;
+          display: none;
+          left: 7px;
+          top: -2px;
+          width: 10px;
+          height: 15px;
+          border: solid $second-color;
+          border-width: 0 4px 4px 0;
+          transform: rotate(45deg);
+        }
+      }
+
+      &:checked ~ &:before{
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .extra-page{
+    overflow: auto;
+    .extra-content{
+      grid-column: 2/4;
+
+      aside{
+        justify-self: center;
+      }
+    }
+  }
+}
