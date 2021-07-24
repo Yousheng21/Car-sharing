@@ -1,0 +1,132 @@
+@import "../../../index";
+@import "../Location/location";
+
+%style-input{
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity .1s linear;
+}
+
+%style-radio{
+  label{
+    position: relative;
+    padding-right: 20px;
+    padding-left: 25px;
+    color: $third-color;
+    cursor: pointer;
+
+    input{display: none;}
+
+    &.active{color: $second-color;}
+
+    &:before{
+      @extend %style-input;
+      width: 16px;
+      height: 16px;
+      border: 1px solid $third-color;
+    }
+    &:after {
+      @extend %style-input;
+      width: 8px;
+      height: 8px;
+      border: 5px solid $main-color;
+      opacity: 0;
+    }
+    &.active:before{
+      opacity: 0;
+    }
+    &.active:after{opacity: 1}
+  }
+}
+
+.model-page{
+  @extend .location-page;
+}
+
+.model-content{
+  display: grid;
+  grid-template-rows: 0.1fr 2fr;
+  grid-area: 3/2/4/3;
+  .model-input{
+    @extend %style-radio;
+  }
+
+  .model-cars{
+    display: flex;
+    width: 100%;
+    height: 70vh;
+    flex-wrap: wrap;
+    overflow:auto;
+    .car{
+      width: 50%;
+      height: 35%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-left: 15px;
+      border: none;
+
+      &.active{border: 2px $main-color solid}
+      &.active:hover{border: 2px $main-color solid}
+
+      &:hover{
+        border: 1px $second-color solid;
+        background: none;
+      }
+
+      &-title{
+        margin-bottom:0;
+        font-size: 24px;
+      }
+      &-subtitle{
+        font-size: 14px;
+        color: $third-color;
+      }
+      img{
+        width: 80%;
+        height: 55%;
+        align-self: flex-end;
+        padding-right: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .model-page{
+    overflow: auto;
+  }
+  .model-content{
+    grid-column: 2/4;
+  }
+}
+
+@media screen and (max-width: 560px){
+  .model-content{
+    grid-column: 1/5;
+
+    .model-input{
+
+      label{
+        padding-right:5px;
+      }
+    }
+    .model-cars{
+
+      .car{
+        height: 25%;
+
+        &-title{
+          font-size: 18px;
+        }
+        img{
+          height: 40%;
+        }
+      }
+    }
+  }
+}
+
