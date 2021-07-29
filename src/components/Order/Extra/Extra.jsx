@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import classNames from "classnames";
 
 import BurgerMenu from "../../common/Burger-menu/Burger-menu";
@@ -9,6 +10,7 @@ import SideBar from "../../common/SideBar/SideBar";
 import Close from "../../../images/close.svg";
 
 import "./extra.scss";
+import { nextStep } from "../../../actions/app";
 
 const tariff = ["Поминутно,7 р/мин", "На сутки, 1999 р/сутки"];
 const additional = [
@@ -65,34 +67,45 @@ const Extra = () => {
         <aside>
           <h1>Дата аренды</h1>
           <div className="extra-date">
-            <section className="city-content-label">
+            <section className="city-content">
               <span>С</span>
-              <span>По</span>
+              <article>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputDate}
+                  onChange={(event) => setInputDate(event.target.value)}
+                  onFocus={() => setInputDateFocus(true)}
+                  onBlur={() => setInputDateFocus(false)}
+                  name="dateFrom"
+                  id="dateFrom"
+                />
+                <Close
+                  onClick={() => {
+                    setInputDate("");
+                    inputRef.current.focus();
+                  }}
+                  className={classClose}
+                />
+              </article>
             </section>
-            <section className="city-content-input">
-              <input
-                ref={inputRef}
-                type="text"
-                value={inputDate}
-                onChange={(event) => setInputDate(event.target.value)}
-                onFocus={() => setInputDateFocus(true)}
-                onBlur={() => setInputDateFocus(false)}
-                name="dateFrom"
-                id="dateFrom"
-              />
-              <Close
-                onClick={() => {
-                  setInputDate("");
-                  inputRef.current.focus();
-                }}
-                className={classClose}
-              />
-              <input
-                type="text"
-                name="dateTo"
-                placeholder="Введите дату и время"
-                id="dateTo"
-              />
+            <section className="city-content">
+              <span>По</span>
+              <article>
+                <input
+                  type="text"
+                  name="dateTo"
+                  placeholder="Введите дату и время"
+                  id="dateTo"
+                />
+                <Close
+                  onClick={() => {
+                    setInputDate("");
+                    inputRef.current.focus();
+                  }}
+                  className={classClose}
+                />
+              </article>
             </section>
           </div>
         </aside>
@@ -141,7 +154,17 @@ const Extra = () => {
           </section>
         </aside>
       </main>
-      <SideBar path="total" text="Итого" nextPage={3} />
+      <SideBar>
+        <Link to="/car-sharing/order/total">
+          <button
+            type="button"
+            onClick={() => nextStep(3)}
+            className="sideBar-button sideBar-child"
+          >
+            Итого
+          </button>
+        </Link>
+      </SideBar>
     </aside>
   );
 };
