@@ -12,8 +12,7 @@ export const useValidation = (value, validations) => {
   const [inputValid, setInputValid] = useState({ value: false, text: "" });
 
   useEffect(() => {
-    // eslint-disable-next-line guard-for-in,no-restricted-syntax
-    for (const validation in validations) {
+    Object.keys(validations).forEach((validation) => {
       switch (validation) {
         case "isCompareCity":
           if (
@@ -63,7 +62,7 @@ export const useValidation = (value, validations) => {
           break;
         }
       }
-    }
+    });
   }, [value]);
 
   useEffect(() => {
