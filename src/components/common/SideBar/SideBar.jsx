@@ -1,10 +1,8 @@
 import React from "react";
 import "./sideBar.scss";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { nextStep } from "../../../actions/app";
 
-const SideBar = ({ path, text, nextPage }) => {
+const SideBar = ({ children }) => {
   const parameters = useSelector((state) => state.app.currentOrder);
   const price = useSelector((state) => state.app.price);
 
@@ -24,7 +22,13 @@ const SideBar = ({ path, text, nextPage }) => {
                 <span className="place">{parameters[item].text}</span>
                 <span className="dots">......................</span>
                 <div className="address">
-                  <span>{parameters[item].value}</span>
+                  <span>
+                    {item === "place"
+                      ? `${parameters[item].value.city ?? ""},\n${
+                          parameters[item].value.street ?? ""
+                        }`
+                      : parameters[item].value}
+                  </span>
                 </div>
               </section>
             )
@@ -37,15 +41,8 @@ const SideBar = ({ path, text, nextPage }) => {
           Цена от <span>{price.min}</span> до <span>{price.max}</span>
         </section>
       </footer>
-      <Link to={`/car-sharing/order/${path}`}>
-        <button
-          type="button"
-          onClick={() => nextStep(nextPage)}
-          className="sideBar-button sideBar-child"
-        >
-          {text}
-        </button>
-      </Link>
+
+      {children}
     </aside>
   );
 };
