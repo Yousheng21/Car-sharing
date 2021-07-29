@@ -4,11 +4,23 @@ const SET_CURRENT_CAR = "SET_CURRENT_CAR";
 const SET_CURRENT_STEP = "SET_CURRENT_STEP";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_NEW_TABLE_CARS = "SET_NEW_TABLE_CARS";
+const SET_CURRENT_CITY = "SET_CURRENT_CITY";
+const SET_CURRENT_ADDRESS = "SET_CURRENT_ADDRESS";
+const SET_CITIES = "SET_CITIES";
+const SET_NEW_CITIES = "SET_NEW_CITIES";
+const SET_ADDRESSES = "SET_ADDRESSES";
+const SET_NEW_ADDRESSES = "SET_NEW_ADDRESSES";
+const SET_PLACE_MARKS = "SET_PLACE_MARKS";
+const SET_RESET_MARKS = "SET_RESET_MARKS";
 
 const defaultState = {
   burger_status: false,
+  currentCity: {},
   currentOrder: {
-    place: { text: "Пункт выдачи", value: "Ульяновск, Нариманова, 42" },
+    place: {
+      text: "Пункт выдачи",
+      value: { city: "", street: "" },
+    },
     model: { text: "Модель", value: "" },
     color: { text: "Цвет", value: "" },
     delay: { text: "Длительность аренды", value: "", from: "", to: "" },
@@ -21,9 +33,15 @@ const defaultState = {
   },
   tableCars: [],
   newTableCars: [],
+  cities: [],
+  newCities: [],
+  addresses: [],
+  newAddresses: [],
+  placeMarks: [],
   currentCar: { colors: ["Любой"], thumbnail: { path: "" }, name: "" },
   currentStep: 0,
   currentPage: 0,
+  currentAddress: "",
 };
 
 export default function appReducer(state = defaultState, action) {
@@ -53,15 +71,76 @@ export default function appReducer(state = defaultState, action) {
     case SET_CURRENT_STEP:
       return {
         ...state,
-        currentStep: state.currentStep + 1,
-        currentPage: state.currentPage + 1,
+        currentStep: action.payload,
+        currentPage: action.payload,
       };
     case SET_CURRENT_PAGE:
       return {
         ...state,
         currentPage: action.payload,
       };
-
+    case SET_CITIES:
+      return {
+        ...state,
+        cities: action.payload,
+        newCities: action.payload,
+      };
+    case SET_NEW_CITIES:
+      return {
+        ...state,
+        newCities: action.payload,
+      };
+    case SET_ADDRESSES:
+      return {
+        ...state,
+        addresses: action.payload,
+        newAddresses: action.payload,
+      };
+    case SET_NEW_ADDRESSES:
+      return {
+        ...state,
+        newAddresses: action.payload,
+      };
+    case SET_CURRENT_CITY:
+      return {
+        ...state,
+        currentCity: action.payload,
+        currentOrder: {
+          ...state.currentOrder,
+          place: {
+            ...state.currentOrder.place,
+            value: {
+              ...state.currentOrder.place.value,
+              city: action.payload.name,
+            },
+          },
+        },
+      };
+    case SET_CURRENT_ADDRESS:
+      return {
+        ...state,
+        currentAddress: action.address,
+        currentOrder: {
+          ...state.currentOrder,
+          place: {
+            ...state.currentOrder.place,
+            value: {
+              city: action.city,
+              street: action.address,
+            },
+          },
+        },
+      };
+    case SET_PLACE_MARKS:
+      return {
+        ...state,
+        placeMarks: [...state.placeMarks, action.placeMark],
+      };
+    case SET_RESET_MARKS:
+      return {
+        ...state,
+        placeMarks: [],
+      };
     default:
       return state;
   }
@@ -87,11 +166,52 @@ export const setCurrentCar = (car) => ({
   payload: car,
 });
 
-export const setCurrentStep = () => ({
+export const setCurrentStep = (step) => ({
   type: SET_CURRENT_STEP,
+  payload: step,
 });
 
 export const setCurrentPage = (page) => ({
   type: SET_CURRENT_PAGE,
   payload: page,
+});
+
+export const setCities = (cities) => ({
+  type: SET_CITIES,
+  payload: cities,
+});
+
+export const setNewCities = (cities) => ({
+  type: SET_NEW_CITIES,
+  payload: cities,
+});
+
+export const setAddresses = (addresses) => ({
+  type: SET_ADDRESSES,
+  payload: addresses,
+});
+
+export const setNewAddresses = (addresses) => ({
+  type: SET_NEW_ADDRESSES,
+  payload: addresses,
+});
+
+export const setCurrentCity = (city) => ({
+  type: SET_CURRENT_CITY,
+  payload: city,
+});
+
+export const setCurrentAddress = (address, city) => ({
+  type: SET_CURRENT_ADDRESS,
+  address,
+  city,
+});
+
+export const setPlaceMarks = (placeMark) => ({
+  type: SET_PLACE_MARKS,
+  placeMark,
+});
+
+export const setResetMarks = () => ({
+  type: SET_RESET_MARKS,
 });
