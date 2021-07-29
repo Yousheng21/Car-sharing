@@ -28,11 +28,15 @@ export const getTableAddress = (cityId) => {
 };
 
 export const searchAddress = (query) => {
-  const addresses = store.getState().app.newAddresses;
+  const { addresses } = store.getState().app;
+  const city = store.getState().app.currentCity;
   const regExp = new RegExp(query.toLowerCase());
 
   function success(item) {
-    return regExp.test(item.address.toLowerCase()) === true;
+    if ("name" in city) {
+      if (city.name === item.cityId.name)
+        return regExp.test(item.address.toLowerCase()) === true;
+    } else return regExp.test(item.address.toLowerCase()) === true;
   }
 
   return store.dispatch(setNewAddresses(addresses.filter(success)));
