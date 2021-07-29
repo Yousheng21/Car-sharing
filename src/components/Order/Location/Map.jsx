@@ -1,6 +1,8 @@
 import React from "react";
 // import { Placemark, YMaps } from "react-yandex-maps";
 
+/* Заккомитил, так как сайт стоит из за яндекс карт, но в дальнейшем они будут нужны */
+
 const Map = () => {
   return (
     <div />
