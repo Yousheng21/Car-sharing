@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import BurgerMenu from "../../common/Burger-menu/Burger-menu";
 import NavBar from "../../common/NavBar/NavBar";
 import SideBar from "../../common/SideBar/SideBar";
 
-import getTableCars, { selectSortCars } from "../../../actions/app";
+import getTableCars, { nextStep, selectSortCars } from "../../../actions/app";
 
 import "./model.scss";
 import { API_URL } from "../../../reducers/data/dataServer";
@@ -21,22 +22,22 @@ const Model = () => {
   const dispatch = useDispatch();
 
   const [inputCategory, setInputCategory] = useState(0);
-  const [car, setCar] = useState(null);
+  const [inputCar, setInputCar] = useState(null);
 
   const tableCars = useSelector((state) => state.app.newTableCars);
 
   useEffect(() => {
-    dispatch(getTableCars);
+    if (tableCars.length === 0) dispatch(getTableCars);
   }, []);
 
   function handleChange(value, sort) {
     selectSortCars(sort);
     setInputCategory(Number(value));
-    setCar(null);
+    setInputCar(null);
   }
 
   function handleClick(value) {
-    setCar(value === car ? null : value);
+    setInputCar(value === inputCar ? null : value);
   }
 
   return (
@@ -75,7 +76,7 @@ const Model = () => {
                 key={item.id}
                 className={classNames({
                   car: true,
-                  active: index === car,
+                  active: index === inputCar,
                 })}
                 onClick={() => {
                   handleClick(index);
@@ -98,7 +99,17 @@ const Model = () => {
           })}
         </section>
       </main>
-      <SideBar path="extra" text="Дополнительно" nextPage={2} />
+      <SideBar path="extra" text="Дополнительно" nextPage={2}>
+        <Link to="/car-sharing/order/extra">
+          <button
+            type="button"
+            onClick={() => nextStep(2)}
+            className="sideBar-button sideBar-child"
+          >
+            Дополнительно
+          </button>
+        </Link>
+      </SideBar>
     </aside>
   );
 };

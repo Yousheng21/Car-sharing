@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import BurgerMenu from "../../common/Burger-menu/Burger-menu";
 import NavBar from "../../common/NavBar/NavBar";
 import SideBar from "../../common/SideBar/SideBar";
@@ -29,7 +30,13 @@ const Total = () => {
         </section>
         <img src={API_URL + car.thumbnail.path} alt={car.name} />
       </main>
-      <SideBar text="Заказать" path="confirm" />
+      <SideBar text="Заказать" path="confirm">
+        <Link to="/car-sharing/order/confirm">
+          <button type="button" className="sideBar-button sideBar-child">
+            Заказать
+          </button>
+        </Link>
+      </SideBar>
     </aside>
   );
 };
