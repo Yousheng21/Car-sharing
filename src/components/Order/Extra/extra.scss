@@ -16,6 +16,10 @@
     }
     .extra-date{
       @extend %style-city;
+
+      .city-content{
+        grid-template-columns: 0.1fr 2fr 1fr;
+      }
     }
     .extra-tariff{
       display: flex;
@@ -86,10 +90,6 @@
     overflow: auto;
     .extra-content{
       grid-column: 2/4;
-
-      aside{
-        justify-self: center;
-      }
     }
   }
 }
