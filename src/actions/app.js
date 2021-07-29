@@ -1,12 +1,12 @@
 import axios from "axios";
 import { store } from "../reducers";
 
-import { API_URL, headers } from "../reducers/data/dataServer";
+import { API_URL, headersMain } from "../reducers/data/dataServer";
 import {
-  setTableCars,
-  setNewTableCars,
-  setCurrentStep,
   setCurrentPage,
+  setCurrentStep,
+  setNewTableCars,
+  setTableCars,
 } from "../reducers/appReducer";
 
 const getTableCars = () => {
@@ -17,8 +17,8 @@ const getTableCars = () => {
         {
           headers: {
             "X-Api-Factory-Application-Id":
-              headers["X-Api-Factory-Application-Id"],
-            Authorization: headers.Authorization,
+              headersMain["X-Api-Factory-Application-Id"],
+            Authorization: headersMain.Authorization,
           },
         }
       );
@@ -41,9 +41,8 @@ export const selectSortCars = (sort) => {
 };
 
 export const nextStep = (step) => {
-  const currStep = store.getState().app.currentStep;
-  if (step > currStep) store.dispatch(setCurrentStep());
-  else store.dispatch(setCurrentPage(step));
+  store.dispatch(setCurrentStep(step));
+  store.dispatch(setCurrentPage(step));
 };
 
 export default getTableCars();
