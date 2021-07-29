@@ -30,7 +30,7 @@ const NavBar = () => {
           <span className="header-map">
             <img
               src="https://img.icons8.com/plumpy/24/000000/google-maps-new.png"
-              alt=""
+              alt="google-map"
             />
             Ульяновск
           </span>
