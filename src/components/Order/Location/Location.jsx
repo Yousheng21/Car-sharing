@@ -195,9 +195,6 @@ const Location = () => {
         <Link to="/car-sharing/order/model">
           <button
             type="button"
-            disabled={
-              !inputAddress.inputValid.value || !inputCity.inputValid.value
-            }
             onClick={() => nextStep(1)}
             className="sideBar-button sideBar-child"
           >
