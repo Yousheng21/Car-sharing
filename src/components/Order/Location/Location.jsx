@@ -21,7 +21,7 @@ import {
 import { useInput } from "../../../utils/Validator/validator";
 import { nextStep } from "../../../actions/app";
 
-import Map from "./Map";
+import map from "../../../images/map.png";
 
 const Location = () => {
   const dispatch = useDispatch();
@@ -188,7 +188,7 @@ const Location = () => {
         </aside>
         <aside className="location-map">
           <span>Выбрать на карте:</span>
-          <Map />
+          <img src={map} alt="location-map" />
         </aside>
       </main>
       <SideBar>
