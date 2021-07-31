@@ -1,8 +1,6 @@
 @import "../Location/location";
 @import "../Model/model";
 
-.extra-page{
-  @extend .location-page;
 
   .extra-content{
     display: grid;
@@ -83,13 +81,9 @@
       }
     }
   }
-}
 
 @media screen and (max-width: 768px){
-  .extra-page{
-    overflow: auto;
     .extra-content{
       grid-column: 2/4;
     }
-  }
 }

@@ -40,8 +40,6 @@
   }
 }
 
-.model-page{@extend .location-page;}
-
 .model-content{
   display: grid;
   grid-template-rows: 0.2fr 2fr;
@@ -95,8 +93,6 @@
 }
 
 @media screen and (max-width: 768px){
-  .model-page{overflow: auto;}
-
   .model-content{grid-column: 2/4;}
 }
 

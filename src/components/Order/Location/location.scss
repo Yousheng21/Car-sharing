@@ -49,13 +49,6 @@
 
 }
 
-
-.location-page {
-  width: 100vw;
-  display: grid;
-  grid-template: 5% 0.5fr 2fr/0.4fr 2fr 1.5fr 0.3fr;
-  height: 100vh;
-
   .location-content {
     display: grid;
     grid-template-rows: 0.5fr 2fr;
@@ -102,7 +95,6 @@
       }
     }
   }
-}
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .location-page {

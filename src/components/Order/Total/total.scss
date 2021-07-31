@@ -1,8 +1,5 @@
 @import "../Location/location";
 
-.total-page{
-  @extend .location-page;
-
   .total-content{
     display: flex;
     justify-content: space-between;
@@ -29,10 +26,8 @@
       height: 30%;
     }
   }
-}
 
 @media screen and (max-width: 768px){
-  .total-page{
     .total-content{
       grid-column: 2/4;
 
@@ -40,11 +35,10 @@
         height: 150px;
       }
     }
-  }
 }
 
 @media screen and (max-width: 425px){
-  .total-page .total-content{
+  .total-content{
     img{
       height: 100px;
     }
