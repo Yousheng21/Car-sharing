@@ -25,7 +25,7 @@ export const searchCity = (query) => {
   const { cities } = store.getState().app;
   const regExp = new RegExp(query.toLowerCase());
   const newCities = cities.filter((item) => {
-    return regExp.test(item.name.toLowerCase()) === true;
+    return regExp.test(item.name.toLowerCase());
   });
   return store.dispatch(setNewCities(newCities));
 };
