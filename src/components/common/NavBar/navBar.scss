@@ -27,6 +27,9 @@
             color: $third-color;
 
             &:hover{color: $main-color}
+            &.disabled{
+                pointer-events: none;
+            }
         }
         .complete{
             a{
