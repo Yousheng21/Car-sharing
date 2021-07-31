@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-import classNames from "classnames";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-import BurgerMenu from "../../common/Burger-menu/Burger-menu";
-import NavBar from "../../common/NavBar/NavBar";
-import SideBar from "../../common/SideBar/SideBar";
-
-import getTableCars, { nextStep, selectSortCars } from "../../../actions/app";
-
+import classNames from "classnames";
 import "./model.scss";
+
+import getTableCars, { selectSortCars } from "../../../actions/app";
+
 import { API_URL } from "../../../reducers/data/dataServer";
+import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 
 const categories = [
   { text: "Все модели", sort: "" },
@@ -41,9 +37,7 @@ const Model = () => {
   }
 
   return (
-    <aside className="model-page">
-      <BurgerMenu />
-      <NavBar />
+    <OrderLayout path="extra" step={2} text="Дополнительно">
       <main className="model-content">
         <section className="model-input">
           {categories.map((item, index) => {
@@ -99,18 +93,7 @@ const Model = () => {
           })}
         </section>
       </main>
-      <SideBar path="extra" text="Дополнительно" nextPage={2}>
-        <Link to="/car-sharing/order/extra">
-          <button
-            type="button"
-            onClick={() => nextStep(2)}
-            className="sideBar-button sideBar-child"
-          >
-            Дополнительно
-          </button>
-        </Link>
-      </SideBar>
-    </aside>
+    </OrderLayout>
   );
 };
 
