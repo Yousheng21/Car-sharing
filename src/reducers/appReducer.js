@@ -2,7 +2,6 @@ const SET_BURGER_STATUS = "SET_BURGER_STATUS";
 const SET_TABLE_CARS = "SET_TABLE_CARS";
 const SET_CURRENT_CAR = "SET_CURRENT_CAR";
 const SET_CURRENT_STEP = "SET_CURRENT_STEP";
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_NEW_TABLE_CARS = "SET_NEW_TABLE_CARS";
 const SET_CURRENT_CITY = "SET_CURRENT_CITY";
 const SET_CURRENT_ADDRESS = "SET_CURRENT_ADDRESS";
@@ -40,7 +39,6 @@ const defaultState = {
   placeMarks: [],
   currentCar: { colors: ["Любой"], thumbnail: { path: "" }, name: "" },
   currentStep: 0,
-  currentPage: 0,
   currentAddress: "",
 };
 
@@ -72,11 +70,6 @@ export default function appReducer(state = defaultState, action) {
       return {
         ...state,
         currentStep: action.payload,
-        currentPage: action.payload,
-      };
-    case SET_CURRENT_PAGE:
-      return {
-        ...state,
         currentPage: action.payload,
       };
     case SET_CITIES:
@@ -169,11 +162,6 @@ export const setCurrentCar = (car) => ({
 export const setCurrentStep = (step) => ({
   type: SET_CURRENT_STEP,
   payload: step,
-});
-
-export const setCurrentPage = (page) => ({
-  type: SET_CURRENT_PAGE,
-  payload: page,
 });
 
 export const setCities = (cities) => ({
