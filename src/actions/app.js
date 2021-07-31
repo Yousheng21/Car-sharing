@@ -2,7 +2,6 @@ import { store } from "../reducers";
 
 import { instance } from "../reducers/data/dataServer";
 import {
-  setCurrentPage,
   setCurrentStep,
   setNewTableCars,
   setTableCars,
@@ -42,7 +41,6 @@ export const selectSortCars = (sort) => {
 
 export const nextStep = (step) => {
   store.dispatch(setCurrentStep(step));
-  store.dispatch(setCurrentPage(step));
 };
 
 export default getTableCars();
