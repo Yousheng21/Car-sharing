@@ -1,7 +1,6 @@
-import axios from "axios";
 import { store } from "../reducers";
 
-import { API_URL, headersMain } from "../reducers/data/dataServer";
+import { instance } from "../reducers/data/dataServer";
 import {
   setCurrentPage,
   setCurrentStep,
@@ -12,19 +11,17 @@ import {
 const getTableCars = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        `${API_URL}/api/db/car?limit=6&offset=2`,
-        {
-          headers: {
-            "X-Api-Factory-Application-Id":
-              headersMain["X-Api-Factory-Application-Id"],
-            Authorization: headersMain.Authorization,
-          },
-        }
-      );
+      const response = await instance({
+        method: "GET",
+        url: "/api/db/car",
+        params: {
+          limit: 6,
+          offset: 2,
+        },
+      });
       dispatch(setTableCars(response.data.data));
     } catch (e) {
-      console.log(e.response);
+      console.error(e.response);
     }
   };
 };
