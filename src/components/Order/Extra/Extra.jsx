@@ -14,7 +14,7 @@ const additional = [
   "Правый руль, 1600р",
 ];
 
-const Extra = () => {
+const Extra = ({ nextStep, page }) => {
   const [inputColor, setInputColor] = useState(0);
   const [inputTariff, setInputTariff] = useState(0);
   const [inputDate, setInputDate] = useState("");
@@ -30,7 +30,7 @@ const Extra = () => {
   });
 
   return (
-    <OrderLayout path="total" step={3} text="Итого">
+    <OrderLayout path="total" step={nextStep} page={page} text="Итого">
       <main className="extra-content">
         <aside>
           <h3>Цвет</h3>

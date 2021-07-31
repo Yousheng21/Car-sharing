@@ -5,12 +5,12 @@ import "./total.scss";
 import { API_URL } from "../../../reducers/data/dataServer";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 
-const Total = () => {
+const Total = ({ nextStep, page }) => {
   const car = useSelector((state) => state.app.currentCar);
   const order = useSelector((state) => state.app.currentOrder);
 
   return (
-    <OrderLayout path="confirm" text="Заказать">
+    <OrderLayout path="confirm" text="Заказать" page={page} step={nextStep}>
       <main className="total-content">
         <section className="total-content-info">
           <h1>{car.name}</h1>

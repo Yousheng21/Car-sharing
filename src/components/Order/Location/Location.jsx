@@ -18,7 +18,7 @@ import { useInput } from "../../../utils/Validator/validator";
 import map from "../../../images/map.png";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 
-const Location = () => {
+const Location = ({ nextStep, page }) => {
   const dispatch = useDispatch();
 
   const currCity = useSelector((state) => state.app.currentCity.name);
@@ -95,7 +95,7 @@ const Location = () => {
   });
 
   return (
-    <OrderLayout path="model" text="Выбрать модель" step={1}>
+    <OrderLayout path="model" text="Выбрать модель" step={nextStep} page={page}>
       <main className="location-content">
         <aside className="location-city">
           <section className="city-content">

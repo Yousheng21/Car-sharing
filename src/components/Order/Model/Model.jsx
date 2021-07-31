@@ -14,7 +14,7 @@ const categories = [
   { text: "Премимум", sort: "Люкс" },
 ];
 
-const Model = () => {
+const Model = ({ nextStep, page }) => {
   const dispatch = useDispatch();
 
   const [inputCategory, setInputCategory] = useState(0);
@@ -37,7 +37,7 @@ const Model = () => {
   }
 
   return (
-    <OrderLayout path="extra" step={2} text="Дополнительно">
+    <OrderLayout path="extra" step={nextStep} text="Дополнительно" page={page}>
       <main className="model-content">
         <section className="model-input">
           {categories.map((item, index) => {
