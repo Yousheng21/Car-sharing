@@ -59,9 +59,9 @@ const BurgerMenu = () => {
             );
           })}
         </section>
-        <Link to="/car-sharing/order" className="lang">
+        <button type="button" className="lang">
           <span>Eng</span>
-        </Link>
+        </button>
       </aside>
       <div className="burger__template" />
     </div>
