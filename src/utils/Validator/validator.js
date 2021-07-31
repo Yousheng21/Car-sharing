@@ -107,28 +107,17 @@ export const useInput = (initialState, validations) => {
     setDirty(false);
   };
 
-  const close = () => {
-    setValue("");
-    setFocus(false);
-  };
-
-  const set = (query) => {
-    setValue(query);
-  };
-
   const printError = (validators) => {
     let flag = false;
-    for (let i = 0; i < validators.length; i += 1) {
-      for (let j = 0; j <= i; j += 1) {
-        if (j < i) {
-          flag = !valid[validators[j]].value;
-        } else {
-          flag = valid[validators[i]].value;
+    return validators.map((item) => {
+      if (!flag) {
+        if (valid[item].value) {
+          flag = true;
+          return valid[item].text;
         }
       }
-      if (flag) return `${valid[validators[i]].text}`;
-    }
-    return false;
+      return true;
+    });
   };
 
   return {
@@ -139,8 +128,6 @@ export const useInput = (initialState, validations) => {
     onBlur,
     onFocus,
     onClick,
-    close,
-    set,
     isDirty,
     printError,
     ...valid,
