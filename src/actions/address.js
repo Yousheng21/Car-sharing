@@ -3,6 +3,8 @@ import { instance } from "../reducers/data/dataServer";
 import { setAddresses, setNewAddresses } from "../reducers/appReducer";
 import { updateAddresses } from "./geolocate";
 
+const LIMIT_VALUE = 10;
+
 export const getTableAddress = (cityId) => {
   return async (dispatch) => {
     try {
@@ -10,7 +12,7 @@ export const getTableAddress = (cityId) => {
         method: "GET",
         url: `/api/db/point${cityId ? `?cityId=${cityId}` : ""}`,
         params: {
-          limit: 10,
+          limit: LIMIT_VALUE,
         },
       });
       dispatch(setAddresses(response.data.data));

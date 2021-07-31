@@ -2,6 +2,8 @@ import { store } from "../reducers";
 import { setCities, setNewCities } from "../reducers/appReducer";
 import { instance } from "../reducers/data/dataServer";
 
+const LIMIT_VALUE = 6;
+
 const getTableCity = () => {
   return async (dispatch) => {
     try {
@@ -9,7 +11,7 @@ const getTableCity = () => {
         method: "GET",
         url: "/api/db/city",
         params: {
-          limit: 6,
+          limit: LIMIT_VALUE,
         },
       });
       dispatch(setCities(response.data.data));
