@@ -15,12 +15,12 @@ const Total = ({ nextStep, page }) => {
         <section className="total-content-info">
           <h1>{car.name}</h1>
           <span className="number">{car.number}</span>
-          <article className="text">
+          <section className="text">
             <span>Топливо</span> {order.cistern.value}
-          </article>
-          <article className="text">
+          </section>
+          <section className="text">
             <span>Доступна c</span> {order.delay.from}
-          </article>
+          </section>
         </section>
         <img src={API_URL + car.thumbnail.path} alt={car.name} />
       </main>
