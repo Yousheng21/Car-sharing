@@ -102,6 +102,8 @@
         text-align: center;
         grid-row: 4/5;
         color: $main-color;
+        border: none;
+        background:none;
 
         span:active,span:hover{@extend %style-lang;}
         span:hover{color: white}
