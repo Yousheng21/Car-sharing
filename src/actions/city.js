@@ -1,21 +1,20 @@
-import axios from "axios";
-import { API_URL, headersMain } from "../reducers/data/dataServer";
-import { setCities, setNewCities } from "../reducers/appReducer";
 import { store } from "../reducers";
+import { setCities, setNewCities } from "../reducers/appReducer";
+import { instance } from "../reducers/data/dataServer";
 
 const getTableCity = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`${API_URL}/api/db/city?limit=6`, {
-        headers: {
-          "X-Api-Factory-Application-Id":
-            headersMain["X-Api-Factory-Application-Id"],
-          Authorization: headersMain.Authorization,
+      const response = await instance({
+        method: "GET",
+        url: "/api/db/city",
+        params: {
+          limit: 6,
         },
       });
       dispatch(setCities(response.data.data));
     } catch (e) {
-      console.log(e.response);
+      console.error(e.response);
     }
   };
 };
