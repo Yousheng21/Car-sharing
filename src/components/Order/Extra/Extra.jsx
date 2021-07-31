@@ -1,16 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import classNames from "classnames";
-
-import BurgerMenu from "../../common/Burger-menu/Burger-menu";
-import NavBar from "../../common/NavBar/NavBar";
-import SideBar from "../../common/SideBar/SideBar";
+import "./extra.scss";
 
 import Close from "../../../images/close.svg";
 
-import "./extra.scss";
-import { nextStep } from "../../../actions/app";
+import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 
 const tariff = ["Поминутно,7 р/мин", "На сутки, 1999 р/сутки"];
 const additional = [
@@ -35,9 +30,7 @@ const Extra = () => {
   });
 
   return (
-    <aside className="extra-page">
-      <BurgerMenu />
-      <NavBar />
+    <OrderLayout path="total" step={3} text="Итого">
       <main className="extra-content">
         <aside>
           <h3>Цвет</h3>
@@ -154,18 +147,7 @@ const Extra = () => {
           </section>
         </aside>
       </main>
-      <SideBar>
-        <Link to="/car-sharing/order/total">
-          <button
-            type="button"
-            onClick={() => nextStep(3)}
-            className="sideBar-button sideBar-child"
-          >
-            Итого
-          </button>
-        </Link>
-      </SideBar>
-    </aside>
+    </OrderLayout>
   );
 };
 
