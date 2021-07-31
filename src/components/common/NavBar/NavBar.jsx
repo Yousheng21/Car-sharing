@@ -42,12 +42,15 @@ const NavBar = ({ page }) => {
               })}
               key={item.text}
             >
-              {index !== 0 ? <Vector /> : ""}
-              {index <= currStep ? (
-                <Link to={`/car-sharing/order/${item.path}`}>{item.text}</Link>
-              ) : (
-                <span>{item.text}</span>
-              )}
+              {index ? <Vector /> : ""}
+              <Link
+                className={classNames({
+                  disabled: index > currStep,
+                })}
+                to={`/car-sharing/order/${item.path}`}
+              >
+                {item.text}
+              </Link>
             </span>
           );
         })}
