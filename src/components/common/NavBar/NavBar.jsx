@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import classNames from "classnames";
-
-import { setCurrentPage } from "../../../reducers/appReducer";
 
 import Vector from "../../../images/vector.svg";
 
@@ -16,11 +14,8 @@ const tabs = [
   { text: "Итого", path: "total" },
 ];
 
-const NavBar = () => {
-  const dispatch = useDispatch();
-
+const NavBar = ({ page }) => {
   const currStep = useSelector((state) => state.app.currentStep);
-  const currPage = useSelector((state) => state.app.currentPage);
 
   return (
     <nav className="navBar">
@@ -42,21 +37,14 @@ const NavBar = () => {
           return (
             <span
               className={classNames({
-                active: index === currPage,
+                active: index === page,
                 complete: index < currStep,
               })}
               key={item.text}
             >
               {index !== 0 ? <Vector /> : ""}
               {index <= currStep ? (
-                <Link
-                  onClick={() => {
-                    dispatch(setCurrentPage(index));
-                  }}
-                  to={`/car-sharing/order/${item.path}`}
-                >
-                  {item.text}
-                </Link>
+                <Link to={`/car-sharing/order/${item.path}`}>{item.text}</Link>
               ) : (
                 <span>{item.text}</span>
               )}
