@@ -49,8 +49,8 @@ const Location = ({ nextStep, page }) => {
     dispatch(getTableCity);
     dispatch(getTableAddress(""));
 
-    if (currCity) inputCity.set(currCity);
-    if (currAddress) inputAddress.set(currAddress);
+    if (currCity) inputCity.onClick(currCity);
+    if (currAddress) inputAddress.onClick(currAddress);
   }, []);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Location = ({ nextStep, page }) => {
       if (!flag && inputCity.focus) {
         dispatch(setCurrentCity({}));
         dispatch(setCurrentAddress("", ""));
-        inputAddress.set("");
+        inputAddress.onClick("");
       }
     }
   }, [inputCity.inputValid.value]);
@@ -110,8 +110,8 @@ const Location = ({ nextStep, page }) => {
               />
               <Close
                 onClick={() => {
-                  inputCity.close();
-                  inputAddress.close();
+                  inputCity.onClick("");
+                  inputAddress.onClick("");
                   dispatch(setCurrentCity({}));
                 }}
                 className={classClose}
@@ -135,7 +135,6 @@ const Location = ({ nextStep, page }) => {
                 })}
               </div>
             </article>
-            {/* {inputCity.isDirty && inputCity.printError(["isCompareError"])} */}
           </section>
           <section className="city-content">
             <span>Пункт Выдачи</span>
@@ -152,7 +151,7 @@ const Location = ({ nextStep, page }) => {
                 id="place"
               />
               <Close
-                onClick={inputAddress.close}
+                onClick={() => inputAddress.onClick("")}
                 className={classCloseAddress}
               />
               <div
