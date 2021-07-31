@@ -1,12 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import classNames from "classnames";
 import "./location.scss";
-
-import BurgerMenu from "../../common/Burger-menu/Burger-menu";
-import NavBar from "../../common/NavBar/NavBar";
-import SideBar from "../../common/SideBar/SideBar";
 
 import Close from "../../../images/close.svg";
 
@@ -19,9 +14,9 @@ import {
 } from "../../../reducers/appReducer";
 
 import { useInput } from "../../../utils/Validator/validator";
-import { nextStep } from "../../../actions/app";
 
 import map from "../../../images/map.png";
+import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 
 const Location = () => {
   const dispatch = useDispatch();
@@ -100,9 +95,7 @@ const Location = () => {
   });
 
   return (
-    <aside className="location-page">
-      <BurgerMenu />
-      <NavBar />
+    <OrderLayout path="model" text="Выбрать модель" step={1}>
       <main className="location-content">
         <aside className="location-city">
           <section className="city-content">
@@ -191,18 +184,7 @@ const Location = () => {
           <img src={map} alt="location-map" />
         </aside>
       </main>
-      <SideBar>
-        <Link to="/car-sharing/order/model">
-          <button
-            type="button"
-            onClick={() => nextStep(1)}
-            className="sideBar-button sideBar-child"
-          >
-            Выбрать модель
-          </button>
-        </Link>
-      </SideBar>
-    </aside>
+    </OrderLayout>
   );
 };
 
