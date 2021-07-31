@@ -15,7 +15,7 @@ const getLocale = (query) => {
         )
       );
     } catch (e) {
-      console.log(e.response);
+      console.error(e.response);
     }
   };
 };
