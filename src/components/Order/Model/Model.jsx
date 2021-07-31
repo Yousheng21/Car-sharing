@@ -63,34 +63,36 @@ const Model = ({ nextStep, page }) => {
           })}
         </section>
         <section className="model-cars">
-          {tableCars.map((item, index) => {
-            return (
-              <button
-                type="button"
-                key={item.id}
-                className={classNames({
-                  car: true,
-                  active: index === inputCar,
-                })}
-                onClick={() => {
-                  handleClick(index);
-                }}
-              >
-                <div>
-                  <h1 className="car-title">{item.name}</h1>
-                  <span className="car-subtitle">
-                    {item.priceMin} - {item.priceMax} P
-                  </span>
-                </div>
-                <img
-                  crossOrigin="anonymous"
-                  referrerPolicy="origin"
-                  src={API_URL + item.thumbnail.path}
-                  alt={item.name}
-                />
-              </button>
-            );
-          })}
+          {tableCars.length
+            ? tableCars.map((item, index) => {
+                return (
+                  <button
+                    type="button"
+                    key={item.id}
+                    className={classNames({
+                      car: true,
+                      active: index === inputCar,
+                    })}
+                    onClick={() => {
+                      handleClick(index);
+                    }}
+                  >
+                    <div>
+                      <h1 className="car-title">{item.name}</h1>
+                      <span className="car-subtitle">
+                        {item.priceMin} - {item.priceMax} P
+                      </span>
+                    </div>
+                    <img
+                      crossOrigin="anonymous"
+                      referrerPolicy="origin"
+                      src={API_URL + item.thumbnail.path}
+                      alt={item.name}
+                    />
+                  </button>
+                );
+              })
+            : "Машины данной категории отсутствуют"}
         </section>
       </main>
     </OrderLayout>
