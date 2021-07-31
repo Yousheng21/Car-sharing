@@ -34,7 +34,7 @@ export const selectSortCars = (sort) => {
   const newCars = !sort
     ? cars
     : cars.filter((item) => {
-        return item.categoryId.name === sort;
+        return item.categoryId ? item.categoryId.name === sort : "";
       });
 
   store.dispatch(setNewTableCars(newCars));
