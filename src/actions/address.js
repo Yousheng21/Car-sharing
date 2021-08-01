@@ -27,7 +27,7 @@ export const searchAddress = (query) => {
   const regExp = new RegExp(query.toLowerCase());
 
   function hasCity(item) {
-    if (city.name === item.cityId.name)
+    if (item.cityId && city.name === item.cityId.name)
       return regExp.test(item.address.toLowerCase());
   }
 
