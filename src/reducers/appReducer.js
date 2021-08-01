@@ -10,7 +10,6 @@ const SET_NEW_CITIES = "SET_NEW_CITIES";
 const SET_ADDRESSES = "SET_ADDRESSES";
 const SET_NEW_ADDRESSES = "SET_NEW_ADDRESSES";
 const SET_PLACE_MARKS = "SET_PLACE_MARKS";
-const SET_RESET_MARKS = "SET_RESET_MARKS";
 
 const defaultState = {
   burger_status: false,
@@ -129,11 +128,6 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         placeMarks: [...state.placeMarks, action.placeMark],
       };
-    case SET_RESET_MARKS:
-      return {
-        ...state,
-        placeMarks: [],
-      };
     default:
       return state;
   }
@@ -198,8 +192,4 @@ export const setCurrentAddress = (address, city) => ({
 export const setPlaceMarks = (placeMark) => ({
   type: SET_PLACE_MARKS,
   placeMark,
-});
-
-export const setResetMarks = () => ({
-  type: SET_RESET_MARKS,
 });
