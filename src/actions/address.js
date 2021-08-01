@@ -27,14 +27,15 @@ export const searchAddress = (query) => {
   const { addresses } = store.getState().app;
   const city = store.getState().app.currentCity;
   const regExp = new RegExp(query.toLowerCase());
+  let element;
 
   function success(item) {
+    element = item;
     if ("name" in city) {
-      if (city.name === item.cityId.name)
-        return regExp.test(item.address.toLowerCase()) === true;
-    } else return regExp.test(item.address.toLowerCase()) === true;
+      if (city.name === item.cityId.name) element = item;
+    }
+    return regExp.test(element.address.toLowerCase());
   }
-
   return store.dispatch(setNewAddresses(addresses.filter(success)));
 };
 
