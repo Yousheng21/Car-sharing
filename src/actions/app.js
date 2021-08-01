@@ -2,6 +2,8 @@ import { store } from "../reducers";
 
 import { instance } from "../reducers/data/dataServer";
 import {
+  setCurrentAddress,
+  setCurrentCity,
   setCurrentStep,
   setNewTableCars,
   setTableCars,
@@ -37,6 +39,20 @@ export const selectSortCars = (sort) => {
       });
 
   store.dispatch(setNewTableCars(newCars));
+};
+
+export const setCity = (obj) => {
+  store.dispatch(setCurrentCity(obj));
+  store.dispatch(setCurrentAddress("", obj.name));
+};
+
+export const resetCity = () => {
+  store.dispatch(setCurrentCity({}));
+  store.dispatch(setCurrentAddress("", ""));
+};
+
+export const setAddress = (address, city) => {
+  store.dispatch(setCurrentAddress(address, city));
 };
 
 export const nextStep = (step) => {
