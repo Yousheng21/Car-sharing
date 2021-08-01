@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { searchCity } from "../../actions/city";
 import { searchAddress } from "../../actions/address";
+import { setAddress, setCity } from "../../actions/app";
 
 export const useValidation = (value, validations) => {
   const [isEmpty, setEmpty] = useState({ value: false, text: "" });
   const [isCompareError, setCompareError] = useState({
-    value: true,
+    value: false,
     text: "",
     array: [],
   });
@@ -15,41 +16,36 @@ export const useValidation = (value, validations) => {
     Object.keys(validations).forEach((validation) => {
       switch (validation) {
         case "isCompareCity":
-          if (
-            validations[validation].array.some((item) => {
-              return value.toLowerCase() === item.name.toLowerCase();
-            }) ||
-            value.length === 0
-          ) {
-            setCompareError({
-              value: false,
-              text: "",
-              array: validations[validation].array,
-            });
-          } else {
-            setCompareError({
-              value: true,
-              text: validations[validation].text,
-            });
-          }
+          validations[validation].array.forEach((item) => {
+            if (value.toLowerCase() === item.name.toLowerCase() || !value) {
+              setCompareError({
+                value: false,
+                text: "",
+              });
+              if (value) setCity(item);
+            } else {
+              setCompareError({
+                value: true,
+                text: validations[validation].text,
+              });
+            }
+          });
           break;
         case "isCompareAddress":
-          if (
-            validations[validation].array.some((item) => {
-              return value.toLowerCase() === item.address.toLowerCase();
-            })
-          ) {
-            setCompareError({
-              value: false,
-              text: "",
-              array: validations[validation].array,
-            });
-          } else {
-            setCompareError({
-              value: true,
-              text: validations[validation].text,
-            });
-          }
+          validations[validation].array.forEach((item) => {
+            if (value.toLowerCase() === item.address.toLowerCase()) {
+              setCompareError({
+                value: false,
+                text: "",
+              });
+              setAddress(item.address, item.cityId.name);
+            } else {
+              setCompareError({
+                value: true,
+                text: validations[validation].text,
+              });
+            }
+          });
           break;
         case "isEmpty":
           if (value) {
