@@ -6,17 +6,15 @@ import "./location.scss";
 import Close from "../../../images/close.svg";
 
 import getTableCity from "../../../actions/city";
-import { getTableAddress, selectAddresses } from "../../../actions/address";
+import { getTableAddress } from "../../../actions/address";
 
-import {
-  setCurrentAddress,
-  setCurrentCity,
-} from "../../../reducers/appReducer";
+import { setCurrentAddress } from "../../../reducers/appReducer";
 
 import { useInput } from "../../../utils/Validator/validator";
 
 import map from "../../../images/map.png";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
+import { resetCity } from "../../../actions/app";
 
 const Location = ({ nextStep, page }) => {
   const dispatch = useDispatch();
@@ -54,35 +52,18 @@ const Location = ({ nextStep, page }) => {
   }, []);
 
   useEffect(() => {
-    let flag = false;
-    if (inputCity.inputValid.value) {
-      cities.forEach((item) => {
-        if (inputCity.value.toLowerCase() === item.name.toLowerCase()) {
-          flag = true;
-          dispatch(setCurrentCity(item));
-          dispatch(setCurrentAddress("", item.name));
-          selectAddresses(item.name);
-        }
-      });
-      if (!flag && inputCity.focus) {
-        dispatch(setCurrentCity({}));
-        dispatch(setCurrentAddress("", ""));
-        inputAddress.onClick("");
-      }
-    }
-  }, [inputCity.inputValid.value]);
+    if (!inputCity.value) {
+      inputAddress.onClick("");
+      resetCity();
+    } else if (inputCity.value && inputCity.isCompareError.value)
+      inputAddress.onClick("");
+  }, [inputCity.value]);
 
   useEffect(() => {
-    if (inputAddress.inputValid.value) {
-      addresses.forEach((item) => {
-        if (inputAddress.value.toLowerCase() === item.address.toLowerCase()) {
-          dispatch(setCurrentAddress(item.address, item.cityId.name));
-        }
-      });
-    } else if (inputAddress.value) {
-      dispatch(setCurrentAddress("", inputCity.value));
+    if (!inputAddress.value && inputCity.inputValid.value) {
+      dispatch(setCurrentAddress("", inputCity.value ?? ""));
     }
-  }, [inputAddress.inputValid.value]);
+  }, [inputAddress.value]);
 
   const classClose = classNames({
     "btn-close": true,
@@ -111,8 +92,6 @@ const Location = ({ nextStep, page }) => {
               <Close
                 onClick={() => {
                   inputCity.onClick("");
-                  inputAddress.onClick("");
-                  dispatch(setCurrentCity({}));
                 }}
                 className={classClose}
               />
@@ -127,7 +106,8 @@ const Location = ({ nextStep, page }) => {
                     <button
                       key={item.name}
                       type="button"
-                      onClick={() => inputCity.onClick(item.name)}
+                      onClick={inputCity.onChange}
+                      value={item.name}
                     >
                       {item.name}
                     </button>
@@ -146,6 +126,7 @@ const Location = ({ nextStep, page }) => {
                 type="text"
                 value={inputAddress.value}
                 onChange={inputAddress.onChangeAddress}
+                readOnly={!inputCity.inputValid.value ? "readOnly" : ""}
                 name="place"
                 placeholder="Начните вводить пункт.."
                 id="place"
@@ -168,7 +149,8 @@ const Location = ({ nextStep, page }) => {
                     <button
                       key={item.address}
                       type="button"
-                      onClick={() => inputAddress.onClick(item.address)}
+                      onClick={inputAddress.onChange}
+                      value={item.address}
                     >
                       {`${item.cityId.name} ${item.address}`}
                     </button>
