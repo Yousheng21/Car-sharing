@@ -126,7 +126,6 @@ const Location = ({ nextStep, page }) => {
                 type="text"
                 value={inputAddress.value}
                 onChange={inputAddress.onChangeAddress}
-                readOnly={!inputCity.inputValid.value ? "readOnly" : ""}
                 name="place"
                 placeholder="Начните вводить пункт.."
                 id="place"
@@ -152,7 +151,7 @@ const Location = ({ nextStep, page }) => {
                       onClick={inputAddress.onChange}
                       value={item.address}
                     >
-                      {`${item.cityId.name} ${item.address}`}
+                      {`${item.cityId ? item.cityId.name : ""} ${item.address}`}
                     </button>
                   );
                 })}
