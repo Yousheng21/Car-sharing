@@ -2,7 +2,7 @@ import { store } from "../reducers";
 import { setCities, setNewCities } from "../reducers/appReducer";
 import { instance } from "../reducers/data/dataServer";
 
-const LIMIT_VALUE = 6;
+const LIMIT_VALUE = 4;
 
 const getTableCity = () => {
   return async (dispatch) => {
