@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 import "./extra.scss";
@@ -17,12 +17,11 @@ const additional = [
 const Extra = ({ nextStep, page }) => {
   const [inputColor, setInputColor] = useState(0);
   const [inputTariff, setInputTariff] = useState(0);
-  const [inputDate, setInputDate] = useState("");
+  const [inputDateFrom, setInputDateFrom] = useState("");
+  const [inputDateTo, setInputDateTo] = useState("");
   const [inputDateFocus, setInputDateFocus] = useState(false);
 
   const car = useSelector((state) => state.app.currentCar);
-
-  const inputRef = useRef(null);
 
   const classClose = classNames({
     "btn-close": true,
@@ -62,12 +61,11 @@ const Extra = ({ nextStep, page }) => {
           <div className="extra-date">
             <section className="city-content">
               <span>С</span>
-              <article>
+              <div>
                 <input
-                  ref={inputRef}
                   type="text"
-                  value={inputDate}
-                  onChange={(event) => setInputDate(event.target.value)}
+                  value={inputDateFrom}
+                  onChange={(event) => setInputDateFrom(event.target.value)}
                   onFocus={() => setInputDateFocus(true)}
                   onBlur={() => setInputDateFocus(false)}
                   name="dateFrom"
@@ -75,30 +73,29 @@ const Extra = ({ nextStep, page }) => {
                 />
                 <Close
                   onClick={() => {
-                    setInputDate("");
-                    inputRef.current.focus();
+                    setInputDateFrom("");
                   }}
                   className={classClose}
                 />
-              </article>
+              </div>
             </section>
             <section className="city-content">
               <span>По</span>
-              <article>
+              <div>
                 <input
                   type="text"
                   name="dateTo"
                   placeholder="Введите дату и время"
                   id="dateTo"
+                  value={inputDateTo}
                 />
                 <Close
                   onClick={() => {
-                    setInputDate("");
-                    inputRef.current.focus();
+                    setInputDateTo("");
                   }}
                   className={classClose}
                 />
-              </article>
+              </div>
             </section>
           </div>
         </aside>
