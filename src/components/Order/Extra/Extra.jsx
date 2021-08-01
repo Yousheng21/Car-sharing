@@ -85,6 +85,7 @@ const Extra = ({ nextStep, page }) => {
                 <input
                   type="text"
                   name="dateTo"
+                  onChange={(event) => setInputDateTo(event.target.value)}
                   placeholder="Введите дату и время"
                   id="dateTo"
                   value={inputDateTo}
