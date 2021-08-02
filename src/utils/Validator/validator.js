@@ -38,7 +38,7 @@ export const useValidation = (value, validations) => {
                 value: false,
                 text: "",
               });
-              setAddress(item.address, item.cityId.name);
+              setAddress(item.address, item.cityId ? item.cityId.name : "");
             } else {
               setCompareError({
                 value: true,
