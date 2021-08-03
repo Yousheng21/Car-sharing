@@ -33,12 +33,19 @@ export const useValidation = (value, validations) => {
           break;
         case "isCompareAddress":
           validations[validation].array.forEach((item) => {
-            if (value.toLowerCase() === item.address.toLowerCase()) {
+            if (
+              value.toLowerCase() ===
+              `${item.address.road} ${item.address.house_number}`.toLowerCase()
+            ) {
               setCompareError({
                 value: false,
                 text: "",
               });
-              setAddress(item.address, item.cityId ? item.cityId.name : "");
+              setAddress(
+                `${item.address.road} ${item.address.house_number}`,
+                item.address.city ?? "",
+                item
+              );
             } else {
               setCompareError({
                 value: true,
