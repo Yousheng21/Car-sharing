@@ -94,7 +94,7 @@ const Location = ({ nextStep, page }) => {
         <aside className="location-city">
           <section className="city-content">
             <span>Город</span>
-            <div onFocus={inputCity.onFocus} onBlur={inputCity.onBlur}>
+            <aside onFocus={inputCity.onFocus} onBlur={inputCity.onBlur}>
               <input
                 type="text"
                 value={inputCity.value}
@@ -128,14 +128,14 @@ const Location = ({ nextStep, page }) => {
                   );
                 })}
               </div>
-            </div>
+            </aside>
             <span>
               {inputCity.isDirty && inputCity.printError(["isCompareError"])}
             </span>
           </section>
           <section className="city-content">
             <span>Пункт Выдачи</span>
-            <div onFocus={inputAddress.onFocus} onBlur={inputAddress.onBlur}>
+            <aside onFocus={inputAddress.onFocus} onBlur={inputAddress.onBlur}>
               <input
                 type="text"
                 value={inputAddress.value}
@@ -175,7 +175,7 @@ const Location = ({ nextStep, page }) => {
                     })
                   : ""}
               </div>
-            </div>
+            </aside>
             <span>
               {inputAddress.isDirty &&
                 inputAddress.printError(["isEmpty", "isCompareError"])}
