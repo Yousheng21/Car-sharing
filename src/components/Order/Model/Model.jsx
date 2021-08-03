@@ -7,6 +7,7 @@ import getTableCars, { selectSortCars } from "../../../actions/app";
 
 import { API_URL } from "../../../reducers/data/dataServer";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
+import { setCurrentCar } from "../../../reducers/appReducer";
 
 const categories = [
   { text: "Все модели", sort: "" },
@@ -18,26 +19,42 @@ const Model = ({ nextStep, page }) => {
   const dispatch = useDispatch();
 
   const [inputCategory, setInputCategory] = useState(0);
-  const [inputCar, setInputCar] = useState(null);
+  const [inputCar, setInputCar] = useState("");
+  const [inputCarValid, setInputCarValid] = useState(false);
 
   const tableCars = useSelector((state) => state.app.newTableCars);
+  const currCar = useSelector((state) => state.app.currentCar);
 
   useEffect(() => {
     if (!tableCars.length) dispatch(getTableCars);
+    if (!inputCar) setInputCar(currCar.name);
   }, []);
 
   function handleChange(value, sort) {
     selectSortCars(sort);
     setInputCategory(Number(value));
-    setInputCar(null);
   }
 
-  function handleClick(value) {
-    setInputCar(value === inputCar ? null : value);
+  function handleClick(item) {
+    if (item.name === inputCar) {
+      setInputCar("");
+      setInputCarValid(false);
+      dispatch(setCurrentCar({ name: "" }));
+    } else {
+      setInputCar(item.name);
+      setInputCarValid(true);
+      dispatch(setCurrentCar(item));
+    }
   }
 
   return (
-    <OrderLayout path="extra" step={nextStep} text="Дополнительно" page={page}>
+    <OrderLayout
+      path="extra"
+      step={nextStep}
+      text="Дополнительно"
+      page={page}
+      arrayValid={[inputCarValid]}
+    >
       <main className="model-content">
         <section className="model-input">
           {categories.map((item, index) => {
@@ -64,17 +81,17 @@ const Model = ({ nextStep, page }) => {
         </section>
         <section className="model-cars">
           {tableCars.length
-            ? tableCars.map((item, index) => {
+            ? tableCars.map((item) => {
                 return (
                   <button
                     type="button"
                     key={item.id}
                     className={classNames({
                       car: true,
-                      active: index === inputCar,
+                      active: item.name === inputCar,
                     })}
                     onClick={() => {
-                      handleClick(index);
+                      handleClick(item);
                     }}
                   >
                     <div>
