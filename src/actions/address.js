@@ -1,6 +1,7 @@
 import { store } from "../reducers";
 import { instance } from "../reducers/data/dataServer";
-import { setAddresses, setNewAddresses } from "../reducers/appReducer";
+import { setAddresses, setNewPlaceMarks } from "../reducers/appReducer";
+import { updateAddresses } from "./geolocate";
 
 const LIMIT_VALUE = 10;
 
@@ -14,7 +15,11 @@ export const getTableAddress = (cityId) => {
           limit: LIMIT_VALUE,
         },
       });
-      dispatch(setAddresses(response.data.data));
+      const result = response.data.data.filter((item) => {
+        return item.cityId;
+      });
+      dispatch(setAddresses(result));
+      updateAddresses(result);
     } catch (e) {
       console.error(e.response);
     }
@@ -22,20 +27,24 @@ export const getTableAddress = (cityId) => {
 };
 
 export const searchAddress = (query) => {
-  const { addresses } = store.getState().app;
+  const { placeMarks } = store.getState().app;
   const city = store.getState().app.currentCity;
   const regExp = new RegExp(query.toLowerCase());
 
   function hasCity(item) {
-    if (item.cityId && city.name === item.cityId.name)
-      return regExp.test(item.address.toLowerCase());
+    if (item.address.city && city.name === item.address.city)
+      return regExp.test(
+        `${item.address.road} ${item.address.house_number}`.toLowerCase()
+      );
   }
 
   function withoutCity(item) {
-    return regExp.test(item.address.toLowerCase());
+    return regExp.test(
+      `${item.address.road} ${item.address.house_number}`.toLowerCase()
+    );
   }
 
   return store.dispatch(
-    setNewAddresses(addresses.filter("name" in city ? hasCity : withoutCity))
+    setNewPlaceMarks(placeMarks.filter("name" in city ? hasCity : withoutCity))
   );
 };
