@@ -6,7 +6,7 @@ import SideBar from "../../common/SideBar/SideBar";
 import { nextStep } from "../../../actions/app";
 import "./orderLayout.scss";
 
-const OrderLayout = ({ children, path, step, text, page }) => {
+const OrderLayout = ({ children, path, step, text, page, arrayValid }) => {
   return (
     <aside className="location-page">
       <BurgerMenu />
@@ -18,6 +18,13 @@ const OrderLayout = ({ children, path, step, text, page }) => {
             type="button"
             onClick={() => nextStep(step)}
             className="sideBar-button sideBar-child"
+            disabled={
+              arrayValid
+                ? arrayValid.some((item) => {
+                    return !item;
+                  })
+                : ""
+            }
           >
             {text}
           </button>
