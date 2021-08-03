@@ -23,7 +23,7 @@ const Model = ({ nextStep, page }) => {
   const tableCars = useSelector((state) => state.app.newTableCars);
 
   useEffect(() => {
-    if (tableCars.length === 0) dispatch(getTableCars);
+    if (!tableCars.length) dispatch(getTableCars);
   }, []);
 
   function handleChange(value, sort) {
