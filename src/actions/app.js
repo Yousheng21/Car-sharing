@@ -6,6 +6,7 @@ import {
   setCurrentCity,
   setCurrentStep,
   setNewTableCars,
+  setPlaceMarkIndex,
   setTableCars,
 } from "../reducers/appReducer";
 
@@ -42,8 +43,16 @@ export const selectSortCars = (sort) => {
 };
 
 export const setCity = (obj) => {
+  const { placeMarks } = store.getState().app;
+
   store.dispatch(setCurrentCity(obj));
   store.dispatch(setCurrentAddress("", obj.name));
+
+  const place = placeMarks.filter((item) => {
+    return obj.name === item.address.city;
+  });
+
+  store.dispatch(setPlaceMarkIndex(place.length ? place[0] : {}));
 };
 
 export const resetCity = () => {
@@ -51,8 +60,9 @@ export const resetCity = () => {
   store.dispatch(setCurrentAddress("", ""));
 };
 
-export const setAddress = (address, city) => {
+export const setAddress = (address, city, item) => {
   store.dispatch(setCurrentAddress(address, city));
+  return store.dispatch(setPlaceMarkIndex(item));
 };
 
 export const nextStep = (step) => {
