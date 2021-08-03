@@ -10,6 +10,8 @@ const SET_NEW_CITIES = "SET_NEW_CITIES";
 const SET_ADDRESSES = "SET_ADDRESSES";
 const SET_NEW_ADDRESSES = "SET_NEW_ADDRESSES";
 const SET_PLACE_MARKS = "SET_PLACE_MARKS";
+const SET_NEW_PLACE_MARKS = "SET_NEW_PLACE_MARKS";
+const SET_PLACE_MARK_INDEX = "SET_PLACE_MARK_INDEX";
 
 const defaultState = {
   burger_status: false,
@@ -36,6 +38,8 @@ const defaultState = {
   addresses: [],
   newAddresses: [],
   placeMarks: [],
+  newPlaceMarks: [],
+  placeMarkIndex: {},
   currentCar: { colors: ["Любой"], thumbnail: { path: "" }, name: "" },
   currentStep: 0,
   currentAddress: "",
@@ -126,7 +130,24 @@ export default function appReducer(state = defaultState, action) {
     case SET_PLACE_MARKS:
       return {
         ...state,
-        placeMarks: [...state.placeMarks, action.placeMark],
+        placeMarks:
+          state.addresses.length > state.placeMarks.length
+            ? [...state.placeMarks, action.placeMark]
+            : [...state.placeMarks],
+        newPlaceMarks:
+          state.addresses.length > state.placeMarks.length
+            ? [...state.placeMarks, action.placeMark]
+            : [...state.placeMarks],
+      };
+    case SET_NEW_PLACE_MARKS:
+      return {
+        ...state,
+        newPlaceMarks: action.placeMark,
+      };
+    case SET_PLACE_MARK_INDEX:
+      return {
+        ...state,
+        placeMarkIndex: action.index,
       };
     default:
       return state;
@@ -192,4 +213,14 @@ export const setCurrentAddress = (address, city) => ({
 export const setPlaceMarks = (placeMark) => ({
   type: SET_PLACE_MARKS,
   placeMark,
+});
+
+export const setNewPlaceMarks = (placeMark) => ({
+  type: SET_NEW_PLACE_MARKS,
+  placeMark,
+});
+
+export const setPlaceMarkIndex = (index) => ({
+  type: SET_PLACE_MARK_INDEX,
+  index,
 });
