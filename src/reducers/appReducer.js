@@ -8,7 +8,6 @@ const SET_CURRENT_ADDRESS = "SET_CURRENT_ADDRESS";
 const SET_CITIES = "SET_CITIES";
 const SET_NEW_CITIES = "SET_NEW_CITIES";
 const SET_ADDRESSES = "SET_ADDRESSES";
-const SET_NEW_ADDRESSES = "SET_NEW_ADDRESSES";
 const SET_PLACE_MARKS = "SET_PLACE_MARKS";
 const SET_NEW_PLACE_MARKS = "SET_NEW_PLACE_MARKS";
 const SET_PLACE_MARK_INDEX = "SET_PLACE_MARK_INDEX";
@@ -28,8 +27,8 @@ const defaultState = {
     cistern: { text: "Полный бак", value: "" },
   },
   price: {
-    min: "8 000",
-    max: "12 000",
+    min: 0,
+    max: 32000,
   },
   tableCars: [],
   newTableCars: [],
@@ -63,6 +62,17 @@ export default function appReducer(state = defaultState, action) {
       return {
         ...state,
         currentCar: action.payload,
+        currentOrder: {
+          ...state.currentOrder,
+          model: {
+            ...state.currentOrder.model,
+            value: action.payload.name,
+          },
+        },
+        price: {
+          min: action.payload.priceMin,
+          max: action.payload.priceMax,
+        },
       };
     case SET_NEW_TABLE_CARS:
       return {
@@ -90,11 +100,6 @@ export default function appReducer(state = defaultState, action) {
       return {
         ...state,
         addresses: action.payload,
-        newAddresses: action.payload,
-      };
-    case SET_NEW_ADDRESSES:
-      return {
-        ...state,
         newAddresses: action.payload,
       };
     case SET_CURRENT_CITY:
@@ -191,11 +196,6 @@ export const setNewCities = (cities) => ({
 
 export const setAddresses = (addresses) => ({
   type: SET_ADDRESSES,
-  payload: addresses,
-});
-
-export const setNewAddresses = (addresses) => ({
-  type: SET_NEW_ADDRESSES,
   payload: addresses,
 });
 
