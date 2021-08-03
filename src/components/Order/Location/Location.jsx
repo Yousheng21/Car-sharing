@@ -105,7 +105,7 @@ const Location = ({ nextStep, page }) => {
               <button
                 type="button"
                 className={classClose}
-                onClick={inputCity.onClose}
+                onClick={() => inputCity.onClick("")}
               >
                 <Close />
               </button>
@@ -146,7 +146,7 @@ const Location = ({ nextStep, page }) => {
               />
               <button
                 type="button"
-                onClick={inputAddress.onClose}
+                onClick={() => inputAddress.onClick("")}
                 className={classCloseAddress}
               >
                 <Close />
