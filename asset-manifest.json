@@ -1,26 +1,28 @@
 {
   "files": {
-    "main.css": "/car-sharing/static/css/main.36540aea.chunk.css",
-    "main.js": "/car-sharing/static/js/main.853b53f2.chunk.js",
-    "main.js.map": "/car-sharing/static/js/main.853b53f2.chunk.js.map",
+    "main.css": "/car-sharing/static/css/main.40a21127.chunk.css",
+    "main.js": "/car-sharing/static/js/main.f222834f.chunk.js",
+    "main.js.map": "/car-sharing/static/js/main.f222834f.chunk.js.map",
     "runtime-main.js": "/car-sharing/static/js/runtime-main.4236d4cc.js",
     "runtime-main.js.map": "/car-sharing/static/js/runtime-main.4236d4cc.js.map",
-    "static/js/2.3b105c9c.chunk.js": "/car-sharing/static/js/2.3b105c9c.chunk.js",
-    "static/js/2.3b105c9c.chunk.js.map": "/car-sharing/static/js/2.3b105c9c.chunk.js.map",
+    "static/css/2.da98c186.chunk.css": "/car-sharing/static/css/2.da98c186.chunk.css",
+    "static/js/2.4c5acd3a.chunk.js": "/car-sharing/static/js/2.4c5acd3a.chunk.js",
+    "static/js/2.4c5acd3a.chunk.js.map": "/car-sharing/static/js/2.4c5acd3a.chunk.js.map",
     "index.html": "/car-sharing/index.html",
-    "static/css/main.36540aea.chunk.css.map": "/car-sharing/static/css/main.36540aea.chunk.css.map",
-    "static/js/2.3b105c9c.chunk.js.LICENSE.txt": "/car-sharing/static/js/2.3b105c9c.chunk.js.LICENSE.txt",
+    "static/css/2.da98c186.chunk.css.map": "/car-sharing/static/css/2.da98c186.chunk.css.map",
+    "static/css/main.40a21127.chunk.css.map": "/car-sharing/static/css/main.40a21127.chunk.css.map",
+    "static/js/2.4c5acd3a.chunk.js.LICENSE.txt": "/car-sharing/static/js/2.4c5acd3a.chunk.js.LICENSE.txt",
     "static/media/location.scss": "/car-sharing/static/media/Roboto-Light.8be2d148.ttf",
     "static/media/img1.9d6d9a44.png": "/car-sharing/static/media/img1.9d6d9a44.png",
     "static/media/img2.6812641e.png": "/car-sharing/static/media/img2.6812641e.png",
     "static/media/img3.246addc8.png": "/car-sharing/static/media/img3.246addc8.png",
-    "static/media/img4.6078199f.png": "/car-sharing/static/media/img4.6078199f.png",
-    "static/media/map.43be6735.png": "/car-sharing/static/media/map.43be6735.png"
+    "static/media/img4.6078199f.png": "/car-sharing/static/media/img4.6078199f.png"
   },
   "entrypoints": [
     "static/js/runtime-main.4236d4cc.js",
-    "static/js/2.3b105c9c.chunk.js",
-    "static/css/main.36540aea.chunk.css",
-    "static/js/main.853b53f2.chunk.js"
+    "static/css/2.da98c186.chunk.css",
+    "static/js/2.4c5acd3a.chunk.js",
+    "static/css/main.40a21127.chunk.css",
+    "static/js/main.f222834f.chunk.js"
   ]
 }
