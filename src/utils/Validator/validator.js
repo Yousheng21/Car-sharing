@@ -100,6 +100,11 @@ export const useInput = (initialState, validations) => {
     setFocus(false);
   };
 
+  const onClose = () => {
+    setValue("");
+    setFocus(true);
+  };
+
   const onClick = (item) => {
     setValue(item);
     setFocus(false);
@@ -131,6 +136,7 @@ export const useInput = (initialState, validations) => {
     onBlur,
     onFocus,
     onClick,
+    onClose,
     isDirty,
     printError,
     ...valid,
