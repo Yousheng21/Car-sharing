@@ -16,43 +16,41 @@ export const useValidation = (value, validations) => {
     Object.keys(validations).forEach((validation) => {
       switch (validation) {
         case "isCompareCity":
-          validations[validation].array.forEach((item) => {
-            if (value.toLowerCase() === item.name.toLowerCase() || !value) {
-              setCompareError({
-                value: false,
-                text: "",
-              });
-              if (value) setCity(item);
-            } else {
-              setCompareError({
-                value: true,
-                text: validations[validation].text,
-              });
+          {
+            const flag = validations[validation].array.find((item) => {
+              return value.toLowerCase() === item.name.toLowerCase();
+            });
+            if (flag) {
+              if (value) setCity(flag);
             }
-          });
+            setCompareError({
+              value: !value ? false : !flag,
+              text: flag || !value ? "" : validations[validation].text,
+            });
+          }
           break;
         case "isCompareAddress":
-          validations[validation].array.forEach((item) => {
-            if (
-              value.toLowerCase() ===
-              `${item.address.road} ${item.address.house_number}`.toLowerCase()
-            ) {
-              setCompareError({
-                value: false,
-                text: "",
-              });
-              setAddress(
-                `${item.address.road} ${item.address.house_number}`,
-                item.address.city ?? "",
-                item
+          {
+            const flag = validations[validation].array.find((item) => {
+              return (
+                value.toLowerCase() ===
+                `${item.address.road} ${
+                  item.address.house_number ?? ""
+                }`.toLowerCase()
               );
-            } else {
-              setCompareError({
-                value: true,
-                text: validations[validation].text,
-              });
+            });
+            if (flag) {
+              setAddress(
+                `${flag.address.road} ${flag.address.house_number ?? ""}`,
+                flag.address.city ?? "",
+                flag
+              );
             }
-          });
+            setCompareError({
+              value: !flag,
+              text: flag ? "" : validations[validation].text,
+            });
+          }
           break;
         case "isEmpty":
           if (value) {
