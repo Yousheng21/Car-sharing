@@ -56,7 +56,6 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         tableCars: action.payload,
         newTableCars: action.payload,
-        currentCar: action.payload[0],
       };
     case SET_CURRENT_CAR:
       return {
