@@ -5,11 +5,17 @@ import Close from "../../../../images/close.svg";
 const InputRangeDate = () => {
   const [inputDateFrom, setInputDateFrom] = useState("");
   const [inputDateTo, setInputDateTo] = useState("");
-  const [inputDateFocus, setInputDateFocus] = useState(false);
+  const [inputDateFocusTo, setInputDateFocusTo] = useState(false);
+  const [inputDateFocusFrom, setInputDateFocusFrom] = useState(false);
 
-  const classClose = classNames({
+  const classCloseTo = classNames({
     "btn-close": true,
-    open: inputDateFocus,
+    open: inputDateFocusTo,
+  });
+
+  const classCloseFrom = classNames({
+    "btn-close": true,
+    open: inputDateFocusFrom,
   });
 
   return (
@@ -23,8 +29,8 @@ const InputRangeDate = () => {
               type="date"
               value={inputDateFrom}
               onChange={(event) => setInputDateFrom(event.target.value)}
-              onFocus={() => setInputDateFocus(true)}
-              onBlur={() => setInputDateFocus(false)}
+              onFocus={() => setInputDateFocusFrom(true)}
+              onBlur={() => setInputDateFocusFrom(false)}
               name="dateFrom"
               id="dateFrom"
             />
@@ -32,7 +38,7 @@ const InputRangeDate = () => {
               onClick={() => {
                 setInputDateFrom("");
               }}
-              className={classClose}
+              className={classCloseFrom}
             />
           </div>
         </section>
@@ -43,6 +49,8 @@ const InputRangeDate = () => {
               type="date"
               name="dateTo"
               onChange={(event) => setInputDateTo(event.target.value)}
+              onFocus={() => setInputDateFocusTo(true)}
+              onBlur={() => setInputDateFocusTo(false)}
               placeholder="Введите дату и время"
               id="dateTo"
               value={inputDateTo}
@@ -51,7 +59,7 @@ const InputRangeDate = () => {
               onClick={() => {
                 setInputDateTo("");
               }}
-              className={classClose}
+              className={classCloseTo}
             />
           </div>
         </section>
