@@ -18,13 +18,17 @@ const Model = ({ nextStep, page }) => {
   const [inputCar, setInputCar] = useState("");
   const [inputCarValid, setInputCarValid] = useState(false);
 
+  const cars = useSelector((state) => state.app.tableCars);
   const tableCars = useSelector((state) => state.app.newTableCars);
   const currCar = useSelector((state) => state.app.currentCar);
 
   useEffect(() => {
-    if (!tableCars.length) dispatch(getTableCars);
-    if (!inputCar) setInputCar(currCar.name);
-  }, []);
+    if (!cars.length) dispatch(getTableCars);
+    if (!inputCar && currCar.name !== "") {
+      setInputCar(currCar.name);
+      setInputCarValid(true);
+    }
+  }, [cars.length]);
 
   function handleChange(value, sort) {
     selectSortCars(sort);
@@ -32,15 +36,9 @@ const Model = ({ nextStep, page }) => {
   }
 
   function handleClick(item) {
-    if (item.name === inputCar) {
-      setInputCar("");
-      setInputCarValid(false);
-      dispatch(setCurrentCar({ name: "" }));
-    } else {
-      setInputCar(item.name);
-      setInputCarValid(true);
-      dispatch(setCurrentCar(item));
-    }
+    setInputCar(item.name === inputCar ? "" : item.name);
+    setInputCarValid(item.name !== inputCar);
+    dispatch(setCurrentCar(item.name === inputCar ? { name: "" } : item));
   }
 
   return (
