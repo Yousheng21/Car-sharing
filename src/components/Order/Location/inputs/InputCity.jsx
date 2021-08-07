@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
+import { useSelector } from "react-redux";
 import Close from "../../../../images/close.svg";
 
 const InputCity = ({ inputCity, array }) => {
+  const currCity = useSelector((state) => state.app.currentCity.name);
+
+  useEffect(() => {
+    if (currCity) inputCity.onClick(currCity);
+  }, [currCity]);
+
   const classClose = classNames({
     "btn-close": true,
     open: inputCity.value && inputCity.focus,
