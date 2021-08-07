@@ -34,8 +34,9 @@ export const searchCity = (query) => {
   );
 };
 
-export const selectCity = (cities) => {
+export const selectCity = () => {
   const { addresses } = store.getState().app;
+  const { cities } = store.getState().app;
   const n = [];
   cities.forEach((city) => {
     if (
