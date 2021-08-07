@@ -18,17 +18,14 @@ const Map = () => {
   const [center, setCenter] = useState([54.1838, 45.1749]);
 
   useEffect(() => {
-    if (marks.length) setCenter([Number(marks[0].lat), Number(marks[0].lon)]);
+    if (marks.length) setCenter([+marks[0].lat, +marks[0].lon]);
   }, []);
 
   function MyComponent() {
     const map = useMap();
     useEffect(() => {
       if (Object.keys(currMarkIndex).length) {
-        map.flyTo(
-          [Number(currMarkIndex.lat), Number(currMarkIndex.lon)],
-          map.getZoom()
-        );
+        map.flyTo([+currMarkIndex.lat, +currMarkIndex.lon], map.getZoom());
       }
     }, [currMarkIndex]);
 
