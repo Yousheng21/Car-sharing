@@ -46,8 +46,6 @@ export const setCity = (obj) => {
   const { placeMarks } = store.getState().app;
 
   store.dispatch(setCurrentCity(obj));
-  store.dispatch(setCurrentAddress("", obj.name));
-
   const place = placeMarks.filter((item) => {
     return obj.name === item.address.city;
   });
