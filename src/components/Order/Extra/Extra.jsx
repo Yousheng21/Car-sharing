@@ -2,10 +2,10 @@ import React from "react";
 import "./extra.scss";
 
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
-import InputColor from "./InputColor";
-import InputRangeDate from "./InputRangeDate";
-import InputTariff from "./InputTariff";
-import InputExtraServices from "./InputExtraServices";
+import InputColor from "./inputs/InputColor";
+import InputRangeDate from "./inputs/InputRangeDate";
+import InputTariff from "./inputs/InputTariff";
+import InputExtraServices from "./inputs/InputExtraServices";
 
 const Extra = ({ nextStep, page }) => {
   return (
