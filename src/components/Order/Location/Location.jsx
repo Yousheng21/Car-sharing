@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./location.scss";
 
-import getTableCity from "../../../actions/city";
+import getTableCity, { selectCity } from "../../../actions/city";
 import { getTableAddress } from "../../../actions/address";
 import { setCurrentAddress } from "../../../reducers/appReducer";
 import { useInput } from "../../../utils/Validator/validator";
@@ -16,8 +16,6 @@ const Location = ({ nextStep, page }) => {
   const dispatch = useDispatch();
 
   const placemarks = useSelector((state) => state.app.placeMarks);
-  const currCity = useSelector((state) => state.app.currentCity.name);
-  const currAddress = useSelector((state) => state.app.currentAddress);
   const cities = useSelector((state) => state.app.newCities);
   const addresses = useSelector((state) => state.app.newPlaceMarks);
 
@@ -43,12 +41,11 @@ const Location = ({ nextStep, page }) => {
   useEffect(() => {
     if (!placemarks.length) {
       dispatch(getTableCity);
-      dispatch(getTableAddress(""));
+      dispatch(getTableAddress());
+    } else {
+      selectCity();
     }
-
-    if (currCity) inputCity.onClick(currCity);
-    if (currAddress) inputAddress.onClick(currAddress);
-  }, [placemarks.length, currCity, currAddress]);
+  }, [placemarks.length]);
 
   useEffect(() => {
     if (!inputCity.value && inputCity.focus) {
