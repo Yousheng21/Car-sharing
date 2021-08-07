@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import "leaflet/dist/leaflet.css";
+
+import { center } from "../../../reducers/data/dataOrder";
 
 const customMarker = new L.icon({
   iconUrl: markerIconPng,
@@ -15,11 +17,6 @@ const customMarker = new L.icon({
 const Map = () => {
   const marks = useSelector((state) => state.app.placeMarks);
   const currMarkIndex = useSelector((state) => state.app.placeMarkIndex);
-  const [center, setCenter] = useState([54.1838, 45.1749]);
-
-  useEffect(() => {
-    if (marks.length) setCenter([+marks[0].lat, +marks[0].lon]);
-  }, []);
 
   function MyComponent() {
     const map = useMap();
