@@ -48,7 +48,7 @@ const Location = ({ nextStep, page }) => {
 
     if (currCity) inputCity.onClick(currCity);
     if (currAddress) inputAddress.onClick(currAddress);
-  }, []);
+  }, [placemarks.length, currCity, currAddress]);
 
   useEffect(() => {
     if (!inputCity.value && inputCity.focus) {
