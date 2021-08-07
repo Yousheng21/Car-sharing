@@ -14,6 +14,13 @@
     }
     .extra-date{
       @extend %style-city;
+      .city-content{
+        .btn-close {
+          right: 240px;
+          top:10px;
+        }
+      }
+
 
       .city-content{
         grid-template-columns: 0.1fr 2fr 1fr;
