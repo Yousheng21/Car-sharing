@@ -9,11 +9,7 @@ import { API_URL } from "../../../reducers/data/dataServer";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 import { setCurrentCar } from "../../../reducers/appReducer";
 
-const categories = [
-  { text: "Все модели", sort: "" },
-  { text: "Эконом", sort: "Эконом+" },
-  { text: "Премимум", sort: "Люкс" },
-];
+import { categories } from "../../../reducers/data/dataOrder";
 
 const Model = ({ nextStep, page }) => {
   const dispatch = useDispatch();
@@ -32,7 +28,7 @@ const Model = ({ nextStep, page }) => {
 
   function handleChange(value, sort) {
     selectSortCars(sort);
-    setInputCategory(Number(value));
+    setInputCategory(+value);
   }
 
   function handleClick(item) {
