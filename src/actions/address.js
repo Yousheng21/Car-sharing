@@ -5,12 +5,12 @@ import { updateAddresses } from "./geolocate";
 
 const LIMIT_VALUE = 10;
 
-export const getTableAddress = (cityId) => {
+export const getTableAddress = () => {
   return async (dispatch) => {
     try {
       const response = await instance({
         method: "GET",
-        url: `/api/db/point${cityId ? `?cityId=${cityId}` : ""}`,
+        url: "/api/db/point",
         params: {
           limit: LIMIT_VALUE,
         },
