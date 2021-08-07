@@ -6,13 +6,7 @@ import "./extra.scss";
 import Close from "../../../images/close.svg";
 
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
-
-const tariff = ["Поминутно,7 р/мин", "На сутки, 1999 р/сутки"];
-const additional = [
-  "Полный бак, 500р",
-  "Детское кресло, 200р",
-  "Правый руль, 1600р",
-];
+import { tariff, additional } from "../../../reducers/data/dataOrder";
 
 const Extra = ({ nextStep, page }) => {
   const [inputColor, setInputColor] = useState(0);
