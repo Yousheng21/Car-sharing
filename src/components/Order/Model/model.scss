@@ -49,12 +49,11 @@
   .model-cars{
     display: flex;
     width: 100%;
-    height: 70vh;
     flex-wrap: wrap;
     overflow:auto;
     .car{
       width: 50%;
-      height: 35%;
+      min-height: 35%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -93,7 +92,10 @@
 }
 
 @media screen and (max-width: 768px){
-  .model-content{grid-column: 2/4;}
+  .model-content{
+    grid-column: 2/4;
+    margin-bottom: 20px;
+  }
 }
 
 @media screen and (max-width: 560px){
@@ -107,13 +109,12 @@
     }
     .model-cars{
       .car{
-        height: 25%;
-
         &-title{
           font-size: 18px;
         }
         img{
-          height: 40%;
+          width: 100%;
+          height: 50%;
         }
       }
     }
