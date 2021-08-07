@@ -2,7 +2,7 @@ import { store } from "../reducers";
 import { setCities, setNewCities } from "../reducers/appReducer";
 import { instance } from "../reducers/data/dataServer";
 
-const LIMIT_VALUE = 4;
+const LIMIT_VALUE = 6;
 
 const getTableCity = () => {
   return async (dispatch) => {
@@ -32,6 +32,21 @@ export const searchCity = (query) => {
       })
     )
   );
+};
+
+export const selectCity = (cities) => {
+  const { addresses } = store.getState().app;
+  const n = [];
+  cities.forEach((city) => {
+    if (
+      addresses.some((item) => {
+        return item.cityId.name === city.name;
+      })
+    ) {
+      n.push(city);
+    }
+  });
+  return store.dispatch(setCities(n));
 };
 
 export default getTableCity();
