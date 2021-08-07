@@ -1,20 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import classNames from "classnames";
 import "./location.scss";
-
-import Close from "../../../images/close.svg";
 
 import getTableCity from "../../../actions/city";
 import { getTableAddress } from "../../../actions/address";
-
 import { setCurrentAddress } from "../../../reducers/appReducer";
-
 import { useInput } from "../../../utils/Validator/validator";
-
 import Map from "./Map";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 import { resetCity } from "../../../actions/app";
+import InputAddress from "./inputs/InputAddress";
+import InputCity from "./inputs/InputCity";
 
 const Location = ({ nextStep, page }) => {
   const dispatch = useDispatch();
@@ -25,22 +21,22 @@ const Location = ({ nextStep, page }) => {
   const cities = useSelector((state) => state.app.newCities);
   const addresses = useSelector((state) => state.app.newPlaceMarks);
 
-  const inputCity = useInput("", {
-    isCompareCity: {
-      text: "Оставьте поле пустым или введите город",
-      value: false,
-      array: cities,
-    },
-  });
   const inputAddress = useInput("", {
     isEmpty: {
       text: "Пустое поле",
       value: true,
     },
     isCompareAddress: {
-      text: "Введите или выберите город из списка",
+      text: "Введите или выберите адрес из списка",
       value: false,
       array: addresses,
+    },
+  });
+  const inputCity = useInput("", {
+    isCompareCity: {
+      text: "Оставьте поле пустым или введите город",
+      value: false,
+      array: cities,
     },
   });
 
@@ -72,16 +68,6 @@ const Location = ({ nextStep, page }) => {
     }
   }, [inputAddress.value]);
 
-  const classClose = classNames({
-    "btn-close": true,
-    open: inputCity.value && inputCity.focus,
-  });
-
-  const classCloseAddress = classNames({
-    "btn-close": true,
-    open: inputAddress.focus && inputAddress.value,
-  });
-
   return (
     <OrderLayout
       path="model"
@@ -92,95 +78,8 @@ const Location = ({ nextStep, page }) => {
     >
       <main className="location-content">
         <aside className="location-city">
-          <section className="city-content">
-            <span>Город</span>
-            <aside onFocus={inputCity.onFocus} onBlur={inputCity.onBlur}>
-              <input
-                type="text"
-                value={inputCity.value}
-                onChange={inputCity.onChange}
-                name="city"
-                id="city"
-              />
-              <button
-                type="button"
-                className={classClose}
-                onClick={inputCity.onClose}
-              >
-                <Close />
-              </button>
-              <div
-                className={classNames({
-                  "auto-city": true,
-                  open: inputCity.focus && inputCity.isCompareError.value,
-                })}
-              >
-                {cities.map((item) => {
-                  return (
-                    <button
-                      key={item.name}
-                      type="button"
-                      onClick={inputCity.onChange}
-                      value={item.name}
-                    >
-                      {item.name}
-                    </button>
-                  );
-                })}
-              </div>
-            </aside>
-            <span>
-              {inputCity.isDirty && inputCity.printError(["isCompareError"])}
-            </span>
-          </section>
-          <section className="city-content">
-            <span>Пункт Выдачи</span>
-            <aside onFocus={inputAddress.onFocus} onBlur={inputAddress.onBlur}>
-              <input
-                type="text"
-                value={inputAddress.value}
-                onChange={inputAddress.onChangeAddress}
-                name="place"
-                placeholder="Начните вводить пункт.."
-                id="place"
-              />
-              <button
-                type="button"
-                onClick={inputAddress.onClose}
-                className={classCloseAddress}
-              >
-                <Close />
-              </button>
-              <div
-                className={classNames({
-                  "auto-address": true,
-                  open:
-                    inputAddress.value.length >= 2 &&
-                    inputAddress.focus &&
-                    inputAddress.isCompareError.value,
-                })}
-              >
-                {addresses.length
-                  ? addresses.map((item) => {
-                      return (
-                        <button
-                          key={item.address.road}
-                          type="button"
-                          onClick={inputAddress.onChange}
-                          value={`${item.address.road} ${item.address.house_number}`}
-                        >
-                          {`${item.address.city} ${item.address.road} ${item.address.house_number}`}
-                        </button>
-                      );
-                    })
-                  : ""}
-              </div>
-            </aside>
-            <span>
-              {inputAddress.isDirty &&
-                inputAddress.printError(["isEmpty", "isCompareError"])}
-            </span>
-          </section>
+          <InputCity inputCity={inputCity} array={cities} />
+          <InputAddress inputAddress={inputAddress} array={addresses} />
         </aside>
         <aside className="location-map">
           <span>Выбрать на карте:</span>
