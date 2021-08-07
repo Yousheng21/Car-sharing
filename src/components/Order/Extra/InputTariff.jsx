@@ -4,7 +4,6 @@ import { tariff } from "../../../reducers/data/dataOrder";
 
 const InputTariff = () => {
   const [inputTariff, setInputTariff] = useState(0);
-
   return (
     <aside>
       <h1>Тариф</h1>
