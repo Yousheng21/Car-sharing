@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
+import { useSelector } from "react-redux";
 import Close from "../../../../images/close.svg";
 
 const InputAddress = ({ inputAddress, array }) => {
+  const currAddress = useSelector((state) => state.app.currentAddress);
+
+  useEffect(() => {
+    if (currAddress) inputAddress.onClick(currAddress);
+  }, [currAddress]);
+
   const classCloseAddress = classNames({
     "btn-close": true,
     open: inputAddress.focus && inputAddress.value,
@@ -38,10 +45,14 @@ const InputAddress = ({ inputAddress, array }) => {
                   <button
                     key={item.address.road}
                     type="button"
-                    onClick={inputAddress.onChange}
-                    value={`${item.address.road} ${item.address.house_number}`}
+                    onClick={inputAddress.onChangeAddress}
+                    value={`${item.address.road} ${
+                      item.address.house_number ?? ""
+                    }`}
                   >
-                    {`${item.address.city} ${item.address.road} ${item.address.house_number}`}
+                    {`${item.address.city} ${item.address.road} ${
+                      item.address.house_number ?? ""
+                    }`}
                   </button>
                 );
               })
