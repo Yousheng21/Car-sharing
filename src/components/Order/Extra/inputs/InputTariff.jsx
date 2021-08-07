@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import { tariff } from "../../../reducers/data/dataOrder";
+import { tariff } from "../../../../reducers/data/dataOrder";
 
 const InputTariff = () => {
   const [inputTariff, setInputTariff] = useState(0);

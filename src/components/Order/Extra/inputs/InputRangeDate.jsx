@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import Close from "../../../images/close.svg";
+import Close from "../../../../images/close.svg";
 
 const InputRangeDate = () => {
   const [inputDateFrom, setInputDateFrom] = useState("");
