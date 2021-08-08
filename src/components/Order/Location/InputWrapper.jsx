@@ -28,9 +28,13 @@ const InputWrapper = ({
     open: input.focus && auto,
   });
   return (
-    <section className="city-content">
+    <div className="city-content">
       <span>{title}</span>
-      <aside onFocus={input.onFocus} onBlur={input.onBlur}>
+      <section
+        className="city-content-main"
+        onFocus={input.onFocus}
+        onBlur={input.onBlur}
+      >
         <Input
           name={id}
           value={input.value}
@@ -41,27 +45,28 @@ const InputWrapper = ({
           <Close />
         </button>
         <div className={classAuto}>
-          {array.length &&
-            array.map((item) => (
-              <Tooltip
-                key={item.name ?? item.address.road}
-                value={
-                  item.name ??
-                  `${item.address.road} ${item.address.house_number ?? ""}`
-                }
-                click={onChange}
-                text={
-                  item.name ??
-                  `${item.address.city} ${item.address.road} ${
-                    item.address.house_number ?? ""
-                  }`
-                }
-              />
-            ))}
+          {array.length
+            ? array.map((item) => (
+                <Tooltip
+                  key={item.name ?? item.address.road}
+                  value={
+                    item.name ??
+                    `${item.address.road} ${item.address.house_number ?? ""}`
+                  }
+                  click={onChange}
+                  text={
+                    item.name ??
+                    `${item.address.city} ${item.address.road} ${
+                      item.address.house_number ?? ""
+                    }`
+                  }
+                />
+              ))
+            : ""}
         </div>
-      </aside>
+      </section>
       <span>{input.isDirty && input.printError(print)}</span>
-    </section>
+    </div>
   );
 };
 
