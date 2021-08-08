@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BurgerMenu from "../../common/Burger-menu/Burger-menu";
 import NavBar from "../../common/NavBar/NavBar";
@@ -7,8 +7,19 @@ import { nextStep } from "../../../actions/app";
 import "./orderLayout.scss";
 
 const OrderLayout = ({ children, path, step, text, page, arrayValid }) => {
+  const [btnIsDisabled, setBtnIsDisabled] = useState(false);
+
+  useEffect(() => {
+    if (arrayValid) {
+      setBtnIsDisabled(
+        arrayValid.some((item) => {
+          return !item;
+        })
+      );
+    }
+  }, [arrayValid]);
   return (
-    <aside className="location-page">
+    <div className="location-page">
       <BurgerMenu />
       <NavBar page={page} />
       {children}
@@ -18,19 +29,13 @@ const OrderLayout = ({ children, path, step, text, page, arrayValid }) => {
             type="button"
             onClick={() => nextStep(step)}
             className="sideBar-button sideBar-child"
-            disabled={
-              arrayValid
-                ? arrayValid.some((item) => {
-                    return !item;
-                  })
-                : ""
-            }
+            disabled={btnIsDisabled}
           >
             {text}
           </button>
         </Link>
       </SideBar>
-    </aside>
+    </div>
   );
 };
 
