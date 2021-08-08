@@ -11,26 +11,24 @@ const InputColor = () => {
     <aside>
       <h3>Цвет</h3>
       <section className="extra-color">
-        {car.colors.map((item, index) => {
-          return (
-            <label
-              className={classNames({
-                active: index === inputColor,
-              })}
-              key={item}
-              htmlFor={item}
-            >
-              <input
-                type="radio"
-                name="color"
-                value={item}
-                id={item}
-                onChange={() => setInputColor(index)}
-              />
-              {item}
-            </label>
-          );
-        })}
+        {car.colors.map((item, index) => (
+          <label
+            className={classNames({
+              active: index === inputColor,
+            })}
+            key={item}
+            htmlFor={item}
+          >
+            <input
+              type="radio"
+              name="color"
+              value={item}
+              id={item}
+              onChange={() => setInputColor(index)}
+            />
+            {item}
+          </label>
+        ))}
       </section>
     </aside>
   );
