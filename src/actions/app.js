@@ -5,6 +5,8 @@ import {
   setCurrentAddress,
   setCurrentCity,
   setCurrentStep,
+  setNewCities,
+  setNewPlaceMarks,
   setNewTableCars,
   setPlaceMarkIndex,
   setTableCars,
@@ -44,18 +46,27 @@ export const selectSortCars = (sort) => {
 
 export const setCity = (obj) => {
   const { placeMarks } = store.getState().app;
+  const { currentAddress } = store.getState().app;
 
-  store.dispatch(setCurrentCity(obj));
+  if (obj.name !== currentAddress.city)
+    store.dispatch(setCurrentAddress("", obj.name));
+
   const place = placeMarks.filter((item) => {
     return obj.name === item.address.city;
   });
 
+  store.dispatch(setCurrentCity(obj));
+  store.dispatch(setNewPlaceMarks(place));
   store.dispatch(setPlaceMarkIndex(place.length ? place[0] : {}));
 };
 
 export const resetCity = () => {
+  const { placeMarks } = store.getState().app;
+  const { cities } = store.getState().app;
   store.dispatch(setCurrentCity({}));
   store.dispatch(setCurrentAddress("", ""));
+  store.dispatch(setNewCities(cities));
+  store.dispatch(setNewPlaceMarks(placeMarks));
 };
 
 export const setAddress = (address, city, item) => {
