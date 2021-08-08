@@ -12,8 +12,7 @@ import { useInput } from "../../../utils/Validator/validator";
 import Map from "./Map";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 import { resetCity } from "../../../actions/app";
-import InputAddress from "./inputs/InputAddress";
-import InputCity from "./inputs/InputCity";
+import InputWrapper from "./InputWrapper";
 
 const Location = ({ nextStep, page }) => {
   const dispatch = useDispatch();
@@ -22,6 +21,7 @@ const Location = ({ nextStep, page }) => {
   const cities = useSelector((state) => state.app.newCities);
   const addresses = useSelector((state) => state.app.newPlaceMarks);
   const currAddress = useSelector((state) => state.app.currentAddress);
+  const currCity = useSelector((state) => state.app.currentCity.name);
 
   const inputAddress = useInput("", {
     isEmpty: {
@@ -85,11 +85,29 @@ const Location = ({ nextStep, page }) => {
     >
       <main className="location-content">
         <aside className="location-city">
-          <InputCity inputCity={inputCity} array={cities} />
-          <InputAddress inputAddress={inputAddress} array={addresses} />
+          <InputWrapper
+            current={currCity}
+            auto={inputCity.isCompareError.value || !inputCity.value}
+            title="Город"
+            onChange={inputCity.onChange}
+            print={["isCompareError"]}
+            input={inputCity}
+            array={cities}
+            id="city"
+          />
+          <InputWrapper
+            current={currAddress.name}
+            auto={inputAddress.isCompareError.value}
+            title="Пункт выдачи"
+            onChange={inputAddress.onChangeAddress}
+            print={["isEmpty", "isCompareError"]}
+            input={inputAddress}
+            array={addresses}
+            id="place"
+          />
         </aside>
         <aside className="location-map">
-          <span>Выбрать на карте:</span>
+          <h3>Выбрать на карте:</h3>
           <Map />
         </aside>
       </main>
