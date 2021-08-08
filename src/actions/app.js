@@ -33,12 +33,12 @@ const getTableCars = () => {
   };
 };
 
-export const selectSortCars = (sort) => {
+export const selectSortCars = (id) => {
   const cars = store.getState().app.tableCars;
-  const newCars = !sort
+  const newCars = !id
     ? cars
     : cars.filter((item) => {
-        return item.categoryId ? item.categoryId.name === sort : "";
+        return item.categoryId ? item.categoryId.id === id : "";
       });
 
   store.dispatch(setNewTableCars(newCars));
