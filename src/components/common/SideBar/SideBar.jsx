@@ -36,11 +36,11 @@ const SideBar = ({ children }) => {
         })}
       </main>
 
-      <footer className="sideBar-info-price sideBar-child">
-        <section>
+      <section className="sideBar-info-price sideBar-child">
+        <div>
           Цена от <span>{price.min}</span> до <span>{price.max}</span>
-        </section>
-      </footer>
+        </div>
+      </section>
 
       {children}
     </aside>
