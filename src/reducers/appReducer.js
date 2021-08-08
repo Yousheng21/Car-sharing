@@ -41,7 +41,10 @@ const defaultState = {
   placeMarkIndex: {},
   currentCar: { colors: ["Любой"], thumbnail: { path: "" }, name: "" },
   currentStep: 0,
-  currentAddress: "",
+  currentAddress: {
+    name: "",
+    city: "",
+  },
 };
 
 export default function appReducer(state = defaultState, action) {
@@ -119,7 +122,10 @@ export default function appReducer(state = defaultState, action) {
     case SET_CURRENT_ADDRESS:
       return {
         ...state,
-        currentAddress: action.address,
+        currentAddress: {
+          name: action.address,
+          city: action.city,
+        },
         currentOrder: {
           ...state.currentOrder,
           place: {
