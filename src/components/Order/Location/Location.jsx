@@ -4,7 +4,10 @@ import "./location.scss";
 
 import getTableCity, { selectCity } from "../../../actions/city";
 import { getTableAddress } from "../../../actions/address";
-import { setCurrentAddress } from "../../../reducers/appReducer";
+import {
+  setCurrentAddress,
+  setNewPlaceMarks,
+} from "../../../reducers/appReducer";
 import { useInput } from "../../../utils/Validator/validator";
 import Map from "./Map";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
@@ -18,6 +21,7 @@ const Location = ({ nextStep, page }) => {
   const placemarks = useSelector((state) => state.app.placeMarks);
   const cities = useSelector((state) => state.app.newCities);
   const addresses = useSelector((state) => state.app.newPlaceMarks);
+  const currAddress = useSelector((state) => state.app.currentAddress);
 
   const inputAddress = useInput("", {
     isEmpty: {
@@ -51,8 +55,13 @@ const Location = ({ nextStep, page }) => {
     if (!inputCity.value && inputCity.focus) {
       inputAddress.onClick("");
       resetCity();
-    } else if (inputCity.value && inputCity.isCompareError.value)
+    } else if (
+      inputCity.value &&
+      currAddress.city !== inputCity.value &&
+      !inputCity.isCompareError.value
+    ) {
       inputAddress.onClick("");
+    }
   }, [inputCity.value]);
 
   useEffect(() => {
@@ -61,6 +70,7 @@ const Location = ({ nextStep, page }) => {
       !inputAddress.value &&
       inputCity.inputValid.value
     ) {
+      if (!inputCity.value) dispatch(setNewPlaceMarks(placemarks));
       dispatch(setCurrentAddress("", inputCity.value ?? ""));
     }
   }, [inputAddress.value]);
