@@ -7,8 +7,4 @@ export const additional = [
   "Правый руль, 1600р",
 ];
 
-export const categories = [
-  { text: "Все модели", sort: "" },
-  { text: "Эконом", sort: "Эконом+" },
-  { text: "Премимум", sort: "Люкс" },
-];
+export const categoryAll = { name: "Все модели", id: "" };
