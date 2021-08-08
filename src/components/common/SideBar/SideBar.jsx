@@ -12,8 +12,8 @@ const SideBar = ({ children }) => {
         <h1>Ваш заказ:</h1>
       </header>
       <main className="sideBar-parameters sideBar-child">
-        {Object.keys(parameters).map((item) => {
-          return (
+        {Object.keys(parameters).map(
+          (item) =>
             parameters[item].value && (
               <section
                 key={parameters[item].text}
@@ -32,8 +32,7 @@ const SideBar = ({ children }) => {
                 </div>
               </section>
             )
-          );
-        })}
+        )}
       </main>
 
       <section className="sideBar-info-price sideBar-child">

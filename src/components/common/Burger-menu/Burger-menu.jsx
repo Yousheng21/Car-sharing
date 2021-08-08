@@ -42,22 +42,18 @@ const BurgerMenu = () => {
         </section>
         {/* заменил на массивы */}
         <section className="burger-info">
-          {components.li.map((item) => {
-            return (
-              <Link key={item} to="/car-sharing/order" onClick={handleToggle}>
-                <span>{item}</span>
-              </Link>
-            );
-          })}
+          {components.li.map((item) => (
+            <Link key={item} to="/car-sharing/order" onClick={handleToggle}>
+              <span>{item}</span>
+            </Link>
+          ))}
         </section>
         <section className="social-links">
-          {components.socLink.map((item) => {
-            return (
-              <Link key={item.text} to="/car-sharing/order">
-                <img src={item.img} alt={item.text} />
-              </Link>
-            );
-          })}
+          {components.socLink.map((item) => (
+            <Link key={item.text} to="/car-sharing/order">
+              <img src={item.img} alt={item.text} />
+            </Link>
+          ))}
         </section>
         <button type="button" className="lang">
           <span>Eng</span>

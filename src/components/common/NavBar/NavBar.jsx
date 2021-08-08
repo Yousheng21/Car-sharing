@@ -33,27 +33,25 @@ const NavBar = ({ page }) => {
       </header>
 
       <section className="navBar-nav">
-        {tabs.map((item, index) => {
-          return (
-            <span
+        {tabs.map((item, index) => (
+          <span
+            className={classNames({
+              active: index === page,
+              complete: index < currStep,
+            })}
+            key={item.text}
+          >
+            {index ? <Vector /> : ""}
+            <Link
               className={classNames({
-                active: index === page,
-                complete: index < currStep,
+                disabled: index > currStep,
               })}
-              key={item.text}
+              to={`/car-sharing/order/${item.path}`}
             >
-              {index ? <Vector /> : ""}
-              <Link
-                className={classNames({
-                  disabled: index > currStep,
-                })}
-                to={`/car-sharing/order/${item.path}`}
-              >
-                {item.text}
-              </Link>
-            </span>
-          );
-        })}
+              {item.text}
+            </Link>
+          </span>
+        ))}
       </section>
     </nav>
   );
