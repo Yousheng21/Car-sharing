@@ -19,7 +19,7 @@ const InputRangeDate = () => {
   });
 
   return (
-    <aside>
+    <div>
       <h1>Дата аренды</h1>
       <div className="extra-date">
         <section className="city-content">
@@ -64,7 +64,7 @@ const InputRangeDate = () => {
           </div>
         </section>
       </div>
-    </aside>
+    </div>
   );
 };
 

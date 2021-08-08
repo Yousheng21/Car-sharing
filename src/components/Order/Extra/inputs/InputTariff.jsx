@@ -5,7 +5,7 @@ import { tariff } from "../../../../reducers/data/dataOrder";
 const InputTariff = () => {
   const [inputTariff, setInputTariff] = useState(0);
   return (
-    <aside>
+    <div>
       <h1>Тариф</h1>
       <section className="extra-tariff">
         {tariff.map((item, index) => {
@@ -29,7 +29,7 @@ const InputTariff = () => {
           );
         })}
       </section>
-    </aside>
+    </div>
   );
 };
 
