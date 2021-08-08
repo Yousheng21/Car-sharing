@@ -84,7 +84,7 @@ const Location = ({ nextStep, page }) => {
       arrayValid={[inputAddress.inputValid.value, inputCity.inputValid.value]}
     >
       <main className="location-content">
-        <aside className="location-city">
+        <section className="location-city">
           <InputWrapper
             current={currCity}
             auto={inputCity.isCompareError.value || !inputCity.value}
@@ -105,11 +105,11 @@ const Location = ({ nextStep, page }) => {
             array={addresses}
             id="place"
           />
-        </aside>
-        <aside className="location-map">
+        </section>
+        <section className="location-map">
           <h3>Выбрать на карте:</h3>
           <Map />
-        </aside>
+        </section>
       </main>
     </OrderLayout>
   );
