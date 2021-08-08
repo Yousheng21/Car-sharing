@@ -40,20 +40,17 @@ const Map = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {marks.length
-          ? marks.map((item) => {
-              return (
-                <Marker
-                  position={[item.lat, item.lon]}
-                  key={item.place_id}
-                  icon={customMarker}
-                >
-                  <MyComponent />
-                  <Popup>{`${item.address.city} ${item.address.road}`}</Popup>
-                </Marker>
-              );
-            })
-          : ""}
+        {marks.length &&
+          marks.map((item) => (
+            <Marker
+              position={[item.lat, item.lon]}
+              key={item.place_id}
+              icon={customMarker}
+            >
+              <MyComponent />
+              <Popup>{`${item.address.city} ${item.address.road}`}</Popup>
+            </Marker>
+          ))}
       </MapContainer>
     </div>
   );
