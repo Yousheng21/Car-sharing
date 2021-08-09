@@ -14,20 +14,20 @@ const customMarker = new L.icon({
   popupAnchor: [2, -40],
 });
 
+function MyComponent() {
+  const currMarkIndex = useSelector((state) => state.app.placeMarkIndex);
+  const map = useMap();
+  useEffect(() => {
+    if (Object.keys(currMarkIndex).length) {
+      map.flyTo([+currMarkIndex.lat, +currMarkIndex.lon], map.getZoom());
+    }
+  }, [currMarkIndex]);
+
+  return null;
+}
+
 const Map = () => {
   const marks = useSelector((state) => state.app.placeMarks);
-  const currMarkIndex = useSelector((state) => state.app.placeMarkIndex);
-
-  function MyComponent() {
-    const map = useMap();
-    useEffect(() => {
-      if (Object.keys(currMarkIndex).length) {
-        map.flyTo([+currMarkIndex.lat, +currMarkIndex.lon], map.getZoom());
-      }
-    }, [currMarkIndex]);
-
-    return null;
-  }
 
   return (
     <div className="map">
