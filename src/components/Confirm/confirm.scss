@@ -1,0 +1,25 @@
+@import "src/components/common/SideBar/sideBar";
+
+.confirm-content{
+  grid-area: 3/2/4/3;
+
+  &-button{
+    @extend %style-btn;
+    background: linear-gradient(90deg,#493013,#7B0C3B);
+  }
+}
+
+@media screen and (max-width: 768px){
+  .confirm-content{
+    grid-column: 2/4;
+  }
+}
+
+@media screen and (max-width: 425px){
+  .confirm-content{
+    grid-column: 2/4;
+    >h1{
+      font-size: 18px;
+    }
+  }
+}
