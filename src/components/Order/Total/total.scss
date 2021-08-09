@@ -11,6 +11,7 @@
     flex-direction: column;
 
     .number{
+      width: 20%;
       border: $second-color 1px solid;
       padding: 2px 0;
       border-radius: 5px;
@@ -26,7 +27,7 @@
 @media screen and (max-width: 768px){
   .total-content{
     grid-column: 2/4;
-    .total-content-info{
+    &-info{
       h1{font-size: 18px;}
     }
     img{
@@ -38,10 +39,15 @@
 
 @media screen and (max-width: 425px){
   .total-content{
-      img{
-        height: 100px;
-        width: 80%;
-        align-self: center;
+    &-info{
+      .number{
+        width: 50%;
       }
+    }
+    img{
+      height: 100px;
+      width: 80%;
+      align-self: center;
+    }
   }
 }
