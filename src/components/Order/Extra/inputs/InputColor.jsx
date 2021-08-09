@@ -8,7 +8,7 @@ const InputColor = () => {
   const car = useSelector((state) => state.app.currentCar);
 
   return (
-    <aside>
+    <div>
       <h3>Цвет</h3>
       <section className="extra-color">
         {car.colors.map((item, index) => (
@@ -30,7 +30,7 @@ const InputColor = () => {
           </label>
         ))}
       </section>
-    </aside>
+    </div>
   );
 };
 

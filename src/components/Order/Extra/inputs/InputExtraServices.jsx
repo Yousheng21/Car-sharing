@@ -3,7 +3,7 @@ import { additional } from "../../../../reducers/data/dataOrder";
 
 const InputExtraServices = () => {
   return (
-    <aside>
+    <div>
       <h1>Доп услуги</h1>
       <section className="extra-additional">
         {additional.map((item) => (
@@ -14,7 +14,7 @@ const InputExtraServices = () => {
           </label>
         ))}
       </section>
-    </aside>
+    </div>
   );
 };
 
