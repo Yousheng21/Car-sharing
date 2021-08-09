@@ -24,7 +24,7 @@ const OrderLayout = ({ children, path, step, text, page, arrayValid }) => {
       <NavBar page={page} />
       {children}
       <SideBar>
-        <Link to={`/car-sharing/order/${path}`}>
+        <Link className="button" to={`/car-sharing/order/${path}`}>
           <button
             type="button"
             onClick={() => nextStep(step)}
