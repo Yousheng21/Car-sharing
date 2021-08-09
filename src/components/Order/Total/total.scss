@@ -1,46 +1,58 @@
 @import "../Location/location";
 
-  .total-content{
+.total-content{
+  grid-area: 3/2/4/3;
+
+  &-main{
     display: flex;
     justify-content: space-between;
-    grid-area: 3/2/4/3;
-
-    &-info{
-      display: flex;
-      flex-direction: column;
-
-      .number{
-        width: 50%;
-        border: $second-color 1px solid;
-        padding: 2px 0;
-        border-radius: 5px;
-        text-align: center;
-      }
-      .text{
-        padding-top: 5px;
-        span{font-weight: bold;}
-      }
-    }
     img{
       width: 50%;
       height: 30%;
     }
   }
 
-@media screen and (max-width: 768px){
-    .total-content{
-      grid-column: 2/4;
+  &-info{
+    display: flex;
+    flex-direction: column;
 
+    .number{
+      border: $second-color 1px solid;
+      padding: 2px 0;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .text{
+      padding-top: 5px;
+      span{font-weight: bold;}
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+  .total-content{
+    grid-column: 2/4;
+    &-main{
+      .total-content-info{
+        h1{font-size: 18px;}
+      }
       img{
         height: 150px;
+        width: 60%;
       }
     }
+  }
 }
 
 @media screen and (max-width: 425px){
   .total-content{
-    img{
-      height: 100px;
+    &-main{
+      flex-direction: column;
+      img{
+        height: 100px;
+        width: 80%;
+        align-self: center;
+      }
     }
   }
 }
