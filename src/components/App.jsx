@@ -5,6 +5,7 @@ import Model from "./Order/Model/Model";
 import Extra from "./Order/Extra/Extra";
 import Total from "./Order/Total/Total";
 import Location from "./Order/Location/Location";
+import Confirm from "./Confirm/Confirm";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           path="/car-sharing/order/total"
           render={() => <Total page={3} nextStep={3} />}
         />
+        <Route path="/car-sharing/order/confirm" component={Confirm} />
       </Switch>
     </BrowserRouter>
   );
