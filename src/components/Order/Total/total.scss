@@ -2,12 +2,10 @@
 
 .total-content{
   grid-area: 3/2/4/3;
-    img{
-      width: 50%;
-      height: 30%;
-    }
-
-
+  img{
+    width: 50%;
+    height: 30%;
+  }
   &-info{
     display: flex;
     flex-direction: column;
@@ -28,13 +26,13 @@
 @media screen and (max-width: 768px){
   .total-content{
     grid-column: 2/4;
-      .total-content-info{
-        h1{font-size: 18px;}
-      }
-      img{
-        height: 150px;
-        width: 60%;
-      }
+    .total-content-info{
+      h1{font-size: 18px;}
+    }
+    img{
+      height: 150px;
+      width: 60%;
+    }
   }
 }
 
