@@ -1,14 +1,31 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="CssUnknownProperty" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myCustomPropertiesEnabled" value="true" />
+      <option name="myIgnoreVendorSpecificProperties" value="false" />
+      <option name="myCustomPropertiesList">
+        <value>
+          <list size="6">
+            <item index="0" class="java.lang.String" itemvalue="path" />
+            <item index="1" class="java.lang.String" itemvalue="stroke" />
+            <item index="2" class="java.lang.String" itemvalue="stroke-dasharray" />
+            <item index="3" class="java.lang.String" itemvalue="stroke-linecap" />
+            <item index="4" class="java.lang.String" itemvalue="stroke-miterlimit" />
+            <item index="5" class="java.lang.String" itemvalue="stroke-width" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
     <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="3">
+          <list size="4">
             <item index="0" class="java.lang.String" itemvalue="status" />
             <item index="1" class="java.lang.String" itemvalue="src" />
             <item index="2" class="java.lang.String" itemvalue="value" />
+            <item index="3" class="java.lang.String" itemvalue="readonly" />
           </list>
         </value>
       </option>
