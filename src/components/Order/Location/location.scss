@@ -97,6 +97,10 @@
         width: 100%;
         overflow: auto;
 
+        &.close{
+          opacity: 0;
+        }
+
         >div{
           width: 100%;
         }
