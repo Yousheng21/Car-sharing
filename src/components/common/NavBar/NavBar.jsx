@@ -14,7 +14,7 @@ const tabs = [
   { text: "Итого", path: "total" },
 ];
 
-const NavBar = ({ page, confirm }) => {
+const NavBar = ({ page }) => {
   const currStep = useSelector((state) => state.app.currentStep);
 
   return (
@@ -33,29 +33,25 @@ const NavBar = ({ page, confirm }) => {
       </header>
 
       <section className="navBar-nav">
-        {!confirm ? (
-          tabs.map((item, index) => (
-            <span
+        {tabs.map((item, index) => (
+          <span
+            className={classNames({
+              active: index === page,
+              complete: index < currStep,
+            })}
+            key={item.text}
+          >
+            {index ? <Vector /> : ""}
+            <Link
               className={classNames({
-                active: index === page,
-                complete: index < currStep,
+                disabled: index > currStep,
               })}
-              key={item.text}
+              to={`/car-sharing/order/${item.path}`}
             >
-              {index ? <Vector /> : ""}
-              <Link
-                className={classNames({
-                  disabled: index > currStep,
-                })}
-                to={`/car-sharing/order/${item.path}`}
-              >
-                {item.text}
-              </Link>
-            </span>
-          ))
-        ) : (
-          <h1>Заказ номер RU58491823</h1>
-        )}
+              {item.text}
+            </Link>
+          </span>
+        ))}
       </section>
     </nav>
   );
