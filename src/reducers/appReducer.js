@@ -11,7 +11,12 @@ const SET_ADDRESSES = "SET_ADDRESSES";
 const SET_PLACE_MARKS = "SET_PLACE_MARKS";
 const SET_NEW_PLACE_MARKS = "SET_NEW_PLACE_MARKS";
 const SET_CATEGORIES = "SET_CATEGORIES";
+const SET_TARIFFS = "SET_TARIFFS";
 const SET_PLACE_MARK_INDEX = "SET_PLACE_MARK_INDEX";
+const SET_COLOR = "SET_COLOR";
+const SET_TARIFF = "SET_TARIFF";
+const SET_ADDITIONAL = "SET_ADDITIONAL";
+const CHANGE_ADDITIONAL = "CHANGE_ADDITIONAL";
 
 const defaultState = {
   burger_status: false,
@@ -25,7 +30,7 @@ const defaultState = {
     color: { text: "Цвет", value: "" },
     delay: { text: "Длительность аренды", value: "", from: "", to: "" },
     tariff: { text: "Тариф", value: "" },
-    cistern: { text: "Полный бак", value: "" },
+    additional: [],
   },
   price: {
     min: 0,
@@ -40,6 +45,7 @@ const defaultState = {
   placeMarks: [],
   newPlaceMarks: [],
   categories: [],
+  tariffs: [],
   placeMarkIndex: {},
   currentCar: { colors: ["Любой"], thumbnail: { path: "" }, name: "" },
   currentStep: 0,
@@ -63,6 +69,7 @@ export default function appReducer(state = defaultState, action) {
         newTableCars: action.payload,
       };
     case SET_CURRENT_CAR:
+      if (!action.payload.colors.length) action.payload.colors.unshift("Любой");
       return {
         ...state,
         currentCar: action.payload,
@@ -161,10 +168,57 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         categories: action.categories,
       };
+    case SET_TARIFFS:
+      return {
+        ...state,
+        tariffs: action.tariffs,
+      };
     case SET_PLACE_MARK_INDEX:
       return {
         ...state,
         placeMarkIndex: action.index,
+      };
+    case SET_COLOR:
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          color: {
+            ...state.currentOrder.color,
+            value: action.color,
+          },
+        },
+      };
+    case SET_TARIFF:
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          tariff: {
+            ...state.currentOrder.tariff,
+            value: action.tariff,
+          },
+        },
+      };
+    case SET_ADDITIONAL:
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          additional: [
+            ...state.currentOrder.additional,
+            { value: "Да", price: action.item.price, text: action.item.name },
+          ],
+        },
+      };
+    case CHANGE_ADDITIONAL:
+      state.currentOrder.additional.splice(action.index, 1);
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          additional: state.currentOrder.additional,
+        },
       };
     default:
       return state;
@@ -237,7 +291,32 @@ export const setCategories = (categories) => ({
   categories,
 });
 
+export const setTariffs = (tariffs) => ({
+  type: SET_TARIFFS,
+  tariffs,
+});
+
 export const setPlaceMarkIndex = (index) => ({
   type: SET_PLACE_MARK_INDEX,
+  index,
+});
+
+export const setColor = (color) => ({
+  type: SET_COLOR,
+  color,
+});
+
+export const setTariff = (tariff) => ({
+  type: SET_TARIFF,
+  tariff,
+});
+
+export const setAdditional = (item) => ({
+  type: SET_ADDITIONAL,
+  item,
+});
+
+export const changeAdditional = (index) => ({
+  type: CHANGE_ADDITIONAL,
   index,
 });
