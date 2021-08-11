@@ -15,7 +15,10 @@ const SET_PLACE_MARK_INDEX = "SET_PLACE_MARK_INDEX";
 
 const defaultState = {
   burger_status: false,
+<<<<<<< HEAD
   currentCity: {},
+=======
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
   currentOrder: {
     place: {
       text: "Пункт выдачи",

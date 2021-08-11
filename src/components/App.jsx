@@ -11,6 +11,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route exact path="/car-sharing/" component={Home} />
+<<<<<<< HEAD
         <Route
           exact
           path="/car-sharing/order"
@@ -28,6 +29,12 @@ function App() {
           path="/car-sharing/order/total"
           render={() => <Total page={3} nextStep={3} />}
         />
+=======
+        <Route path="/car-sharing/order" component={Location} />
+        <Route path="/car-sharing/order/model" component={Model} />
+        <Route path="/car-sharing/order/extra" component={Extra} />
+        <Route path="/car-sharing/order/total" component={Total} />
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
       </Switch>
     </BrowserRouter>
   );

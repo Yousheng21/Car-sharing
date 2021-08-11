@@ -16,16 +16,23 @@
         }
     }
     &-nav {
+<<<<<<< HEAD
         height: 20%;
         display: flex;
         flex-wrap: wrap;
         grid-area: 2/1/3/2;
         color: $third-color;
 
+=======
+        display: flex;
+        flex-wrap: wrap;
+        grid-area: 2/1/3/2;
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
 
         a{
             color: $third-color;
 
+<<<<<<< HEAD
             &:hover{color: $main-color}
             &.disabled{
                 pointer-events: none;
@@ -42,6 +49,9 @@
                 color: $main-color;
                 font-weight: bold;
             }
+=======
+            &:active{color: $main-color}
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
         }
         svg{
             vertical-align: bottom;

@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import "./extra.scss";
 
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
@@ -18,6 +19,11 @@ const Extra = ({ nextStep, page }) => {
       </main>
     </OrderLayout>
   );
+=======
+
+const Extra = () => {
+  return <div>Extra</div>;
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
 };
 
 export default Extra;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 
@@ -17,6 +18,12 @@ const tabs = [
 const NavBar = ({ page }) => {
   const currStep = useSelector((state) => state.app.currentStep);
 
+=======
+import Vector from "../../../images/vector.svg";
+import "./navBar.scss";
+
+const NavBar = () => {
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
   return (
     <nav className="navBar">
       <header className="navBar-header">
@@ -25,7 +32,11 @@ const NavBar = ({ page }) => {
           <span className="header-map">
             <img
               src="https://img.icons8.com/plumpy/24/000000/google-maps-new.png"
+<<<<<<< HEAD
               alt="google-map"
+=======
+              alt=""
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
             />
             Ульяновск
           </span>
@@ -33,6 +44,7 @@ const NavBar = ({ page }) => {
       </header>
 
       <section className="navBar-nav">
+<<<<<<< HEAD
         {tabs.map((item, index) => (
           <span
             className={classNames({
@@ -52,6 +64,22 @@ const NavBar = ({ page }) => {
             </Link>
           </span>
         ))}
+=======
+        <Link to="/">Местоположение</Link>
+        <span>
+          <Vector />
+          <Link to="/">Модель</Link>
+        </span>
+        <span>
+          <Vector />
+          <Link to="/">Дополнительно</Link>
+        </span>
+
+        <span>
+          <Vector />
+          <Link to="/">Итого</Link>
+        </span>
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
       </section>
     </nav>
   );

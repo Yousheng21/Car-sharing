@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./model.scss";
@@ -61,6 +62,12 @@ const Model = ({ nextStep, page }) => {
       </main>
     </OrderLayout>
   );
+=======
+import React from "react";
+
+const Model = () => {
+  return <div>Model</div>;
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
 };
 
 export default Model;

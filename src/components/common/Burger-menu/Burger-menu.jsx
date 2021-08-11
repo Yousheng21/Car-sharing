@@ -42,6 +42,7 @@ const BurgerMenu = () => {
         </section>
         {/* заменил на массивы */}
         <section className="burger-info">
+<<<<<<< HEAD
           {components.li.map((item) => (
             <Link key={item} to="/car-sharing/order" onClick={handleToggle}>
               <span>{item}</span>
@@ -58,6 +59,28 @@ const BurgerMenu = () => {
         <button type="button" className="lang">
           <span>Eng</span>
         </button>
+=======
+          {components.li.map((item) => {
+            return (
+              <Link key={item} to="/car-sharing/order" onClick={handleToggle}>
+                <span>{item}</span>
+              </Link>
+            );
+          })}
+        </section>
+        <section className="social-links">
+          {components.socLink.map((item) => {
+            return (
+              <Link key={item.text} to="/car-sharing/order">
+                <img src={item.img} alt={item.text} />
+              </Link>
+            );
+          })}
+        </section>
+        <Link to="/car-sharing/order" className="lang">
+          <span>Eng</span>
+        </Link>
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
       </aside>
       <div className="burger__template" />
     </div>

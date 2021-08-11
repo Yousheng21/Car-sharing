@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import { useSelector } from "react-redux";
 import "./total.scss";
 
@@ -26,6 +27,11 @@ const Total = ({ nextStep, page }) => {
       </main>
     </OrderLayout>
   );
+=======
+
+const Total = () => {
+  return <div>Total</div>;
+>>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
 };
 
 export default Total;
