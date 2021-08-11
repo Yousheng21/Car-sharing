@@ -54,5 +54,10 @@
         align-self: center;
       }
     }
+    &-info {
+      .number {
+       width: 50%;
+      }
+    }
   }
 }
