@@ -5,7 +5,11 @@
   .extra-content{
     display: grid;
     grid-area: 3/2/4/3;
-    grid-template: 0.7fr repeat(3,1fr)/1fr;
+    grid-template: 0.5fr repeat(3,1fr)/1fr;
+
+    .extra-main-color{
+      h3{margin-top: 0}
+    }
 
     .extra-color{
       @extend %style-radio;
