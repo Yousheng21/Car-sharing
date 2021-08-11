@@ -17,6 +17,7 @@
     }
     &-nav {
 <<<<<<< HEAD
+<<<<<<< HEAD
         height: 20%;
         display: flex;
         flex-wrap: wrap;
@@ -28,10 +29,16 @@
         flex-wrap: wrap;
         grid-area: 2/1/3/2;
 >>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
+=======
+        display: flex;
+        flex-wrap: wrap;
+        grid-area: 2/1/3/2;
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
 
         a{
             color: $third-color;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
             &:hover{color: $main-color}
             &.disabled{
@@ -52,6 +59,9 @@
 =======
             &:active{color: $main-color}
 >>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
+=======
+            &:active{color: $main-color}
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
         }
         svg{
             vertical-align: bottom;

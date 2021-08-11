@@ -17,11 +17,15 @@
     ],
     "rules": {
 <<<<<<< HEAD
+<<<<<<< HEAD
         "react/prop-types": 0,
         "consistent-return": 0,
         "new-cap": 0
 =======
         "react/prop-types": 0
 >>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
+=======
+        "react/prop-types": 0
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
     }
 }

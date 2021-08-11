@@ -43,6 +43,7 @@ const BurgerMenu = () => {
         {/* заменил на массивы */}
         <section className="burger-info">
 <<<<<<< HEAD
+<<<<<<< HEAD
           {components.li.map((item) => (
             <Link key={item} to="/car-sharing/order" onClick={handleToggle}>
               <span>{item}</span>
@@ -60,6 +61,8 @@ const BurgerMenu = () => {
           <span>Eng</span>
         </button>
 =======
+=======
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
           {components.li.map((item) => {
             return (
               <Link key={item} to="/car-sharing/order" onClick={handleToggle}>
@@ -80,7 +83,10 @@ const BurgerMenu = () => {
         <Link to="/car-sharing/order" className="lang">
           <span>Eng</span>
         </Link>
+<<<<<<< HEAD
 >>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
+=======
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
       </aside>
       <div className="burger__template" />
     </div>

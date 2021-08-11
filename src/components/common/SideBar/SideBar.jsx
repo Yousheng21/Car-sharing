@@ -13,12 +13,17 @@ const SideBar = ({ children }) => {
       </header>
       <main className="sideBar-parameters sideBar-child">
 <<<<<<< HEAD
+<<<<<<< HEAD
         {Object.keys(parameters).map(
           (item) =>
 =======
         {Object.keys(parameters).map((item) => {
           return (
 >>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
+=======
+        {Object.keys(parameters).map((item) => {
+          return (
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
             parameters[item].value && (
               <section
                 key={parameters[item].text}
@@ -27,6 +32,7 @@ const SideBar = ({ children }) => {
                 <span className="place">{parameters[item].text}</span>
                 <span className="dots">......................</span>
                 <div className="address">
+<<<<<<< HEAD
 <<<<<<< HEAD
                   <span>
                     {item === "place"
@@ -46,6 +52,8 @@ const SideBar = ({ children }) => {
       </section>
 
 =======
+=======
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
                   <span>{parameters[item].value}</span>
                 </div>
               </section>
@@ -59,7 +67,10 @@ const SideBar = ({ children }) => {
           Цена от <span>{price.min}</span> до <span>{price.max}</span>
         </text>
       </footer>
+<<<<<<< HEAD
 >>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
+=======
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
       {children}
     </aside>
   );

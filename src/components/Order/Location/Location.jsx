@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./location.scss";
@@ -114,6 +115,8 @@ const Location = ({ nextStep, page }) => {
       </main>
     </OrderLayout>
 =======
+=======
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
 import React, { useRef, useState } from "react";
 import classNames from "classnames";
 
@@ -182,7 +185,10 @@ const Location = () => {
         </button>
       </SideBar>
     </aside>
+<<<<<<< HEAD
 >>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
+=======
+>>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
   );
 };
 
