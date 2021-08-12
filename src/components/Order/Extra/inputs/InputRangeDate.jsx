@@ -1,77 +1,75 @@
-import React, { useState } from "react";
-import classNames from "classnames";
-import Close from "../../../../images/close.svg";
+import React, { useEffect } from "react";
+import DateOrder from "../../../../utils/Input/DateOrder";
+import { setDiffDate } from "../../../../actions/app";
 
-const InputRangeDate = () => {
-  const date = new Date();
-  const [inputDateFrom, setInputDateFrom] = useState(
-    `${date.toJSON().split("T")[0]}T${date.toLocaleTimeString()}`
-  );
-  const [inputDateTo, setInputDateTo] = useState("");
-  const [inputDateFocusTo, setInputDateFocusTo] = useState(false);
-  const [inputDateFocusFrom, setInputDateFocusFrom] = useState(false);
+const InputRangeDate = ({
+  dateIsValid,
+  startDate,
+  setStartDate,
+  endDate,
+  setEndDate,
+}) => {
+  useEffect(() => {
+    if (!startDate) setEndDate("");
+    setDiffDate(startDate, endDate);
+  }, [startDate, endDate]);
 
-  const classCloseTo = classNames({
-    "btn-close": true,
-    open: inputDateFocusTo,
-  });
+  function handleDateFrom(date) {
+    setStartDate(date);
 
-  const classCloseFrom = classNames({
-    "btn-close": true,
-    open: inputDateFocusFrom,
-  });
-  console.log(inputDateFrom);
+    const nextDate = new Date(date);
+    nextDate.setMinutes(nextDate.getMinutes() + 30);
+
+    if (endDate <= date) {
+      setEndDate(nextDate);
+    }
+  }
+
+  const filterPassedTimeFrom = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+    return currentDate.getTime() < selectedDate.getTime();
+  };
+
+  const filterPassedTimeTo = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+    return (
+      currentDate.getTime() < selectedDate.getTime() &&
+      selectedDate.getTime() > startDate.getTime()
+    );
+  };
+
   return (
     <div>
       <h1>Дата аренды</h1>
       <div className="extra-date">
         <section className="city-content">
           <span>С</span>
-          <div>
-            <input
-              type="datetime-local"
-              value={inputDateFrom}
-              onChange={(event) => setInputDateFrom(event.target.value)}
-              onFocus={() => setInputDateFocusFrom(true)}
-              onBlur={() => setInputDateFocusFrom(false)}
-              name="dateFrom"
-              id="dateFrom"
-              min={inputDateFrom}
-              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
-            />
-            <Close
-              onClick={() => {
-                setInputDateFrom("");
-              }}
-              className={classCloseFrom}
-            />
-          </div>
+          <DateOrder
+            onChange={handleDateFrom}
+            onClose={() => setStartDate("")}
+            minDate={new Date()}
+            selected={startDate}
+            filterTime={filterPassedTimeFrom}
+            popperPlacement="top-end"
+          />
+          <span>{!startDate ? "Пустое поле" : ""}</span>
         </section>
         <section className="city-content">
           <span>По</span>
-          <div>
-            <input
-              type="datetime-local"
-              name="dateTo"
-              onChange={(event) => setInputDateTo(event.target.value)}
-              onFocus={() => setInputDateFocusTo(true)}
-              onBlur={() => setInputDateFocusTo(false)}
-              placeholder="Введите дату и время"
-              id="dateTo"
-              min={inputDateFrom}
-              value={inputDateTo}
-              disabled={!inputDateFrom}
-              pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
-            />
-            <Close
-              onClick={() => {
-                setInputDateTo("");
-              }}
-              className={classCloseTo}
-            />
-          </div>
+          <DateOrder
+            onChange={setEndDate}
+            onClose={() => setEndDate("")}
+            minDate={startDate}
+            selected={endDate}
+            filterTime={filterPassedTimeTo}
+            disabled={!startDate}
+          />
+          <span>{!endDate ? "Пустое поле" : ""}</span>
         </section>
       </div>
+      {!dateIsValid ? "Выберите правильную продолжительность аренды" : ""}
     </div>
   );
 };
