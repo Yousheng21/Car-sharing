@@ -19,9 +19,13 @@
     .extra-date{
       @extend %style-city;
       .city-content{
-        .btn-close {
-          right: 240px;
-          top:10px;
+        .extra-date-range{
+          position: relative;
+
+          .btn-close {
+            right: 0;
+            top:0;
+          }
         }
       }
 
