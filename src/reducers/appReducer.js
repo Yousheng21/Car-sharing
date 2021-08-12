@@ -17,6 +17,8 @@ const SET_COLOR = "SET_COLOR";
 const SET_TARIFF = "SET_TARIFF";
 const SET_ADDITIONAL = "SET_ADDITIONAL";
 const CHANGE_ADDITIONAL = "CHANGE_ADDITIONAL";
+const SET_DATE_RANGE = "SET_DATE_RANGE";
+const DATE_IS_VALID = "DATE_IS_VALID";
 
 const defaultState = {
   burger_status: false,
@@ -53,6 +55,7 @@ const defaultState = {
     name: "",
     city: "",
   },
+  dateIsValid: true,
 };
 
 export default function appReducer(state = defaultState, action) {
@@ -220,6 +223,24 @@ export default function appReducer(state = defaultState, action) {
           additional: state.currentOrder.additional,
         },
       };
+    case SET_DATE_RANGE:
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          delay: {
+            ...state.currentOrder.delay,
+            value: action.diff,
+            from: action.from,
+            to: action.to,
+          },
+        },
+      };
+    case DATE_IS_VALID:
+      return {
+        ...state,
+        dateIsValid: action.flag,
+      };
     default:
       return state;
   }
@@ -319,4 +340,16 @@ export const setAdditional = (item) => ({
 export const changeAdditional = (index) => ({
   type: CHANGE_ADDITIONAL,
   index,
+});
+
+export const setDateRange = (diff, from, to) => ({
+  type: SET_DATE_RANGE,
+  diff,
+  from,
+  to,
+});
+
+export const setDateValid = (flag) => ({
+  type: DATE_IS_VALID,
+  flag,
 });
