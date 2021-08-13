@@ -9,7 +9,7 @@ const InfoOrderLayout = () => {
     <div className="total-content-main">
       <section className="total-content-info">
         <h1>{car.name}</h1>
-        <span className="number">{car.number}</span>
+        {car.number ? <span className="number">{car.number}</span> : ""}
         <section className="text">
           <span>Топливо</span>
         </section>
