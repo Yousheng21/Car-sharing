@@ -40,7 +40,12 @@ const SideBar = ({ children }) => {
       </main>
 
       <section className="sideBar-info-price sideBar-child">
-        Цена от <span>{price.min}</span> до <span>{price.max}</span>
+        Цена
+        <span>
+          {price.value
+            ? ` ${price.value} p`
+            : ` от ${price.min} p до ${price.max} p`}{" "}
+        </span>
       </section>
 
       {children}
