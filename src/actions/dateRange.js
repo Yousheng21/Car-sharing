@@ -72,6 +72,9 @@ const setDiffDate = (from, to) => {
   store.dispatch(setDateValid(true));
 };
 
+/* Знаю, что костыль, я просто уезжаю и спешу.
+Отправляю, чтобы по приезде сразу начинать исправлять
+*/
 export const tariffIsValid = () => {
   const dateDuration = store.getState().app.currentOrder.delay.date;
   if (dateDuration.weeks.value >= 4) return [false, false, false, false];
