@@ -5,8 +5,6 @@ import {
   setCurrentAddress,
   setCurrentCity,
   setCurrentStep,
-  setDateRange,
-  setDateValid,
   setNewCities,
   setNewPlaceMarks,
   setNewTableCars,
@@ -78,45 +76,6 @@ export const setAddress = (address, city, item) => {
 
 export const nextStep = (step) => {
   store.dispatch(setCurrentStep(step));
-};
-
-export const setDiffDate = (from, to) => {
-  if (!from || !to) return store.dispatch(setDateRange("", from, to));
-
-  const t2 = to.getTime();
-  const t1 = from.getTime();
-
-  if (t2 - t1 <= 0) return store.dispatch(setDateValid(false));
-
-  const DateDiff = {
-    inMinutes(weeks, days, hours) {
-      return Math.floor(
-        (t2 - t1) / (60 * 1000) - weeks * 7 * 1440 - hours * 60 - days * 1440
-      );
-    },
-    inHours(weeks, days) {
-      return Math.floor((t2 - t1) / (3600 * 1000) - 24 * days - weeks * 24 * 7);
-    },
-    inDays(weeks) {
-      return Math.floor((t2 - t1) / (24 * 3600 * 1000) - weeks * 7);
-    },
-
-    inWeeks() {
-      return Math.floor((t2 - t1) / (24 * 3600 * 1000 * 7));
-    },
-  };
-
-  const weeks = DateDiff.inWeeks();
-  const days = DateDiff.inDays(weeks);
-  const hours = DateDiff.inHours(weeks, days);
-  const minutes = DateDiff.inMinutes(weeks, days, hours);
-
-  const diff = `${weeks ? `${weeks}нед` : ""} ${days ? `${days}д` : ""} ${
-    hours ? `${hours}ч` : ""
-  } ${minutes ? `${minutes}мин` : ""}`;
-
-  store.dispatch(setDateRange(diff, from, to));
-  store.dispatch(setDateValid(true));
 };
 
 export default getTableCars();
