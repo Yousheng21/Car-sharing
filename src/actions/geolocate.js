@@ -9,7 +9,7 @@ const getLocale = (query) => {
       const response = await axios.get(
         `${API_GEO}?q=${query}&format=json&addressdetails=1&limit=1`
       );
-      dispatch(setPlaceMarks(response.data[0]));
+      if (response.data[0]) dispatch(setPlaceMarks(response.data[0]));
     } catch (e) {
       console.error(e.response);
     }
