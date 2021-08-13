@@ -19,6 +19,7 @@ const SET_ADDITIONAL = "SET_ADDITIONAL";
 const CHANGE_ADDITIONAL = "CHANGE_ADDITIONAL";
 const SET_DATE_RANGE = "SET_DATE_RANGE";
 const DATE_IS_VALID = "DATE_IS_VALID";
+const SET_PRICE = "SET_PRICE";
 
 const defaultState = {
   burger_status: false,
@@ -30,13 +31,20 @@ const defaultState = {
     },
     model: { text: "Модель", value: "" },
     color: { text: "Цвет", value: "" },
-    delay: { text: "Длительность аренды", value: "", from: "", to: "" },
+    delay: {
+      text: "Длительность аренды",
+      value: "",
+      date: {},
+      from: "",
+      to: "",
+    },
     tariff: { text: "Тариф", value: "" },
     additional: [],
   },
   price: {
     min: 0,
     max: 32000,
+    value: 0,
   },
   tableCars: [],
   newTableCars: [],
@@ -48,6 +56,7 @@ const defaultState = {
   newPlaceMarks: [],
   categories: [],
   tariffs: [],
+  currentTariff: {},
   placeMarkIndex: {},
   currentCar: { colors: ["Любой"], thumbnail: { path: "" }, name: "" },
   currentStep: 0,
@@ -199,9 +208,10 @@ export default function appReducer(state = defaultState, action) {
           ...state.currentOrder,
           tariff: {
             ...state.currentOrder.tariff,
-            value: action.tariff,
+            value: action.value,
           },
         },
+        currentTariff: action.tariff,
       };
     case SET_ADDITIONAL:
       return {
@@ -213,6 +223,10 @@ export default function appReducer(state = defaultState, action) {
             { value: "Да", price: action.item.price, text: action.item.name },
           ],
         },
+        price: {
+          ...state.price,
+          value: state.price.value + action.item.price,
+        },
       };
     case CHANGE_ADDITIONAL:
       state.currentOrder.additional.splice(action.index, 1);
@@ -222,6 +236,10 @@ export default function appReducer(state = defaultState, action) {
           ...state.currentOrder,
           additional: state.currentOrder.additional,
         },
+        price: {
+          ...state.price,
+          value: state.price.value - action.item.price,
+        },
       };
     case SET_DATE_RANGE:
       return {
@@ -230,7 +248,8 @@ export default function appReducer(state = defaultState, action) {
           ...state.currentOrder,
           delay: {
             ...state.currentOrder.delay,
-            value: action.diff,
+            value: action.text,
+            date: action.diff,
             from: action.from,
             to: action.to,
           },
@@ -240,6 +259,14 @@ export default function appReducer(state = defaultState, action) {
       return {
         ...state,
         dateIsValid: action.flag,
+      };
+    case SET_PRICE:
+      return {
+        ...state,
+        price: {
+          ...state.price,
+          value: state.price.min + action.price,
+        },
       };
     default:
       return state;
@@ -327,9 +354,10 @@ export const setColor = (color) => ({
   color,
 });
 
-export const setTariff = (tariff) => ({
+export const setTariff = (tariff, value) => ({
   type: SET_TARIFF,
   tariff,
+  value,
 });
 
 export const setAdditional = (item) => ({
@@ -337,14 +365,16 @@ export const setAdditional = (item) => ({
   item,
 });
 
-export const changeAdditional = (index) => ({
+export const changeAdditional = (item, index) => ({
   type: CHANGE_ADDITIONAL,
+  item,
   index,
 });
 
-export const setDateRange = (diff, from, to) => ({
+export const setDateRange = (diff, text, from, to) => ({
   type: SET_DATE_RANGE,
   diff,
+  text,
   from,
   to,
 });
@@ -352,4 +382,9 @@ export const setDateRange = (diff, from, to) => ({
 export const setDateValid = (flag) => ({
   type: DATE_IS_VALID,
   flag,
+});
+
+export const setPriceOrder = (price) => ({
+  type: SET_PRICE,
+  price,
 });
