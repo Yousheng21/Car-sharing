@@ -22,7 +22,7 @@ const InputExtraServices = () => {
       const elIndex = additionalState.findIndex((el) => {
         return el.text === item.name;
       });
-      dispatch(changeAdditional(elIndex));
+      dispatch(changeAdditional(item, elIndex));
       arrSelected.splice(elIndex, 1);
       setArrSelected([...arrSelected]);
     }
