@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import DateOrder from "../../../../utils/Input/DateOrder";
-import { setDiffDate } from "../../../../actions/app";
+import setDiffDate from "../../../../actions/dateRange";
 
 const InputRangeDate = ({
   dateIsValid,
