@@ -77,10 +77,12 @@ const setDiffDate = (from, to) => {
 */
 export const tariffIsValid = () => {
   const dateDuration = store.getState().app.currentOrder.delay.date;
-  if (dateDuration.weeks.value >= 4) return [false, false, false, false];
-  if (dateDuration.weeks.value) return [false, false, false, true];
-  if (dateDuration.days.value) return [false, false, true, true];
-  if (dateDuration.minutes.value) return [false, true, true, true];
+  if (dateDuration) {
+    if (dateDuration.weeks.value >= 4) return [false, false, false, false];
+    if (dateDuration.weeks.value) return [false, false, false, true];
+    if (dateDuration.days.value) return [false, false, true, true];
+    if (dateDuration.minutes.value) return [false, true, true, true];
+  } else return [false, false, false, false];
 };
 
 export default setDiffDate;
