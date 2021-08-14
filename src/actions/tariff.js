@@ -18,23 +18,25 @@ const getTariffs = () => {
 
 export const setPrice = (tariff) => {
   const currOrder = store.getState().app.currentOrder.delay.date;
-  switch (tariff.rateTypeId.unit) {
-    case "мин":
-      store.dispatch(setPriceOrder(currOrder.minutes.total * tariff.price));
-      break;
-    case "сутки":
-      store.dispatch(setPriceOrder(currOrder.days.total * tariff.price));
-      break;
-    case "7 дней":
-      store.dispatch(setPriceOrder(currOrder.weeks.total * tariff.price));
-      break;
-    case "30 дней":
-      store.dispatch(
-        setPriceOrder(Math.floor(currOrder.weeks.total / 4) * tariff.price)
-      );
-      break;
-    default:
-      break;
+  if (currOrder) {
+    switch (tariff.rateTypeId.unit) {
+      case "мин":
+        store.dispatch(setPriceOrder(currOrder.minutes.total * tariff.price));
+        break;
+      case "сутки":
+        store.dispatch(setPriceOrder(currOrder.days.total * tariff.price));
+        break;
+      case "7 дней":
+        store.dispatch(setPriceOrder(currOrder.weeks.total * tariff.price));
+        break;
+      case "30 дней":
+        store.dispatch(
+          setPriceOrder(Math.floor(currOrder.weeks.total / 4) * tariff.price)
+        );
+        break;
+      default:
+        break;
+    }
   }
 };
 
