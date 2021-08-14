@@ -11,7 +11,7 @@ const InputRangeDate = ({
 }) => {
   useEffect(() => {
     if (!startDate) setEndDate("");
-    setDiffDate(startDate, endDate);
+    else if (startDate && endDate) setDiffDate(startDate, endDate);
   }, [startDate, endDate]);
 
   function handleDateFrom(date) {
