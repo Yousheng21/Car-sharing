@@ -72,17 +72,14 @@ const setDiffDate = (from, to) => {
   store.dispatch(setDateValid(true));
 };
 
-/* Знаю, что костыль, я просто уезжаю и спешу.
-Отправляю, чтобы по приезде сразу начинать исправлять
-*/
 export const tariffIsValid = () => {
   const dateDuration = store.getState().app.currentOrder.delay.date;
   if (dateDuration) {
-    if (dateDuration.weeks.value >= 4) return [false, false, false, false];
-    if (dateDuration.weeks.value) return [false, false, false, true];
-    if (dateDuration.days.value) return [false, false, true, true];
-    if (dateDuration.minutes.value) return [false, true, true, true];
-  } else return [false, false, false, false];
+    const month = dateDuration.weeks.value >= 4;
+    const week = month || dateDuration.weeks.value;
+    const days = month || week || dateDuration.days.value;
+    return [false, !days, !week, !month];
+  }
 };
 
 export default setDiffDate;
