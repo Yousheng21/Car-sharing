@@ -265,7 +265,10 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         price: {
           ...state.price,
-          value: state.price.min + action.price,
+          value:
+            state.price.min + action.price < state.price.max
+              ? state.price.min + action.price
+              : state.price.max,
         },
       };
     default:
