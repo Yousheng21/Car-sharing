@@ -2,7 +2,7 @@ import React from "react";
 import "./modal.scss";
 import classNames from "classnames";
 
-const Modal = ({ active, children }) => {
+const Modal = ({ active, children, total }) => {
   const classModalContent = classNames({
     "modal-content": true,
     active,
@@ -10,6 +10,7 @@ const Modal = ({ active, children }) => {
 
   const classModal = classNames({
     modal: true,
+    total,
     active,
   });
 
