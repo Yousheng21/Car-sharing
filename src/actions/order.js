@@ -1,5 +1,6 @@
 import { instance } from "../reducers/data/dataServer";
 import { store } from "../reducers";
+import { orderCompleteId } from "../reducers/data/dataOrder";
 
 const setOrderTable = (req) => {
   return async () => {
@@ -29,7 +30,7 @@ export const setOrder = () => {
 
   const result = {
     orderStatusId: {
-      id: "5e26a1f0099b810b946c5d8b",
+      id: orderCompleteId,
     },
     cityId: city,
     pointId: point,
