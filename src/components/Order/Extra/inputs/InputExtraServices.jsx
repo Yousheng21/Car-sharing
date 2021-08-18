@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { additional } from "../../../../reducers/data/dataOrder";
 import {
   changeAdditional,
@@ -10,19 +10,15 @@ const InputExtraServices = () => {
   const dispatch = useDispatch();
   const [arrSelected, setArrSelected] = useState([]);
 
-  const additionalState = useSelector(
-    (state) => state.app.currentOrder.additional
-  );
-
   const handleChange = (item, index) => {
     if (!arrSelected.includes(index)) {
       dispatch(setAdditional(item));
       setArrSelected([...arrSelected, index]);
     } else {
-      const elIndex = additionalState.findIndex((el) => {
-        return el.text === item.name;
+      const elIndex = arrSelected.findIndex((el) => {
+        return el === index;
       });
-      dispatch(changeAdditional(item, elIndex));
+      dispatch(changeAdditional(item));
       arrSelected.splice(elIndex, 1);
       setArrSelected([...arrSelected]);
     }
