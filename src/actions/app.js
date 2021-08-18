@@ -70,7 +70,7 @@ export const resetCity = () => {
 };
 
 export const setAddress = (address, city, item) => {
-  store.dispatch(setCurrentAddress(address, city));
+  store.dispatch(setCurrentAddress(address, city, item.id));
   return store.dispatch(setPlaceMarkIndex(item));
 };
 
