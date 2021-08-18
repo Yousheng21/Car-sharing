@@ -39,7 +39,20 @@ const defaultState = {
       to: "",
     },
     tariff: { text: "Тариф", value: "" },
-    additional: [],
+    additional: {
+      isFullTank: {
+        text: "",
+        value: false,
+      },
+      isNeedChildChair: {
+        text: "",
+        value: false,
+      },
+      isRightWheel: {
+        text: "",
+        value: false,
+      },
+    },
   },
   price: {
     min: 0,
@@ -144,9 +157,11 @@ export default function appReducer(state = defaultState, action) {
       return {
         ...state,
         currentAddress: {
+          id: action.id,
           name: action.address,
-          city: action.city,
+          city: action.city.name,
         },
+        currentCity: action.city,
         currentOrder: {
           ...state.currentOrder,
           place: {
@@ -218,10 +233,13 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         currentOrder: {
           ...state.currentOrder,
-          additional: [
+          additional: {
             ...state.currentOrder.additional,
-            { value: "Да", price: action.item.price, text: action.item.name },
-          ],
+            [action.item.key]: {
+              text: action.item.name,
+              value: true,
+            },
+          },
         },
         price: {
           ...state.price,
@@ -229,12 +247,17 @@ export default function appReducer(state = defaultState, action) {
         },
       };
     case CHANGE_ADDITIONAL:
-      state.currentOrder.additional.splice(action.index, 1);
       return {
         ...state,
         currentOrder: {
           ...state.currentOrder,
-          additional: state.currentOrder.additional,
+          additional: {
+            ...state.currentOrder.additional,
+            [action.item.key]: {
+              ...state.currentOrder.additional[action.item.key],
+              value: false,
+            },
+          },
         },
         price: {
           ...state.price,
@@ -321,10 +344,11 @@ export const setCurrentCity = (city) => ({
   payload: city,
 });
 
-export const setCurrentAddress = (address, city) => ({
+export const setCurrentAddress = (address, city, id) => ({
   type: SET_CURRENT_ADDRESS,
   address,
   city,
+  id,
 });
 
 export const setPlaceMarks = (placeMark) => ({
@@ -368,10 +392,9 @@ export const setAdditional = (item) => ({
   item,
 });
 
-export const changeAdditional = (item, index) => ({
+export const changeAdditional = (item) => ({
   type: CHANGE_ADDITIONAL,
   item,
-  index,
 });
 
 export const setDateRange = (diff, text, from, to) => ({
