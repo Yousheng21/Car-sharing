@@ -13,6 +13,10 @@
     pointer-events: none;/*нажатие на другие элементы*/
     transition: 0.5s;
 
+    &.total{
+        background-color: rgba(255, 240, 254, 0.99);
+    }
+
     &.active{
         pointer-events: all;
         opacity: 1;
@@ -33,11 +37,15 @@
         &.active{
             transform: scale(1);
         }
-
-        button.success{
+        button{
             @extend %style-btn;
-            width: 50%;
-            background: linear-gradient(90deg,#0EC261,#039F67);
+            width: auto;
+            margin: 5px;
+
+            &.success{
+                background: linear-gradient(90deg,#0EC261,#039F67);
+            }
+            &.canceled{background: linear-gradient(90deg,#493013,#7B0C3B);}
         }
     }
 }
