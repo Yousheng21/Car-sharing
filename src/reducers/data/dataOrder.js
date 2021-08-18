@@ -1,5 +1,5 @@
 export const center = [54.3282, 48.3866];
-export const tariff = ["Поминутно,7 р/мин", "На сутки, 1999 р/сутки"];
+export const orderCompleteId = "5e26a1f0099b810b946c5d8b";
 
 export const additional = [
   { name: "Полный бак", price: 500, key: "isFullTank" },
