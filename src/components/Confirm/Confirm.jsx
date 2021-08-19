@@ -21,7 +21,7 @@ const Confirm = (props) => {
   return (
     <div className="location-page">
       <BurgerMenu />
-      <NavBar confirm={id} />
+      <NavBar confirm={id} city={order.cityId ? order.cityId.name : ""} />
       {Object.keys(order).length ? (
         <main className="confirm-content">
           <h1>Ваш заказ подтверждён</h1>
@@ -35,12 +35,15 @@ const Confirm = (props) => {
               )}
               <section className="text">
                 <span>
-                  Топливо
-                  {order.isFullTank ? " 100" : order.carId.tank ?? " 0"}%
+                  {`Топливо ${
+                    order.isFullTank ? " 100" : order.carId.tank ?? " 0"
+                  }%`}
                 </span>
               </section>
               <section className="text">
-                <span>Доступна c</span>
+                <span>
+                  Доступна c {new Date(order.dateFrom).toLocaleString()}
+                </span>
               </section>
             </section>
             <img
