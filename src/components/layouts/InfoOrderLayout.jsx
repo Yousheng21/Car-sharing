@@ -12,8 +12,9 @@ const InfoOrderLayout = () => {
         {car.number ? <span className="number">{car.number}</span> : ""}
         <section className="text">
           <span>
-            Топливо
-            {order.additional.isFullTank.value ? " 100" : car.tank ?? " 0"}%
+            {`Топливо ${
+              order.additional.isFullTank.value ? " 100" : car.tank ?? " 0"
+            }%`}
           </span>
         </section>
         <section className="text">
