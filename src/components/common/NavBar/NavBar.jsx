@@ -54,7 +54,7 @@ const NavBar = ({ page, confirm }) => {
             </span>
           ))
         ) : (
-          <h1>Заказ номер RU58491823</h1>
+          <h1>Заказ номер RU{confirm}</h1>
         )}
       </section>
     </nav>
