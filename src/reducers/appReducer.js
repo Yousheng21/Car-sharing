@@ -20,6 +20,9 @@ const CHANGE_ADDITIONAL = "CHANGE_ADDITIONAL";
 const SET_DATE_RANGE = "SET_DATE_RANGE";
 const DATE_IS_VALID = "DATE_IS_VALID";
 const SET_PRICE = "SET_PRICE";
+const SET_ORDER_ID = "SET_ORDER_ID";
+const SET_ORDER_STATUS = "SET_ORDER_STATUS";
+const SET_TEMPORARY_ORDER = "SET_TEMPORARY_ORDER";
 
 const defaultState = {
   burger_status: false,
@@ -78,6 +81,9 @@ const defaultState = {
     city: "",
   },
   dateIsValid: true,
+  orderId: "",
+  orderStatus: false,
+  temporaryOrder: {},
 };
 
 export default function appReducer(state = defaultState, action) {
@@ -294,6 +300,21 @@ export default function appReducer(state = defaultState, action) {
               : state.price.max,
         },
       };
+    case SET_ORDER_ID:
+      return {
+        ...state,
+        orderId: action.id,
+      };
+    case SET_ORDER_STATUS:
+      return {
+        ...state,
+        orderStatus: action.status,
+      };
+    case SET_TEMPORARY_ORDER:
+      return {
+        ...state,
+        temporaryOrder: action.order,
+      };
     default:
       return state;
   }
@@ -413,4 +434,19 @@ export const setDateValid = (flag) => ({
 export const setPriceOrder = (price) => ({
   type: SET_PRICE,
   price,
+});
+
+export const setOrderId = (id) => ({
+  type: SET_ORDER_ID,
+  id,
+});
+
+export const setOrderStatus = (status) => ({
+  type: SET_ORDER_STATUS,
+  status,
+});
+
+export const setTemporaryOrder = (order) => ({
+  type: SET_TEMPORARY_ORDER,
+  order,
 });
