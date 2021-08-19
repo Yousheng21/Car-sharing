@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import SideBarSection from "./SideBarSection";
 import { additional } from "../../../reducers/data/dataOrder";
+import setDiffDate from "../../../actions/dateRange";
 
 const SideBarTotal = ({ parameters, children }) => {
+  const delay = useSelector((state) => state.app.currentOrder.delay.value);
+  useEffect(() => {
+    if (!delay) {
+      setDiffDate(new Date(parameters.dateFrom), new Date(parameters.dateTo));
+    }
+  }, [delay]);
+
   return (
     <aside className="sideBar">
       <header className="sideBar-info-title sideBar-child">
@@ -16,14 +25,14 @@ const SideBarTotal = ({ parameters, children }) => {
         />
         <SideBarSection text="Модель" value={parameters.carId.name} />
         <SideBarSection text="Цвет" value={parameters.color} />
-        <SideBarSection text="Длительность аренды" value="" />
+        <SideBarSection text="Длительность аренды" value={delay ?? ""} />
         <SideBarSection
           text="Тариф"
           value={parameters.rateId.rateTypeId.name}
         />
         {additional.map((item) =>
           parameters[item.key] ? (
-            <SideBarSection text={item.name} value="Да" />
+            <SideBarSection key={item.key} text={item.name} value="Да" />
           ) : (
             ""
           )
