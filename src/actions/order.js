@@ -1,16 +1,17 @@
 import { instance } from "../reducers/data/dataServer";
 import { store } from "../reducers";
-import { orderCompleteId } from "../reducers/data/dataOrder";
+import { orderNewId } from "../reducers/data/dataOrder";
+import { setOrderId } from "../reducers/appReducer";
 
 const setOrderTable = (req) => {
-  return async () => {
+  return async (dispatch) => {
     try {
       const response = await instance({
         method: "POST",
         url: "/api/db/order",
         data: req,
       });
-      console.log(response);
+      dispatch(setOrderId(response.data.data.id));
     } catch (e) {
       console.error(e.response);
     }
@@ -30,7 +31,7 @@ export const setOrder = () => {
 
   const result = {
     orderStatusId: {
-      id: orderCompleteId,
+      id: orderNewId,
     },
     cityId: city,
     pointId: point,
