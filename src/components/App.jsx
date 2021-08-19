@@ -29,7 +29,7 @@ function App() {
           path="/car-sharing/order/total"
           render={() => <Total page={3} nextStep={3} />}
         />
-        <Route path="/car-sharing/order/confirm" component={Confirm} />
+        <Route path="/car-sharing/order/confirm/:id" component={Confirm} />
       </Switch>
     </BrowserRouter>
   );
