@@ -4,7 +4,7 @@ import { instance } from "../reducers/data/dataServer";
 
 const LIMIT_VALUE = 6;
 
-const getTableCity = () => {
+export const getTableCity = () => {
   return async (dispatch) => {
     try {
       const response = await instance({
@@ -49,5 +49,3 @@ export const selectCity = () => {
   });
   return store.dispatch(setCities(n));
 };
-
-export default getTableCity();

@@ -49,7 +49,7 @@ export const setCity = (obj) => {
   const { currentAddress } = store.getState().app;
 
   if (obj.name !== currentAddress.city)
-    store.dispatch(setCurrentAddress("", obj.name));
+    store.dispatch(setCurrentAddress("", obj));
 
   const place = placeMarks.filter((item) => {
     return obj.name === item.address.city;
@@ -64,7 +64,7 @@ export const resetCity = () => {
   const { placeMarks } = store.getState().app;
   const { cities } = store.getState().app;
   store.dispatch(setCurrentCity({}));
-  store.dispatch(setCurrentAddress("", ""));
+  store.dispatch(setCurrentAddress("", {}));
   store.dispatch(setNewCities(cities));
   store.dispatch(setNewPlaceMarks(placeMarks));
 };

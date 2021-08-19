@@ -173,7 +173,7 @@ export default function appReducer(state = defaultState, action) {
           place: {
             ...state.currentOrder.place,
             value: {
-              city: action.city,
+              city: action.city ? action.city.name : "",
               street: action.address,
             },
           },

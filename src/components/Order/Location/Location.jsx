@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./location.scss";
 
-import getTableCity, { selectCity } from "../../../actions/city";
+import { getTableCity, selectCity } from "../../../actions/city";
 import { getTableAddress } from "../../../actions/address";
 import {
   setCurrentAddress,
@@ -21,7 +21,7 @@ const Location = ({ nextStep, page }) => {
   const cities = useSelector((state) => state.app.newCities);
   const addresses = useSelector((state) => state.app.newPlaceMarks);
   const currAddress = useSelector((state) => state.app.currentAddress);
-  const currCity = useSelector((state) => state.app.currentCity.name);
+  const currCity = useSelector((state) => state.app.currentCity);
 
   const inputAddress = useInput("", {
     isEmpty: {
@@ -44,7 +44,7 @@ const Location = ({ nextStep, page }) => {
 
   useEffect(() => {
     if (!placemarks.length) {
-      dispatch(getTableCity);
+      dispatch(getTableCity());
       dispatch(getTableAddress());
     } else {
       selectCity();
@@ -71,7 +71,7 @@ const Location = ({ nextStep, page }) => {
       inputCity.inputValid.value
     ) {
       if (!inputCity.value) dispatch(setNewPlaceMarks(placemarks));
-      dispatch(setCurrentAddress("", inputCity.value ?? ""));
+      dispatch(setCurrentAddress("", currCity ?? {}));
     }
   }, [inputAddress.value]);
 
@@ -86,7 +86,7 @@ const Location = ({ nextStep, page }) => {
       <main className="location-content">
         <section className="location-city">
           <InputWrapper
-            current={currCity}
+            current={currCity.name}
             auto={inputCity.isCompareError.value || !inputCity.value}
             title="Город"
             onChange={inputCity.onChange}
