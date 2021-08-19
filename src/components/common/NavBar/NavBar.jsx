@@ -14,9 +14,9 @@ const tabs = [
   { text: "Итого", path: "total" },
 ];
 
-const NavBar = ({ page, confirm }) => {
+const NavBar = ({ page, confirm, city }) => {
   const currStep = useSelector((state) => state.app.currentStep);
-
+  const currCity = useSelector((state) => state.app.currentCity.name);
   return (
     <nav className="navBar">
       <header className="navBar-header">
@@ -27,7 +27,7 @@ const NavBar = ({ page, confirm }) => {
               src="https://img.icons8.com/plumpy/24/000000/google-maps-new.png"
               alt="google-map"
             />
-            Ульяновск
+            {currCity ?? city ?? ""}
           </span>
         </section>
       </header>
