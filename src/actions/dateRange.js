@@ -66,9 +66,7 @@ const setDiffDate = (from, to) => {
     diff[key].value ? `${diffText} ${diff[key].value}${diff[key].unit}` : ""
   );
 
-  store.dispatch(
-    setDateRange(diff, diffText, from.toLocaleString(), to.toLocaleString())
-  );
+  store.dispatch(setDateRange(diff, diffText, from, to));
   store.dispatch(setDateValid(true));
 };
 
