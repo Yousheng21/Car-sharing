@@ -4,12 +4,15 @@ import "./confirm.scss";
 import BurgerMenu from "../common/Burger-menu/Burger-menu";
 import NavBar from "../common/NavBar/NavBar";
 import getOrder from "../../actions/getOrder";
-import { API_URL } from "../../reducers/data/dataServer";
 import SideBarTotal from "../common/SideBar/SideBarTotal";
 import Preloader from "../../utils/Preloader/Preloader";
+import setOrderComplete from "../../actions/confirmOrder";
+import { orderCloseId } from "../../reducers/data/dataOrder";
+import Image from "../common/Image";
 
 function Number({ number }) {
   if (number) return <span className="number">{number}</span>;
+  return "";
 }
 
 function Tank({ fullTank, carTank }) {
@@ -29,8 +32,8 @@ const Confirm = (props) => {
   const order = useSelector((state) => state.app.temporaryOrder);
 
   useEffect(() => {
-    if (id) dispatch(getOrder(id));
-  }, [id]);
+    if (!Object.keys(order).length) dispatch(getOrder(id));
+  }, [Object.keys(order).length]);
 
   return Object.keys(order).length ? (
     <div className="location-page">
@@ -38,11 +41,11 @@ const Confirm = (props) => {
       <NavBar confirm={id} city={order.cityId ? order.cityId.name : ""} />
 
       <main className="confirm-content">
-        <h1>Ваш заказ подтверждён</h1>
+        <h1>Ваш заказ в статусе {order.orderStatusId.name}</h1>
         <div className="total-content-main">
           <section className="total-content-info">
             <h1>{order.carId.name}</h1>
-            <Number number={order.carId.number} />
+            <Number number={order.carId.number ?? ""} />
             <section className="text">
               <Tank carTank={order.carId.tank} fullTank={order.isFullTank} />
             </section>
@@ -52,15 +55,16 @@ const Confirm = (props) => {
               </span>
             </section>
           </section>
-          <img
-            src={API_URL + order.carId.thumbnail.path}
-            alt={order.carId.name}
-          />
+          <Image car={order.carId} />
         </div>
       </main>
 
       <SideBarTotal parameters={order}>
-        <button type="button" className="button confirm-content-button">
+        <button
+          type="button"
+          className="button confirm-content-button"
+          onClick={() => dispatch(setOrderComplete(id, orderCloseId))}
+        >
           Отменить
         </button>
       </SideBarTotal>
