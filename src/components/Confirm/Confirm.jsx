@@ -6,6 +6,20 @@ import NavBar from "../common/NavBar/NavBar";
 import getOrder from "../../actions/getOrder";
 import { API_URL } from "../../reducers/data/dataServer";
 import SideBarTotal from "../common/SideBar/SideBarTotal";
+import Preloader from "../../utils/Preloader/Preloader";
+
+function Number({ number }) {
+  if (number) return <span className="number">{number}</span>;
+}
+
+function Tank({ fullTank, carTank }) {
+  let tank;
+  if (fullTank) tank = 100;
+  else if (carTank) tank = carTank;
+  else tank = 0;
+
+  return <span>{`Топливо ${tank}%`}</span>;
+}
 
 const Confirm = (props) => {
   const dispatch = useDispatch();
@@ -18,53 +32,41 @@ const Confirm = (props) => {
     if (id) dispatch(getOrder(id));
   }, [id]);
 
-  return (
+  return Object.keys(order).length ? (
     <div className="location-page">
       <BurgerMenu />
       <NavBar confirm={id} city={order.cityId ? order.cityId.name : ""} />
-      {Object.keys(order).length ? (
-        <main className="confirm-content">
-          <h1>Ваш заказ подтверждён</h1>
-          <div className="total-content-main">
-            <section className="total-content-info">
-              <h1>{order.carId.name}</h1>
-              {order.carId.number ? (
-                <span className="number">{order.carId.number}</span>
-              ) : (
-                ""
-              )}
-              <section className="text">
-                <span>
-                  {`Топливо ${
-                    order.isFullTank ? " 100" : order.carId.tank ?? " 0"
-                  }%`}
-                </span>
-              </section>
-              <section className="text">
-                <span>
-                  Доступна c {new Date(order.dateFrom).toLocaleString()}
-                </span>
-              </section>
+
+      <main className="confirm-content">
+        <h1>Ваш заказ подтверждён</h1>
+        <div className="total-content-main">
+          <section className="total-content-info">
+            <h1>{order.carId.name}</h1>
+            <Number number={order.carId.number} />
+            <section className="text">
+              <Tank carTank={order.carId.tank} fullTank={order.isFullTank} />
             </section>
-            <img
-              src={API_URL + order.carId.thumbnail.path}
-              alt={order.carId.name}
-            />
-          </div>
-        </main>
-      ) : (
-        ""
-      )}
-      {Object.keys(order).length ? (
-        <SideBarTotal parameters={order}>
-          <button type="button" className="button confirm-content-button">
-            Отменить
-          </button>
-        </SideBarTotal>
-      ) : (
-        ""
-      )}
+            <section className="text">
+              <span>
+                Доступна c {new Date(order.dateFrom).toLocaleString()}
+              </span>
+            </section>
+          </section>
+          <img
+            src={API_URL + order.carId.thumbnail.path}
+            alt={order.carId.name}
+          />
+        </div>
+      </main>
+
+      <SideBarTotal parameters={order}>
+        <button type="button" className="button confirm-content-button">
+          Отменить
+        </button>
+      </SideBarTotal>
     </div>
+  ) : (
+    <Preloader />
   );
 };
 
