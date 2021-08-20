@@ -10,7 +10,7 @@
     align-items: start;
     justify-content: center;
     opacity: 0;
-    pointer-events: none;/*нажатие на другие элементы*/
+    pointer-events: none;
     transition: 0.5s;
 
     &.total{
@@ -46,6 +46,21 @@
                 background: linear-gradient(90deg,#0EC261,#039F67);
             }
             &.canceled{background: linear-gradient(90deg,#493013,#7B0C3B);}
+        }
+    }
+}
+
+@media screen and (max-width: 560px){
+    .modal{
+        &-content{
+            .title{
+                font-size: 18px;
+            }
+            button{
+                font-size: 15px;
+                width: 100%;
+                padding: 16px 2px;
+            }
         }
     }
 }
