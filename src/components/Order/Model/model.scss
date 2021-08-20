@@ -90,8 +90,8 @@
         color: $third-color;
       }
       img{
-        width: 90%;
-        height: 55%;
+        width: 350px;
+        height: 180px;
         align-self: flex-end;
         padding-right: 5px;
       }
@@ -111,6 +111,10 @@
         min-height: 50%;
         >div{
           h1{font-size: 15px}
+        }
+        img {
+          width: 250px;
+          height: 150px;
         }
       }
     }
@@ -145,8 +149,9 @@
           font-size: 18px;
         }
         img{
-          width: 80%;
-          height: 50%;
+          align-self: center;
+          width: 180px;
+          height: 110px;
         }
       }
     }
