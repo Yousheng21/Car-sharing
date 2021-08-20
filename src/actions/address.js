@@ -3,7 +3,7 @@ import { instance } from "../reducers/data/dataServer";
 import { setAddresses, setNewPlaceMarks } from "../reducers/appReducer";
 import { updateAddresses } from "./geolocate";
 
-const LIMIT_VALUE = 10;
+const LIMIT_VALUE = 7;
 
 export const getTableAddress = () => {
   return async (dispatch) => {
