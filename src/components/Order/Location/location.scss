@@ -97,6 +97,11 @@
         width: 100%;
         overflow: auto;
 
+        &.open{
+          z-index: -999;
+          opacity: 0;
+        }
+
         >div{
           width: 100%;
         }
@@ -104,18 +109,10 @@
     }
   }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .location-page {
-    grid-column-gap: 15px;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .location-page {
-    grid-template-rows: 5% 0.5fr 1fr 1fr;
-
     .sideBar {
-      grid-area: 4/2/5/4;
+      grid-area: 5/2/5/4;
 
       &-child {
         grid-column: 1/5;
