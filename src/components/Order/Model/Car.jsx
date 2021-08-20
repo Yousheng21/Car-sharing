@@ -8,7 +8,7 @@ const Car = ({ item, handleClick, inputCar }) => {
       type="button"
       className={classNames({
         car: true,
-        active: item.name === inputCar,
+        active: item.id === inputCar,
       })}
       onClick={() => {
         handleClick(item);
