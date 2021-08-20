@@ -1,54 +1,74 @@
+import { Component } from "react";
 import { store } from "../reducers";
 import { setDateRange, setDateValid } from "../reducers/appReducer";
+
+class DateDiff extends Component {
+  constructor(from, to) {
+    super();
+    this.from = from;
+    this.to = to;
+  }
+
+  inMinutes(weeks, days, hours) {
+    return Math.floor(
+      (this.to - this.from) / (60 * 1000) -
+        weeks * 7 * 1440 -
+        hours * 60 -
+        days * 1440
+    );
+  }
+
+  totalMinutes() {
+    return Math.floor((this.to - this.from) / (60 * 1000));
+  }
+
+  inHours(weeks, days) {
+    return Math.floor(
+      (this.to - this.from) / (3600 * 1000) - 24 * days - weeks * 24 * 7
+    );
+  }
+
+  inDays(weeks) {
+    return Math.floor((this.to - this.from) / (24 * 3600 * 1000) - weeks * 7);
+  }
+
+  totalDays() {
+    return Math.ceil((this.to - this.from) / (24 * 3600 * 1000));
+  }
+
+  inWeeks() {
+    return Math.floor((this.to - this.from) / (24 * 3600 * 1000 * 7));
+  }
+
+  totalWeeks() {
+    return Math.round((this.to - this.from) / (24 * 3600 * 1000 * 7));
+  }
+}
 
 const setDiffDate = (from, to) => {
   if (!from || !to) return store.dispatch(setDateRange("", from, to));
 
-  const t2 = to.getTime();
-  const t1 = from.getTime();
+  const toDate = to.getTime();
+  const fromDate = from.getTime();
 
-  if (t2 - t1 <= 0) return store.dispatch(setDateValid(false));
+  if (toDate - fromDate <= 0) return store.dispatch(setDateValid(false));
 
-  const DateDiff = {
-    inMinutes(weeks, days, hours) {
-      return Math.floor(
-        (t2 - t1) / (60 * 1000) - weeks * 7 * 1440 - hours * 60 - days * 1440
-      );
-    },
-    totalMinutes() {
-      return Math.floor((t2 - t1) / (60 * 1000));
-    },
-    inHours(weeks, days) {
-      return Math.floor((t2 - t1) / (3600 * 1000) - 24 * days - weeks * 24 * 7);
-    },
-    inDays(weeks) {
-      return Math.floor((t2 - t1) / (24 * 3600 * 1000) - weeks * 7);
-    },
-    totalDays() {
-      return Math.ceil((t2 - t1) / (24 * 3600 * 1000));
-    },
-    inWeeks() {
-      return Math.floor((t2 - t1) / (24 * 3600 * 1000 * 7));
-    },
-    totalWeeks() {
-      return Math.round((t2 - t1) / (24 * 3600 * 1000 * 7));
-    },
-  };
+  const dateDiff = new DateDiff(fromDate, toDate);
 
-  const weeks = DateDiff.inWeeks();
-  const days = DateDiff.inDays(weeks);
-  const hours = DateDiff.inHours(weeks, days);
-  const minutes = DateDiff.inMinutes(weeks, days, hours);
+  const weeks = dateDiff.inWeeks();
+  const days = dateDiff.inDays(weeks);
+  const hours = dateDiff.inHours(weeks, days);
+  const minutes = dateDiff.inMinutes(weeks, days, hours);
 
   const diff = {
     weeks: {
       value: weeks,
-      total: DateDiff.totalWeeks(),
+      total: dateDiff.totalWeeks(),
       unit: "нед",
     },
     days: {
       value: days,
-      total: DateDiff.totalDays(),
+      total: dateDiff.totalDays(),
       unit: "д",
     },
     hours: {
@@ -57,7 +77,7 @@ const setDiffDate = (from, to) => {
     },
     minutes: {
       value: minutes,
-      total: DateDiff.totalMinutes(),
+      total: dateDiff.totalMinutes(),
       unit: "мин",
     },
   };
