@@ -100,7 +100,8 @@ export default function appReducer(state = defaultState, action) {
         newTableCars: action.payload,
       };
     case SET_CURRENT_CAR:
-      if (!action.payload.colors.length) action.payload.colors.unshift("Любой");
+      if (action.payload.colors && !action.payload.colors.length)
+        action.payload.colors.unshift("Любой");
       return {
         ...state,
         currentCar: action.payload,
@@ -112,8 +113,8 @@ export default function appReducer(state = defaultState, action) {
           },
         },
         price: {
-          min: action.payload.priceMin,
-          max: action.payload.priceMax,
+          min: action.payload.priceMin ?? 0,
+          max: action.payload.priceMax ?? 32000,
         },
       };
     case SET_NEW_TABLE_CARS:
