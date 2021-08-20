@@ -13,6 +13,7 @@ import Map from "./Map";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 import { resetCity } from "../../../actions/app";
 import InputWrapper from "./InputWrapper";
+import Preloader from "../../../utils/Preloader/Preloader";
 
 const Location = ({ nextStep, page }) => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Location = ({ nextStep, page }) => {
   const placemarks = useSelector((state) => state.app.placeMarks);
   const cities = useSelector((state) => state.app.newCities);
   const addresses = useSelector((state) => state.app.newPlaceMarks);
+  const newAddresses = useSelector((state) => state.app.addresses);
   const currAddress = useSelector((state) => state.app.currentAddress);
   const currCity = useSelector((state) => state.app.currentCity);
 
@@ -83,34 +85,38 @@ const Location = ({ nextStep, page }) => {
       page={page}
       arrayValid={[inputAddress.inputValid.value, inputCity.inputValid.value]}
     >
-      <main className="location-content">
-        <section className="location-city">
-          <InputWrapper
-            current={currCity.name}
-            auto={inputCity.isCompareError.value || !inputCity.value}
-            title="Город"
-            onChange={inputCity.onChange}
-            print={["isCompareError"]}
-            input={inputCity}
-            array={cities}
-            id="city"
-          />
-          <InputWrapper
-            current={currAddress.name}
-            auto={inputAddress.isCompareError.value}
-            title="Пункт выдачи"
-            onChange={inputAddress.onChangeAddress}
-            print={["isEmpty", "isCompareError"]}
-            input={inputAddress}
-            array={addresses}
-            id="place"
-          />
-        </section>
-        <section className="location-map">
-          <h3>Выбрать на карте:</h3>
-          <Map />
-        </section>
-      </main>
+      {placemarks.length >= newAddresses.length - 1 ? (
+        <main className="location-content">
+          <section className="location-city">
+            <InputWrapper
+              current={currCity.name}
+              auto={inputCity.isCompareError.value || !inputCity.value}
+              title="Город"
+              onChange={inputCity.onChange}
+              print={["isCompareError"]}
+              input={inputCity}
+              array={cities}
+              id="city"
+            />
+            <InputWrapper
+              current={currAddress.name}
+              auto={inputAddress.isCompareError.value}
+              title="Пункт выдачи"
+              onChange={inputAddress.onChangeAddress}
+              print={["isEmpty", "isCompareError"]}
+              input={inputAddress}
+              array={addresses}
+              id="place"
+            />
+          </section>
+          <section className="location-map">
+            <h3>Выбрать на карте:</h3>
+            <Map />
+          </section>
+        </main>
+      ) : (
+        <Preloader />
+      )}
     </OrderLayout>
   );
 };
