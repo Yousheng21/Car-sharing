@@ -40,7 +40,7 @@ const Total = ({ page }) => {
         </button>
       </SideBar>
       <Modal active={activeModal} total>
-        <h1>Подтвердить заказ</h1>
+        <h1 className="title">Подтвердить заказ</h1>
         <Link className="button" to={`/car-sharing/order/confirm/${orderId}`}>
           <button
             type="button"
