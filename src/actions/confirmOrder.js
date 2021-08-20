@@ -1,20 +1,19 @@
 import { instance } from "../reducers/data/dataServer";
-import { orderCompleteId } from "../reducers/data/dataOrder";
-import { setOrderStatus } from "../reducers/appReducer";
+import { setTemporaryOrder } from "../reducers/appReducer";
 
-const setOrderComplete = (id) => {
+const setOrderComplete = (id, orderId) => {
   return async (dispatch) => {
     try {
-      await instance({
+      const response = await instance({
         method: "PUT",
         url: `/api/db/order/${id}`,
         data: {
           orderStatusId: {
-            id: orderCompleteId,
+            id: orderId,
           },
         },
       });
-      dispatch(setOrderStatus(true));
+      dispatch(setTemporaryOrder(response.data.data));
     } catch (e) {
       console.error(e.response);
     }
