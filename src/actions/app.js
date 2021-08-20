@@ -12,19 +12,12 @@ import {
   setTableCars,
 } from "../reducers/appReducer";
 
-const LIMIT_VALUE = 6;
-const OFFSET_VALUE = 2;
-
 const getTableCars = () => {
   return async (dispatch) => {
     try {
       const response = await instance({
         method: "GET",
         url: "/api/db/car",
-        params: {
-          limit: LIMIT_VALUE,
-          offset: OFFSET_VALUE,
-        },
       });
       dispatch(setTableCars(response.data.data));
     } catch (e) {
