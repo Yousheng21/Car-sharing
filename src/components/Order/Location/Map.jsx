@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import "leaflet/dist/leaflet.css";
 
+import classNames from "classnames";
 import { center } from "../../../reducers/data/dataOrder";
 
 const customMarker = new L.icon({
@@ -28,9 +29,13 @@ function MyComponent() {
 
 const Map = () => {
   const marks = useSelector((state) => state.app.placeMarks);
-
+  const burgerStatus = useSelector((state) => state.app.burger_status);
+  const classMap = classNames({
+    map: true,
+    open: burgerStatus,
+  });
   return (
-    <div className="map">
+    <div className={classMap}>
       <MapContainer
         style={{ height: "450px", width: "100%" }}
         center={center}
