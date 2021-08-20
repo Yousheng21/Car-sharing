@@ -63,7 +63,9 @@ const InputTariff = ({
               {`${item.rateTypeId.name}, ${item.price} P/${item.rateTypeId.unit}`}
             </button>
             <Modal active={activeModal}>
-              <h1>Тариф не соответсвует выбранной длительности аренды</h1>
+              <h1 className="title">
+                Тариф не соответсвует выбранной длительности аренды
+              </h1>
               <button
                 className="success"
                 type="button"
