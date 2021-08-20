@@ -10,6 +10,7 @@ import SideBar from "../../common/SideBar/SideBar";
 import Modal from "../../../utils/Modal/Modal";
 import { setOrder } from "../../../actions/order";
 import setOrderComplete from "../../../actions/confirmOrder";
+import { orderCompleteId } from "../../../reducers/data/dataOrder";
 
 const Total = ({ page }) => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const Total = ({ page }) => {
           <button
             type="button"
             className="success"
-            onClick={() => dispatch(setOrderComplete(orderId))}
+            onClick={() => dispatch(setOrderComplete(orderId, orderCompleteId))}
           >
             Подтвердить
           </button>
