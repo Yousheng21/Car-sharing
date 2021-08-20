@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { API_URL } from "../../../reducers/data/dataServer";
+import Image from "../../common/Image";
 
 const Car = ({ item, handleClick, inputCar }) => {
   return (
@@ -20,12 +20,7 @@ const Car = ({ item, handleClick, inputCar }) => {
           {item.priceMin} - {item.priceMax} P
         </span>
       </div>
-      <img
-        crossOrigin="anonymous"
-        referrerPolicy="origin"
-        src={API_URL + item.thumbnail.path}
-        alt={item.name}
-      />
+      <Image car={item} />
     </button>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { API_URL } from "../../reducers/data/dataServer";
+import Image from "../common/Image";
 
 const InfoOrderLayout = () => {
   const car = useSelector((state) => state.app.currentCar);
@@ -21,7 +21,7 @@ const InfoOrderLayout = () => {
           <span>Доступна c</span> {order.delay.from.toLocaleString()}
         </section>
       </section>
-      <img src={API_URL + car.thumbnail.path} alt={car.name} />
+      <Image car={car} />
     </div>
   );
 };
