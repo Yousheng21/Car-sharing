@@ -23,7 +23,7 @@ const Model = ({ nextStep, page }) => {
 
   useEffect(() => {
     if (!cars.length) dispatch(getTableCars);
-    if (!inputCar && currCar.id !== "") {
+    if (!inputCar && currCar.id) {
       setInputCar(currCar.id);
       setInputCarValid(true);
     }
