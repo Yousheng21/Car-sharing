@@ -9,7 +9,7 @@ import Confirm from "./Confirm/Confirm";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/car-sharing">
       <Switch>
         <Route exact path="/car-sharing" component={Home} />
         <Route
