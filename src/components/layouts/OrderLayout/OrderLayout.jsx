@@ -21,7 +21,7 @@ const OrderLayout = ({ children, path, step, text, page, arrayValid }) => {
   return (
     <div className="location-page">
       <BurgerMenu />
-      <NavBar page={page} />
+      <NavBar page={page} arrayValid={arrayValid} />
       {children}
       <SideBar>
         <Link className="button" to={`/car-sharing/order/${path}`}>
