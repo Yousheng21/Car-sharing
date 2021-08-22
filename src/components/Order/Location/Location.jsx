@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./location.scss";
 
 import { getTableCity, selectCity } from "../../../actions/city";
-import { getTableAddress } from "../../../actions/address";
+import { getTableAddress, searchAddress } from "../../../actions/address";
 import {
   setCurrentAddress,
   setNewPlaceMarks,
@@ -73,6 +73,7 @@ const Location = ({ nextStep, page }) => {
       inputCity.inputValid.value
     ) {
       if (!inputCity.value) dispatch(setNewPlaceMarks(placemarks));
+      else searchAddress("");
       dispatch(setCurrentAddress("", currCity ?? {}));
     }
   }, [inputAddress.value]);
