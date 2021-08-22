@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./confirm.scss";
+import { Link } from "react-router-dom";
 import BurgerMenu from "../common/Burger-menu/Burger-menu";
 import NavBar from "../common/NavBar/NavBar";
 import getOrder from "../../actions/getOrder";
@@ -60,13 +61,21 @@ const Confirm = (props) => {
       </main>
 
       <SideBarTotal parameters={order}>
-        <button
-          type="button"
-          className="button confirm-content-button"
-          onClick={() => dispatch(setOrderComplete(id, orderCloseId))}
-        >
-          Отменить
-        </button>
+        {order.orderStatusId.id === orderCloseId ? (
+          <Link className="button" to="/car-sharing/order">
+            <button type="button" className="confirm-content-button">
+              В начало аренды
+            </button>
+          </Link>
+        ) : (
+          <button
+            type="button"
+            className="button confirm-content-button"
+            onClick={() => dispatch(setOrderComplete(id, orderCloseId))}
+          >
+            Отменить
+          </button>
+        )}
       </SideBarTotal>
     </div>
   ) : (
