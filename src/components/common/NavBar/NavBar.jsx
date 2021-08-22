@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
@@ -14,9 +14,20 @@ const tabs = [
   { text: "Итого", path: "total" },
 ];
 
-const NavBar = ({ page, confirm, city }) => {
+const NavBar = ({ page, confirm, city, arrayValid }) => {
   const currStep = useSelector((state) => state.app.currentStep);
   const currCity = useSelector((state) => state.app.currentCity.name);
+  const [btnIsDisabled, setBtnIsDisabled] = useState(false);
+
+  useEffect(() => {
+    if (arrayValid) {
+      setBtnIsDisabled(
+        arrayValid.some((item) => {
+          return !item;
+        })
+      );
+    }
+  }, [arrayValid]);
   return (
     <nav className="navBar">
       <header className="navBar-header">
@@ -45,7 +56,7 @@ const NavBar = ({ page, confirm, city }) => {
               {index ? <Vector /> : ""}
               <Link
                 className={classNames({
-                  disabled: index > currStep,
+                  disabled: !btnIsDisabled ? index > currStep : index > page,
                 })}
                 to={`/car-sharing/order/${item.path}`}
               >
