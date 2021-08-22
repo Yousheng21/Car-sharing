@@ -85,6 +85,10 @@
         .auto-address {
           @extend .auto-city;
         }
+        .error{
+          color: red;
+          text-align: left;
+        }
       }
 
     }

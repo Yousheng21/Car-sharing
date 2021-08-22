@@ -65,7 +65,7 @@ const InputWrapper = ({
             : ""}
         </div>
       </section>
-      <span>{input.isDirty && input.printError(print)}</span>
+      <span className="error">{input.isDirty && input.printError(print)}</span>
     </div>
   );
 };
