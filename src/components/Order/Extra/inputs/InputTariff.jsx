@@ -77,7 +77,7 @@ const InputTariff = ({
           </label>
         ))}
       </section>
-      {!tariffIsSelect ? "Выберите тариф" : ""}
+      {!tariffIsSelect ? <span className="error">Выберите тариф</span> : ""}
     </div>
   );
 };
