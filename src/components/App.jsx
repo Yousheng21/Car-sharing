@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter basename="/car-sharing">
       <Switch>
-        <Route exact path="/car-sharing/" component={Home} />
+        <Route exact path="/car-sharing" component={Home} />
         <Route
           exact
           path="/car-sharing/order"
