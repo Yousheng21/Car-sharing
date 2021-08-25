@@ -250,7 +250,10 @@ export default function appReducer(state = defaultState, action) {
         },
         price: {
           ...state.price,
-          value: state.price.value + action.item.price,
+          value:
+            state.price.value + action.item.price < state.price.max
+              ? state.price.value + action.item.price
+              : state.price.max,
         },
       };
     case CHANGE_ADDITIONAL:
@@ -268,7 +271,13 @@ export default function appReducer(state = defaultState, action) {
         },
         price: {
           ...state.price,
-          value: state.price.value - action.item.price,
+          value:
+            state.price.value > state.price.min &&
+            state.price.value - action.item.price > state.price.min &&
+            state.price.value < state.price.max &&
+            state.price.value - action.item.price < state.price.max
+              ? state.price.value - action.item.price
+              : state.price.value,
         },
       };
     case SET_DATE_RANGE:
