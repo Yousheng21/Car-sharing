@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
-import { setTariff } from "../../../../reducers/appReducer";
+import { setAdditional, setTariff } from "../../../../reducers/appReducer";
 import Modal from "../../../../utils/Modal/Modal";
 import { setPrice } from "../../../../actions/tariff";
+import { additional } from "../../../../reducers/data/dataOrder";
 
 const InputTariff = ({
   tariffs,
@@ -18,6 +19,9 @@ const InputTariff = ({
   const [activeModal, setActiveModal] = useState(false);
 
   const currTariff = useSelector((state) => state.app.currentTariff);
+  const stateAdditional = useSelector(
+    (state) => state.app.currentOrder.additional
+  );
 
   useEffect(() => {
     if (tariffs.length && !currTariff.id) {
@@ -33,6 +37,15 @@ const InputTariff = ({
   useEffect(() => {
     if (currTariff.id) {
       setPrice(currTariff);
+      Object.keys(stateAdditional).forEach((item) => {
+        if (stateAdditional[item].value) {
+          return additional.forEach((add) => {
+            if (item === add.key) {
+              return dispatch(setAdditional(add));
+            }
+          });
+        }
+      });
     }
   }, [startDate, endDate, currTariff.id]);
 
