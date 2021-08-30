@@ -56,6 +56,10 @@
         font-size: 18px;
         align-self: center;
         font-weight: bold;
+        .error{
+            color: red;
+            margin-top: 5px;
+        }
     }
     .button{
         grid-area: 4/2/5/5;
