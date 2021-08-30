@@ -6,7 +6,6 @@ import Additional from "./Additional";
 const SideBar = ({ children, priceValid }) => {
   const parameters = useSelector((state) => state.app.currentOrder);
   const price = useSelector((state) => state.app.price);
-
   return (
     <aside className="sideBar">
       <header className="sideBar-info-title sideBar-child">
@@ -45,7 +44,7 @@ const SideBar = ({ children, priceValid }) => {
           {price.value ? (
             <span>
               {` ${price.value}p`}
-              {!priceValid ? (
+              {!priceValid && priceValid !== undefined ? (
                 <div className="error">
                   Выберите стоимость от {price.min}р до {price.max}р
                 </div>
