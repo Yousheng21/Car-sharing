@@ -295,7 +295,10 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         price: {
           ...state.price,
-          value: state.price.min + action.price,
+          value:
+            action.price < state.price.min
+              ? state.price.min + action.price
+              : action.price,
         },
       };
     case SET_ORDER_ID:
