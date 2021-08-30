@@ -25,10 +25,13 @@ const Extra = ({ nextStep, page }) => {
       : ""
   );
   const [tariffsIsValid, setTariffsIsValid] = useState([]);
+  const [priceValid, setPriceValid] = useState(true);
   const [tariffIsSelect, setTariffIsSelect] = useState(true);
   const [inputTariff, setInputTariff] = useState(0);
+
   const tariffs = useSelector((state) => state.app.tariffs);
   const dateIsValid = useSelector((state) => state.app.dateIsValid);
+  const price = useSelector((state) => state.app.price);
 
   useEffect(() => {
     if (!tariffs.length) dispatch(getTariffs);
@@ -43,13 +46,22 @@ const Extra = ({ nextStep, page }) => {
     );
   }, [startDate, endDate, inputTariff, tariffsIsValid]);
 
+  useEffect(() => {
+    if (price.value) {
+      if (price.value >= price.min && price.value <= price.max)
+        setPriceValid(true);
+      else setPriceValid(false);
+    }
+  }, [price.value]);
+
   return (
     <OrderLayout
       path="total"
       step={nextStep}
       page={page}
+      priceValid={priceValid}
       text="Итого"
-      arrayValid={[dateIsValid, startDate, endDate, tariffIsSelect]}
+      arrayValid={[dateIsValid, startDate, endDate, tariffIsSelect, priceValid]}
     >
       <main className="extra-content">
         <InputColor />
