@@ -3,7 +3,7 @@ import "./sideBar.scss";
 import { useSelector } from "react-redux";
 import Additional from "./Additional";
 
-const SideBar = ({ children }) => {
+const SideBar = ({ children, priceValid }) => {
   const parameters = useSelector((state) => state.app.currentOrder);
   const price = useSelector((state) => state.app.price);
 
@@ -42,9 +42,20 @@ const SideBar = ({ children }) => {
       <section className="sideBar-info-price sideBar-child">
         Цена
         <span>
-          {price.value
-            ? ` ${price.value} p`
-            : ` от ${price.min} p до ${price.max} p`}{" "}
+          {price.value ? (
+            <span>
+              {` ${price.value}p`}
+              {!priceValid ? (
+                <div className="error">
+                  Выберите стоимость от {price.min}р до {price.max}р
+                </div>
+              ) : (
+                ""
+              )}
+            </span>
+          ) : (
+            ` от ${price.min} p до ${price.max} p`
+          )}
         </span>
       </section>
 
