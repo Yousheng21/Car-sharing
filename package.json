@@ -12,15 +12,9 @@
     "babel-eslint": "^10.1.0",
     "bootstrap": "^5.0.2",
     "classnames": "^2.3.1",
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "leaflet": "^1.7.1",
-=======
->>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
-=======
->>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
     "npm": "^7.20.0",
     "react": "^17.0.2",
+    "react-datepicker": "^4.2.0",
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.1.0",
     "react-redux": "^7.2.4",

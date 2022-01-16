@@ -1,0 +1,71 @@
+@import "src/components/common/SideBar/sideBar";
+.modal{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+
+    &.total{
+        background-color: rgba(255, 240, 254, 0.99);
+    }
+
+    &.active{
+        pointer-events: all;
+        opacity: 1;
+        z-index: 999;
+    }
+
+    &-content{
+        position: relative;
+        top: 30%;
+        width: 35vw;
+        padding: 20px;
+        text-align: center;
+        border-radius: 12px;
+        background-color: white;
+        transform: scale(0.5);
+        transition: 0.4s all;
+
+        &.active{
+            transform: scale(1);
+        }
+        button{
+            @extend %style-btn;
+            width: auto;
+            margin: 5px;
+
+            &.success{
+                background: linear-gradient(90deg,#0EC261,#039F67);
+            }
+            &.canceled{background: linear-gradient(90deg,#493013,#7B0C3B);}
+        }
+    }
+}
+
+@media screen and (max-width: 560px){
+    .modal{
+        &-content{
+            .title{
+                font-size: 18px;
+            }
+            button{
+                font-size: 15px;
+                width: 100%;
+                padding: 16px 2px;
+            }
+        }
+    }
+}
+
+
+
+
+

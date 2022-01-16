@@ -10,6 +10,7 @@ import { setCurrentCar } from "../../../reducers/appReducer";
 
 import LabelCategory from "./LabelCategory";
 import Car from "./Car";
+import Preloader from "../../../utils/Preloader/Preloader";
 
 const Model = ({ nextStep, page }) => {
   const dispatch = useDispatch();
@@ -23,16 +24,16 @@ const Model = ({ nextStep, page }) => {
 
   useEffect(() => {
     if (!cars.length) dispatch(getTableCars);
-    if (!inputCar && currCar.name !== "") {
-      setInputCar(currCar.name);
+    if (!inputCar && currCar.id) {
+      setInputCar(currCar.id);
       setInputCarValid(true);
     }
   }, [cars.length]);
 
   function handleClick(item) {
-    setInputCar(item.name === inputCar ? "" : item.name);
-    setInputCarValid(item.name !== inputCar);
-    dispatch(setCurrentCar(item.name === inputCar ? { name: "" } : item));
+    setInputCar(item.id === inputCar ? "" : item.id);
+    setInputCarValid(item.id !== inputCar);
+    dispatch(setCurrentCar(item.id === inputCar ? { name: "" } : item));
   }
 
   return (
@@ -43,23 +44,27 @@ const Model = ({ nextStep, page }) => {
       page={page}
       arrayValid={[inputCarValid]}
     >
-      <main className="model-content">
-        <section className="model-input">
-          <LabelCategory />
-        </section>
-        <section className="model-cars">
-          {tableCars.length
-            ? tableCars.map((item) => (
-                <Car
-                  key={item.id}
-                  handleClick={handleClick}
-                  inputCar={inputCar}
-                  item={item}
-                />
-              ))
-            : "Машины данной категории отсутствуют"}
-        </section>
-      </main>
+      {cars.length ? (
+        <main className="model-content">
+          <section className="model-input">
+            <LabelCategory />
+          </section>
+          <section className="model-cars">
+            {tableCars.length
+              ? tableCars.map((item) => (
+                  <Car
+                    key={item.id}
+                    handleClick={handleClick}
+                    inputCar={inputCar}
+                    item={item}
+                  />
+                ))
+              : "Машины данной категории отсутствуют"}
+          </section>
+        </main>
+      ) : (
+        <Preloader />
+      )}
     </OrderLayout>
   );
 =======

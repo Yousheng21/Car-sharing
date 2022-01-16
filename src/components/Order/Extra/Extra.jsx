@@ -1,29 +1,91 @@
 import React from "react";
-<<<<<<< HEAD
+import React, { useEffect, useState } from "react";
 import "./extra.scss";
 
+import { useDispatch, useSelector } from "react-redux";
 import OrderLayout from "../../layouts/OrderLayout/OrderLayout";
 import InputColor from "./inputs/InputColor";
 import InputRangeDate from "./inputs/InputRangeDate";
 import InputTariff from "./inputs/InputTariff";
 import InputExtraServices from "./inputs/InputExtraServices";
+import getTariffs from "../../../actions/tariff";
+import { tariffIsValid } from "../../../actions/dateRange";
 
 const Extra = ({ nextStep, page }) => {
-  return (
-    <OrderLayout path="total" step={nextStep} page={page} text="Итого">
-      <main className="extra-content">
-        <InputColor />
-        <InputRangeDate />
-        <InputTariff />
-        <InputExtraServices />
-      </main>
-    </OrderLayout>
+  const dispatch = useDispatch();
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(
+      startDate
+          ? new Date(
+          startDate.getFullYear(),
+          startDate.getMonth(),
+          startDate.getDate(),
+          startDate.getHours(),
+          startDate.getMinutes() + 30
+          )
+          : ""
   );
-=======
+  const [tariffsIsValid, setTariffsIsValid] = useState([]);
+  const [priceValid, setPriceValid] = useState(true);
+  const [tariffIsSelect, setTariffIsSelect] = useState(true);
+  const [inputTariff, setInputTariff] = useState(0);
 
-const Extra = () => {
-  return <div>Extra</div>;
->>>>>>> 175c49e3e6357515b87b54c086ddba2c7c857089
-};
+  const tariffs = useSelector((state) => state.app.tariffs);
+  const dateIsValid = useSelector((state) => state.app.dateIsValid);
+  const price = useSelector((state) => state.app.price);
 
+  useEffect(() => {
+    if (!tariffs.length) dispatch(getTariffs);
+    setTariffsIsValid(tariffIsValid);
+  }, [tariffs.length, startDate, endDate]);
+
+  useEffect(() => {
+    setTariffIsSelect(
+        !tariffs.some((item, index) => {
+          return index === inputTariff && tariffsIsValid[index];
+        })
+    );
+  }, [startDate, endDate, inputTariff, tariffsIsValid]);
+
+  useEffect(() => {
+    if (price.value) {
+      if (price.value >= price.min && price.value <= price.max)
+        setPriceValid(true);
+      else setPriceValid(false);
+    }
+  }, [price.value]);
+
+  return (
+      <OrderLayout
+          path="total"
+          step={nextStep}
+          page={page}
+          priceValid={priceValid}
+          text="Итого"
+          arrayValid={[dateIsValid, startDate, endDate, tariffIsSelect, priceValid]}
+      >
+        <main className="extra-content">
+          <InputColor/>
+          <InputRangeDate
+              dateIsValid={dateIsValid}
+              startDate={startDate}
+              setStartDate={setStartDate}
+              endDate={endDate}
+              setEndDate={setEndDate}
+          />
+          <InputTariff
+              tariffIsSelect={tariffIsSelect}
+              tariffsIsValid={tariffsIsValid}
+              tariffs={tariffs}
+              inputTariff={inputTariff}
+              setInputTariff={setInputTariff}
+              setTariffIsSelect={setTariffIsSelect}
+              startDate={startDate}
+              endDate={endDate}
+          />
+          <InputExtraServices/>
+        </main>
+      </OrderLayout>
+  );
+}
 export default Extra;

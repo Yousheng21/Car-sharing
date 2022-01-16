@@ -42,7 +42,7 @@ export const useValidation = (value, validations) => {
             if (flag) {
               setAddress(
                 `${flag.address.road} ${flag.address.house_number ?? ""}`,
-                flag.address.city ?? "",
+                flag.cityId,
                 flag
               );
             }

@@ -37,17 +37,24 @@
   }
 }
 
-@media screen and (max-width: 425px){
-  .total-content{
-    &-info{
-      .number{
+@media screen and (max-width: 425px) {
+  .total-content {
+    &-info {
+      .number {
         width: 50%;
       }
     }
-    img{
+
+    img {
       height: 100px;
       width: 80%;
       align-self: center;
+
+      &-info {
+        .number {
+          width: 50%;
+        }
+      }
     }
   }
 }

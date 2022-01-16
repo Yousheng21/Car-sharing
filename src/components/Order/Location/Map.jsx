@@ -30,10 +30,9 @@ function MyComponent() {
 const Map = () => {
   const marks = useSelector((state) => state.app.placeMarks);
   const burgerStatus = useSelector((state) => state.app.burger_status);
-
   const classMap = classNames({
     map: true,
-    close: burgerStatus,
+    open: burgerStatus,
   });
 
   return (

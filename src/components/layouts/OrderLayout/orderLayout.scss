@@ -3,6 +3,7 @@
   display: grid;
   grid-template: 5% 0.5fr 2fr/0.4fr 2fr 1.5fr 0.3fr;
   height: 100vh;
+  overflow: auto;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -13,7 +14,6 @@
 
 @media screen and (max-width: 768px) {
   .location-page {
-    grid-template-rows: 5% 0.5fr 1fr 1fr;
-    overflow: auto;
+    grid-template-rows: 5% 0.5fr 5fr 0.1fr;
   }
 }

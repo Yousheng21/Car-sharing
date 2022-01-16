@@ -1,15 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { additional } from "../../../../reducers/data/dataOrder";
+import {
+  changeAdditional,
+  setAdditional,
+} from "../../../../reducers/appReducer";
 
 const InputExtraServices = () => {
+  const dispatch = useDispatch();
+  const [arrSelected, setArrSelected] = useState([]);
+
+  const handleChange = (item, index) => {
+    if (!arrSelected.includes(index)) {
+      dispatch(setAdditional(item));
+      setArrSelected([...arrSelected, index]);
+    } else {
+      const elIndex = arrSelected.findIndex((el) => {
+        return el === index;
+      });
+      dispatch(changeAdditional(item));
+      arrSelected.splice(elIndex, 1);
+      setArrSelected([...arrSelected]);
+    }
+  };
+
   return (
     <div>
       <h1>Доп услуги</h1>
       <section className="extra-additional">
-        {additional.map((item) => (
-          <label key={item} htmlFor={item}>
-            {item}
-            <input type="checkbox" name="additional" id={item} value={item} />
+        {additional.map((item, index) => (
+          <label key={item.name} htmlFor={item.name}>
+            {`${item.name}, ${item.price}P`}
+            <input
+              type="checkbox"
+              onChange={() => handleChange(item, index)}
+              name="additional"
+              id={item.name}
+              value={item.name}
+            />
             <span className="check-mark" />
           </label>
         ))}

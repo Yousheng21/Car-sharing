@@ -6,7 +6,15 @@ import SideBar from "../../common/SideBar/SideBar";
 import { nextStep } from "../../../actions/app";
 import "./orderLayout.scss";
 
-const OrderLayout = ({ children, path, step, text, page, arrayValid }) => {
+const OrderLayout = ({
+  children,
+  path,
+  step,
+  text,
+  page,
+  arrayValid,
+  priceValid,
+}) => {
   const [btnIsDisabled, setBtnIsDisabled] = useState(false);
 
   useEffect(() => {
@@ -21,9 +29,9 @@ const OrderLayout = ({ children, path, step, text, page, arrayValid }) => {
   return (
     <div className="location-page">
       <BurgerMenu />
-      <NavBar page={page} />
+      <NavBar page={page} arrayValid={arrayValid} />
       {children}
-      <SideBar>
+      <SideBar priceValid={priceValid}>
         <Link className="button" to={`/car-sharing/order/${path}`}>
           <button
             type="button"

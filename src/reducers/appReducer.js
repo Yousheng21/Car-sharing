@@ -11,7 +11,18 @@ const SET_ADDRESSES = "SET_ADDRESSES";
 const SET_PLACE_MARKS = "SET_PLACE_MARKS";
 const SET_NEW_PLACE_MARKS = "SET_NEW_PLACE_MARKS";
 const SET_CATEGORIES = "SET_CATEGORIES";
+const SET_TARIFFS = "SET_TARIFFS";
 const SET_PLACE_MARK_INDEX = "SET_PLACE_MARK_INDEX";
+const SET_COLOR = "SET_COLOR";
+const SET_TARIFF = "SET_TARIFF";
+const SET_ADDITIONAL = "SET_ADDITIONAL";
+const CHANGE_ADDITIONAL = "CHANGE_ADDITIONAL";
+const SET_DATE_RANGE = "SET_DATE_RANGE";
+const DATE_IS_VALID = "DATE_IS_VALID";
+const SET_PRICE = "SET_PRICE";
+const SET_ORDER_ID = "SET_ORDER_ID";
+const SET_ORDER_STATUS = "SET_ORDER_STATUS";
+const SET_TEMPORARY_ORDER = "SET_TEMPORARY_ORDER";
 
 const defaultState = {
   burger_status: false,
@@ -29,13 +40,33 @@ const defaultState = {
     },
     model: { text: "Модель", value: "" },
     color: { text: "Цвет", value: "" },
-    delay: { text: "Длительность аренды", value: "", from: "", to: "" },
+    delay: {
+      text: "Длительность аренды",
+      value: "",
+      date: {},
+      from: "",
+      to: "",
+    },
     tariff: { text: "Тариф", value: "" },
-    cistern: { text: "Полный бак", value: "" },
+    additional: {
+      isFullTank: {
+        text: "",
+        value: false,
+      },
+      isNeedChildChair: {
+        text: "",
+        value: false,
+      },
+      isRightWheel: {
+        text: "",
+        value: false,
+      },
+    },
   },
   price: {
     min: 0,
     max: 32000,
+    value: 0,
   },
   tableCars: [],
   newTableCars: [],
@@ -46,6 +77,8 @@ const defaultState = {
   placeMarks: [],
   newPlaceMarks: [],
   categories: [],
+  tariffs: [],
+  currentTariff: {},
   placeMarkIndex: {},
   currentCar: { colors: ["Любой"], thumbnail: { path: "" }, name: "" },
   currentStep: 0,
@@ -53,6 +86,10 @@ const defaultState = {
     name: "",
     city: "",
   },
+  dateIsValid: true,
+  orderId: "",
+  orderStatus: false,
+  temporaryOrder: {},
 };
 
 export default function appReducer(state = defaultState, action) {
@@ -69,6 +106,8 @@ export default function appReducer(state = defaultState, action) {
         newTableCars: action.payload,
       };
     case SET_CURRENT_CAR:
+      if (action.payload.colors && !action.payload.colors.length)
+        action.payload.colors.unshift("Любой");
       return {
         ...state,
         currentCar: action.payload,
@@ -80,8 +119,8 @@ export default function appReducer(state = defaultState, action) {
           },
         },
         price: {
-          min: action.payload.priceMin,
-          max: action.payload.priceMax,
+          min: action.payload.priceMin ?? 0,
+          max: action.payload.priceMax ?? 32000,
         },
       };
     case SET_NEW_TABLE_CARS:
@@ -131,15 +170,17 @@ export default function appReducer(state = defaultState, action) {
       return {
         ...state,
         currentAddress: {
+          id: action.id,
           name: action.address,
-          city: action.city,
+          city: action.city.name,
         },
+        currentCity: action.city,
         currentOrder: {
           ...state.currentOrder,
           place: {
             ...state.currentOrder.place,
             value: {
-              city: action.city,
+              city: action.city ? action.city.name : "",
               street: action.address,
             },
           },
@@ -167,10 +208,119 @@ export default function appReducer(state = defaultState, action) {
         ...state,
         categories: action.categories,
       };
+    case SET_TARIFFS:
+      return {
+        ...state,
+        tariffs: action.tariffs,
+      };
     case SET_PLACE_MARK_INDEX:
       return {
         ...state,
         placeMarkIndex: action.index,
+      };
+    case SET_COLOR:
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          color: {
+            ...state.currentOrder.color,
+            value: action.color,
+          },
+        },
+      };
+    case SET_TARIFF:
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          tariff: {
+            ...state.currentOrder.tariff,
+            value: action.value,
+          },
+        },
+        currentTariff: action.tariff,
+      };
+    case SET_ADDITIONAL:
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          additional: {
+            ...state.currentOrder.additional,
+            [action.item.key]: {
+              text: action.item.name,
+              value: true,
+            },
+          },
+        },
+        price: {
+          ...state.price,
+          value: state.price.value + action.item.price,
+        },
+      };
+    case CHANGE_ADDITIONAL:
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          additional: {
+            ...state.currentOrder.additional,
+            [action.item.key]: {
+              ...state.currentOrder.additional[action.item.key],
+              value: false,
+            },
+          },
+        },
+        price: {
+          ...state.price,
+          value: state.price.value - action.item.price,
+        },
+      };
+    case SET_DATE_RANGE:
+      return {
+        ...state,
+        currentOrder: {
+          ...state.currentOrder,
+          delay: {
+            ...state.currentOrder.delay,
+            value: action.text,
+            date: action.diff,
+            from: action.from,
+            to: action.to,
+          },
+        },
+      };
+    case DATE_IS_VALID:
+      return {
+        ...state,
+        dateIsValid: action.flag,
+      };
+    case SET_PRICE:
+      return {
+        ...state,
+        price: {
+          ...state.price,
+          value:
+            action.price < state.price.min
+              ? state.price.min + action.price
+              : action.price,
+        },
+      };
+    case SET_ORDER_ID:
+      return {
+        ...state,
+        orderId: action.id,
+      };
+    case SET_ORDER_STATUS:
+      return {
+        ...state,
+        orderStatus: action.status,
+      };
+    case SET_TEMPORARY_ORDER:
+      return {
+        ...state,
+        temporaryOrder: action.order,
       };
     default:
       return state;
@@ -222,10 +372,11 @@ export const setCurrentCity = (city) => ({
   payload: city,
 });
 
-export const setCurrentAddress = (address, city) => ({
+export const setCurrentAddress = (address, city, id) => ({
   type: SET_CURRENT_ADDRESS,
   address,
   city,
+  id,
 });
 
 export const setPlaceMarks = (placeMark) => ({
@@ -243,7 +394,66 @@ export const setCategories = (categories) => ({
   categories,
 });
 
+export const setTariffs = (tariffs) => ({
+  type: SET_TARIFFS,
+  tariffs,
+});
+
 export const setPlaceMarkIndex = (index) => ({
   type: SET_PLACE_MARK_INDEX,
   index,
+});
+
+export const setColor = (color) => ({
+  type: SET_COLOR,
+  color,
+});
+
+export const setTariff = (tariff, value) => ({
+  type: SET_TARIFF,
+  tariff,
+  value,
+});
+
+export const setAdditional = (item) => ({
+  type: SET_ADDITIONAL,
+  item,
+});
+
+export const changeAdditional = (item) => ({
+  type: CHANGE_ADDITIONAL,
+  item,
+});
+
+export const setDateRange = (diff, text, from, to) => ({
+  type: SET_DATE_RANGE,
+  diff,
+  text,
+  from,
+  to,
+});
+
+export const setDateValid = (flag) => ({
+  type: DATE_IS_VALID,
+  flag,
+});
+
+export const setPriceOrder = (price) => ({
+  type: SET_PRICE,
+  price,
+});
+
+export const setOrderId = (id) => ({
+  type: SET_ORDER_ID,
+  id,
+});
+
+export const setOrderStatus = (status) => ({
+  type: SET_ORDER_STATUS,
+  status,
+});
+
+export const setTemporaryOrder = (order) => ({
+  type: SET_TEMPORARY_ORDER,
+  order,
 });

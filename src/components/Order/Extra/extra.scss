@@ -5,8 +5,14 @@
   .extra-content{
     display: grid;
     grid-area: 3/2/4/3;
-    grid-template: 0.7fr repeat(3,1fr)/1fr;
+    grid-template: 0.5fr repeat(3,1fr)/1fr;
 
+    .extra-main-color{
+      h3{margin-top: 0}
+    }
+    .error{
+      color: red;
+    }
     .extra-color{
       @extend %style-radio;
       display: flex;
@@ -15,9 +21,13 @@
     .extra-date{
       @extend %style-city;
       .city-content{
-        .btn-close {
-          right: 240px;
-          top:10px;
+        .extra-date-range{
+          position: relative;
+
+          .btn-close {
+            right: 0;
+            top:0;
+          }
         }
       }
 
@@ -33,10 +43,21 @@
 
       label{
         padding-bottom: 10px;
+        color: $second-color;
+        cursor: text;
+
+        .extra-btn{
+          background: none;
+          border: none;
+
+          &.disabled{
+            color: $third-color;
+            cursor: pointer;
+          }
+        }
       }
     }
     .extra-additional{
-
       label{
         display: flex;
         flex-direction: column;

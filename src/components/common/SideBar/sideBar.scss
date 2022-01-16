@@ -17,7 +17,7 @@
 >>>>>>> ff03ecbf9c00ba950a12f736ff83c80cb5193657
 .sideBar{
     display: grid;
-    grid-template: 0.2fr 0.2fr 0.2fr 0.1fr 0.1fr 1fr/30% 1fr 20% 1fr;
+    grid-template: 0.2fr 0.2fr 0.2fr 0.1fr/30% 1fr 20% 1fr;
     grid-area: 3/3/8/4;
 
     &-map{
@@ -62,6 +62,12 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
         font-size: 18px;
+        align-self: center;
+        font-weight: bold;
+        .error{
+            color: red;
+            margin-top: 5px;
+        }
     }
     .button{
         grid-area: 4/2/5/5;
@@ -78,6 +84,7 @@
 
 @media screen and (max-width: 768px){
     .sideBar{
+        margin-top: 5%;
         .button{
             grid-column: 1/5;
         }
