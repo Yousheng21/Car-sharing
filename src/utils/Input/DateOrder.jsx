@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import ru from "date-fns/locale/ru";
 import "react-datepicker/dist/react-datepicker.css";
 
-import Close from "../../images/close.svg";
+import {ReactComponent as Close} from "../../images/close.svg";
 
 const DateOrder = ({
   minDate,

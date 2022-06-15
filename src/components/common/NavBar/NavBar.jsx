@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
 
-import Vector from "../../../images/vector.svg";
+import {ReactComponent as Vector} from "../../../images/vector.svg";
 
 import "./navBar.scss";
 

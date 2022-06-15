@@ -5,8 +5,8 @@ import classNames from "classnames";
 
 import { setBurgerStatus } from "../../../reducers/appReducer";
 
-import MenuToggle1 from "../../../images/MenuToggle1.svg";
-import MenuToggle2 from "../../../images/MenuToggle2.svg";
+import {ReactComponent as MenuToggle1} from "../../../images/MenuToggle1.svg";
+import {ReactComponent as MenuToggle2} from "../../../images/MenuToggle2.svg";
 
 import components from "../../../reducers/data/dataMenu";
 
@@ -39,8 +39,7 @@ const BurgerMenu = () => {
         <section className="toggle-wrapper">
           <MenuToggle1 onClick={handleToggle} className={svg1} />
           <MenuToggle2 onClick={handleToggle} className={svg2} />
-        </section>
-        {/* заменил на массивы */}
+        </section>s
         <section className="burger-info">
           {components.li.map((item) => (
             <Link key={item} to="/car-sharing/order" onClick={handleToggle}>

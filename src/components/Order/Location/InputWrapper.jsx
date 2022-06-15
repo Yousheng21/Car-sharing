@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import classNames from "classnames";
-import Close from "../../../images/close.svg";
+import {ReactComponent as Close} from "../../../images/close.svg";
 import Tooltip from "../../../utils/Input/Tooltip";
 import Input from "../../../utils/Input/Input";
 
